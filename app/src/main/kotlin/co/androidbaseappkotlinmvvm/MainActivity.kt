@@ -5,12 +5,14 @@ import android.support.design.widget.BottomNavigationView
 
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import co.androidbaseappkotlinmvvm.common.BaseActivity
+import co.androidbaseappkotlinmvvm.common.BaseFragment
 import co.androidbaseappkotlinmvvm.favorites.FavoriteMoviesFragment
 import co.androidbaseappkotlinmvvm.popularmovies.PopularMoviesFragment
 import co.androidbaseappkotlinmvvm.search.SearchFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var navigationBar: BottomNavigationView
 

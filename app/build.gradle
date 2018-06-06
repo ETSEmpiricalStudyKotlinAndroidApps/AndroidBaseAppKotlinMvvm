@@ -20,15 +20,20 @@ android {
     buildTypes {
         debug {
             testCoverageEnabled true
+
+            resValue 'string', "api_key", MovieDb_ApiKey
         }
 
         release {
             testCoverageEnabled true
 
+            resValue 'string', "api_key", MovieDb_ApiKey
+
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
         test.java.srcDirs += 'src/test/kotlin'
@@ -64,8 +69,9 @@ dependencies {
     testImplementation rootProject.ext.junit
     testImplementation rootProject.ext.mockito
     androidTestImplementation rootProject.ext.androidTestRunner
-    androidTestImplementation 'org.mockito:mockito-android:2.8.47'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation rootProject.ext.mockito
+    androidTestImplementation rootProject.ext.espresso
+    androidTestImplementation rootProject.ext.androidTestRules
 
     implementation project(':data')
     implementation project(':domain')

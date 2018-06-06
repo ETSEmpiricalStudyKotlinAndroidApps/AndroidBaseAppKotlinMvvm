@@ -19,6 +19,7 @@ import android.widget.TextView
 import android.widget.Toast
 import co.androidbaseappkotlinmvvm.R
 import co.androidbaseappkotlinmvvm.common.App
+import co.androidbaseappkotlinmvvm.common.BaseActivity
 import co.androidbaseappkotlinmvvm.common.ImageLoader
 import co.androidbaseappkotlinmvvm.common.SimpleTransitionEndedCallback
 import co.lujun.androidtagview.TagContainerLayout
@@ -28,7 +29,7 @@ import kotlinx.android.synthetic.main.details_overview_section.*
 import kotlinx.android.synthetic.main.details_video_section.*
 import javax.inject.Inject
 
-class MovieDetailsActivity : AppCompatActivity() {
+class MovieDetailsActivity : BaseActivity() {
 
     @Inject
     lateinit var factory: MovieDetailsVMFactory
