@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
 import co.androidbaseappkotlinmvvm.R
-import co.androidbaseappkotlinmvvm.common.App
+import co.androidbaseappkotlinmvvm.App
 import co.androidbaseappkotlinmvvm.common.BaseFragment
 import co.androidbaseappkotlinmvvm.common.ImageLoader
 import kotlinx.android.synthetic.main.fragment_popular_movies.*

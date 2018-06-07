@@ -18,7 +18,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import co.androidbaseappkotlinmvvm.R
-import co.androidbaseappkotlinmvvm.common.App
+import co.androidbaseappkotlinmvvm.App
 import co.androidbaseappkotlinmvvm.common.BaseFragment
 import co.androidbaseappkotlinmvvm.common.ImageLoader
 import io.reactivex.android.schedulers.AndroidSchedulers

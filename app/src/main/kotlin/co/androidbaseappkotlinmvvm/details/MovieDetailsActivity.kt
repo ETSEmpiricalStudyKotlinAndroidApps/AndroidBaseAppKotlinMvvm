@@ -8,7 +8,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.transition.Slide
@@ -18,7 +17,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import co.androidbaseappkotlinmvvm.R
-import co.androidbaseappkotlinmvvm.common.App
+import co.androidbaseappkotlinmvvm.App
 import co.androidbaseappkotlinmvvm.common.BaseActivity
 import co.androidbaseappkotlinmvvm.common.ImageLoader
 import co.androidbaseappkotlinmvvm.common.SimpleTransitionEndedCallback

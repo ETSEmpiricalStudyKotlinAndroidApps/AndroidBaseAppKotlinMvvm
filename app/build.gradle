@@ -21,13 +21,13 @@ android {
         debug {
             testCoverageEnabled true
 
-            resValue 'string', "api_key", MovieDb_ApiKey
+            resValue 'string', "base_url", "http://api.themoviedb.org/3/"
         }
 
         release {
             testCoverageEnabled true
 
-            resValue 'string', "api_key", MovieDb_ApiKey
+            resValue 'string', "base_url", "https://api.themoviedb.org/3/"
 
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -38,6 +38,12 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
         test.java.srcDirs += 'src/test/kotlin'
         androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+
+    externalNativeBuild {
+        cmake {
+            path 'src/CMakeLists.txt'
+        }
     }
 }
 
