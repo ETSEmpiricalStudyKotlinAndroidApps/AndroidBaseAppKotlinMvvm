@@ -16,9 +16,6 @@ import co.androidbaseappkotlinmvvm.di.popular.PopularSubComponent
 import co.androidbaseappkotlinmvvm.di.search.SearchMoviesModule
 import co.androidbaseappkotlinmvvm.di.search.SearchSubComponent
 import co.androidbaseappkotlinmvvm.di.DaggerMainComponent
-import android.R.attr.data
-
-
 
 class App: Application() {
 
@@ -42,7 +39,7 @@ class App: Application() {
     private fun initDependencies() {
         mainComponent = DaggerMainComponent.builder()
                 .appModule(AppModule(applicationContext))
-                .networkModule(NetworkModule(getString(R.string.base_url), String(Base64.decode(getApiKey(), Base64.DEFAULT))))
+                .networkModule(NetworkModule(applicationContext, getString(R.string.base_url), String(Base64.decode(getApiKey(), Base64.DEFAULT))))
                 .dataModule(DataModule())
                 .build()
 

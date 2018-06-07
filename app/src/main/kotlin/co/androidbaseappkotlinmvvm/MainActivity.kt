@@ -22,7 +22,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, PopularMoviesFragment(), "popular")
+                    .replace(R.id.fragmentContainer, PopularMoviesFragment(), "popular")
                     .commitNow()
             title = getString(R.string.popular)
         }

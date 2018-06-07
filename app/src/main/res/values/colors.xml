@@ -10,5 +10,8 @@
     <color name="light_grey">#EDEDED</color>
     <color name="grey">#c2c2c2</color>
     <color name="dark_grey">#9c9c9c</color>
+    <color name="colorSecondary">#7f1a18</color>
+    <color name="colorTextPrimary">#FFFFFF</color>
+    <color name="colorTextSecondary">#7f1a18</color>
 </resources>
 
