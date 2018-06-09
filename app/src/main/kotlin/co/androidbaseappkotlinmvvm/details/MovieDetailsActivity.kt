@@ -19,6 +19,7 @@ import android.widget.Toast
 import co.androidbaseappkotlinmvvm.R
 import co.androidbaseappkotlinmvvm.App
 import co.androidbaseappkotlinmvvm.common.BaseActivity
+import co.androidbaseappkotlinmvvm.common.BaseFragment
 import co.androidbaseappkotlinmvvm.common.ImageLoader
 import co.androidbaseappkotlinmvvm.common.SimpleTransitionEndedCallback
 import co.lujun.androidtagview.TagContainerLayout

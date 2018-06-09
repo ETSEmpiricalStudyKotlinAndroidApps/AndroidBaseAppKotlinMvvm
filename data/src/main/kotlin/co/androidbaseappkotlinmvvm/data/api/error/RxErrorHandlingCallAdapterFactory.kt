@@ -35,24 +35,16 @@ class RxErrorHandlingCallAdapterFactory: CallAdapter.Factory() {
         @Suppress("UNCHECKED_CAST")
         override fun adapt(call: Call<R>): Observable<R> {
             val adapted = (_wrappedCallAdapter.adapt(call) as Observable<R>)
-            adapted.onErrorResumeNext { throwable: Throwable ->
+            return adapted.onErrorResumeNext { throwable: Throwable ->
                 Observable.error(asRetrofitException(throwable))
             }
-
-            return adapted
         }
 
         private fun asRetrofitException(throwable: Throwable): RetrofitException {
             // We had non-200 http error
             if (throwable is HttpException) {
                 val response = throwable.response()
-
-                if (throwable.code() == 422) {
-                    // on out api 422's get metadata in the response. Adjust logic here based on your needs
-                    return RetrofitException.httpErrorWithObject(response.raw().request().url().toString(), response, _retrofit)
-                } else {
-                    return RetrofitException.httpError(response.raw().request().url().toString(), response, _retrofit)
-                }
+                return RetrofitException.httpError(response.raw().request().url().toString(), response, _retrofit)
             }
 
             // A network error happened

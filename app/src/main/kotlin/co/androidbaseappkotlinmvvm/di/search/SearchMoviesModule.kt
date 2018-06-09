@@ -1,6 +1,6 @@
 package co.androidbaseappkotlinmvvm.di.search
 
-import co.androidbaseappkotlinmvvm.MovieEntityMovieMapper
+import co.androidbaseappkotlinmvvm.common.mapper.MovieEntityMovieMapper
 import co.androidbaseappkotlinmvvm.common.ASyncTransformer
 import co.androidbaseappkotlinmvvm.domain.MoviesRepository
 import co.androidbaseappkotlinmvvm.domain.usecases.SearchMovie

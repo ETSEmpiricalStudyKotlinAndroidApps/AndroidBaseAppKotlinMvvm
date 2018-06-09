@@ -2,6 +2,8 @@ package co.androidbaseappkotlinmvvm.popularmovies
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -28,6 +30,8 @@ class PopularMoviesFragment : BaseFragment() {
     private lateinit var progressBar: ProgressBar
     private lateinit var popularMoviesAdapter: PopularMoviesAdapter
 
+    private var listener: OnFragmentInteractionListener? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity?.application as App).createPopularComponenet().inject(this)
@@ -45,9 +49,23 @@ class PopularMoviesFragment : BaseFragment() {
         })
         viewModel.errorState.observe(this, Observer { throwable ->
             throwable?.let {
-                Toast.makeText(activity, throwable.message, Toast.LENGTH_LONG).show()
+                listener?.showErrorMessage(throwable)
             }
         })
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnFragmentInteractionListener) {
+            listener = context
+        } else {
+            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
     }
 
     private fun handleViewState(state: PopularMoviesViewState) {
@@ -73,5 +91,9 @@ class PopularMoviesFragment : BaseFragment() {
     override fun onDestroy() {
         super.onDestroy()
         (activity?.application as App).releasePopularComponent()
+    }
+
+    interface OnFragmentInteractionListener {
+        fun showErrorMessage(exception: Throwable)
     }
 }

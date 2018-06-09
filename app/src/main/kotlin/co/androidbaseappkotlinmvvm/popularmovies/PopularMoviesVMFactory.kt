@@ -7,9 +7,6 @@ import co.androidbaseappkotlinmvvm.domain.entities.MovieEntity
 import co.androidbaseappkotlinmvvm.domain.usecases.GetPopularMovies
 import co.androidbaseappkotlinmvvm.entities.Movie
 
-/**
- * Created by Yossi Segev on 01/01/2018.
- */
 class PopularMoviesVMFactory(private val useCase: GetPopularMovies,
                              private val mapper: Mapper<MovieEntity, Movie>) : ViewModelProvider.Factory {
 

@@ -5,6 +5,7 @@ import android.support.design.widget.BottomNavigationView
 
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import co.androidbaseappkotlinmvvm.R.id.bottomNavigationView
 import co.androidbaseappkotlinmvvm.common.BaseActivity
 import co.androidbaseappkotlinmvvm.common.BaseFragment
 import co.androidbaseappkotlinmvvm.favorites.FavoriteMoviesFragment
@@ -12,7 +13,7 @@ import co.androidbaseappkotlinmvvm.popularmovies.PopularMoviesFragment
 import co.androidbaseappkotlinmvvm.search.SearchFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener, PopularMoviesFragment.OnFragmentInteractionListener {
 
     private lateinit var navigationBar: BottomNavigationView
 
@@ -20,12 +21,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainer, PopularMoviesFragment(), "popular")
-                    .commitNow()
-            title = getString(R.string.popular)
-        }
+        addFragment(PopularMoviesFragment(), "popular")
 
         navigationBar = bottomNavigationView
         navigationBar.setOnNavigationItemSelectedListener(this)
@@ -39,28 +35,24 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         when (item.itemId) {
 
             R.id.action_popular -> {
-                supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, PopularMoviesFragment(), "popular")
-                        .commitNow()
-                title = getString(R.string.popular)
+                addFragment(PopularMoviesFragment(), "popular")
             }
 
             R.id.action_favorites -> {
-                supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, FavoriteMoviesFragment(), "favorites")
-                        .commitNow()
-                title = getString(R.string.my_favorites)
+                addFragment(FavoriteMoviesFragment(), "favorites")
             }
 
             R.id.action_search -> {
-                supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, SearchFragment(), "search")
-                        .commitNow()
-                title = getString(R.string.search)
+                addFragment(SearchFragment(), "search")
             }
         }
 
         return true
     }
+
+    override fun showErrorMessage(exception: Throwable) {
+        showErrorToast(exception)
+    }
+
 
 }

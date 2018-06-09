@@ -1,6 +1,6 @@
 package co.androidbaseappkotlinmvvm.di.details
 
-import co.androidbaseappkotlinmvvm.MovieEntityMovieMapper
+import co.androidbaseappkotlinmvvm.common.mapper.MovieEntityMovieMapper
 import co.androidbaseappkotlinmvvm.common.ASyncTransformer
 import co.androidbaseappkotlinmvvm.details.MovieDetailsVMFactory
 import co.androidbaseappkotlinmvvm.domain.MoviesCache

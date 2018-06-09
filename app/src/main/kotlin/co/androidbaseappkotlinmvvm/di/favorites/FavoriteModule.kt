@@ -1,6 +1,6 @@
 package co.androidbaseappkotlinmvvm.di.favorites
 
-import co.androidbaseappkotlinmvvm.MovieEntityMovieMapper
+import co.androidbaseappkotlinmvvm.common.mapper.MovieEntityMovieMapper
 import co.androidbaseappkotlinmvvm.common.ASyncTransformer
 import co.androidbaseappkotlinmvvm.domain.MoviesCache
 import co.androidbaseappkotlinmvvm.domain.usecases.GetFavoriteMovies

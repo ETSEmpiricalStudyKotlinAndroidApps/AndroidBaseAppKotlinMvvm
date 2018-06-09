@@ -23,12 +23,12 @@ class RetrofitException(private val _message: String?,
             return RetrofitException(message, url, response, Kind.HTTP, null, retrofit)
         }
 
-        fun httpErrorWithObject(url: String, response: Response<*>, retrofit: Retrofit): RetrofitException {
+        /*fun httpErrorWithObject(url: String, response: Response<*>, retrofit: Retrofit): RetrofitException {
             val message = response.code().toString() + " " + response.message()
             val error = RetrofitException(message, url, response, Kind.HTTP_422_WITH_DATA, null, retrofit)
             error.deserializeErrorResponse()
             return error
-        }
+        }*/
 
         fun networkError(exception: IOException): RetrofitException {
             return RetrofitException(exception.message, null, null, Kind.NETWORK, exception, null)
@@ -84,7 +84,6 @@ class RetrofitException(private val _message: String?,
         NETWORK,
         /** A non-200 HTTP status code was received from the server.  */
         HTTP,
-        HTTP_422_WITH_DATA,
         /**
          * An internal error occurred while attempting to execute a request. It is best practice to
          * re-throw this exception so your application crashes.
