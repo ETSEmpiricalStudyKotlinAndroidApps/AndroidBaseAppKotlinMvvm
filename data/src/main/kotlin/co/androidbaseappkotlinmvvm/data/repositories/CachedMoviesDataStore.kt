@@ -6,9 +6,6 @@ import co.androidbaseappkotlinmvvm.domain.entities.MovieEntity
 import co.androidbaseappkotlinmvvm.domain.entities.Optional
 import io.reactivex.Observable
 
-/**
- * Created by Yossi Segev on 22/01/2018.
- */
 class CachedMoviesDataStore(private val moviesCache: MoviesCache): MoviesDataStore {
 
     override fun search(query: String): Observable<List<MovieEntity>> {

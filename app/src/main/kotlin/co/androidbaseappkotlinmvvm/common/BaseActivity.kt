@@ -1,6 +1,5 @@
 package co.androidbaseappkotlinmvvm.common
 
-import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import co.androidbaseappkotlinmvvm.R
@@ -9,9 +8,10 @@ import kotlinx.android.synthetic.main.toolbar.*
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun setContentView(layoutResID: Int) {
+        super.setContentView(layoutResID)
         setSupportActionBar(toolbar)
+        toolbar.title = getString(R.string.app_name)
     }
 
     protected fun addFragment(fragment: BaseFragment, title: String){

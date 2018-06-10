@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MovieNight</string>
+    <string name="app_name">Android Base App Kotlin Mvvm</string>
     <string name="transition_poster">poster_transition</string>
     <string name="transition_title">title_transition</string>
     <string name="release_date_template">Released: %s</string>

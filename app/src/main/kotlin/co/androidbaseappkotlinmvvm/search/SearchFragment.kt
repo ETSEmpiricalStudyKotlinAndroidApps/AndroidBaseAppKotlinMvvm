@@ -54,6 +54,7 @@ class SearchFragment : BaseFragment(), TextWatcher {
     private lateinit var searchSubject: PublishSubject<String>
     private val compositeDisposable = CompositeDisposable()
 
+    private var searchFragmentInteractionListener: SearchFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -137,11 +138,30 @@ class SearchFragment : BaseFragment(), TextWatcher {
         outState.putString("lastSearch", searchEditText.text.toString())
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is SearchFragmentInteractionListener) {
+            searchFragmentInteractionListener = context
+        } else {
+            throw RuntimeException(context.toString() + " must implement SearchFragmentInteractionListener")
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        searchFragmentInteractionListener = null
+    }
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         showSoftKeyboard(false)
         compositeDisposable.clear()
         (activity?.application as App).releaseSearchComponent()
+    }
+
+    interface SearchFragmentInteractionListener {
+        fun showErrorMessage(exception: Throwable)
     }
 
 }

@@ -3,17 +3,14 @@ package co.androidbaseappkotlinmvvm
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 
-import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-import co.androidbaseappkotlinmvvm.R.id.bottomNavigationView
 import co.androidbaseappkotlinmvvm.common.BaseActivity
-import co.androidbaseappkotlinmvvm.common.BaseFragment
 import co.androidbaseappkotlinmvvm.favorites.FavoriteMoviesFragment
 import co.androidbaseappkotlinmvvm.popularmovies.PopularMoviesFragment
 import co.androidbaseappkotlinmvvm.search.SearchFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener, PopularMoviesFragment.OnFragmentInteractionListener {
+class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener, PopularMoviesFragment.PopularMoviesFragmentInteractionListener, SearchFragment.SearchFragmentInteractionListener {
 
     private lateinit var navigationBar: BottomNavigationView
 
@@ -21,7 +18,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        addFragment(PopularMoviesFragment(), "popular")
+        addFragment(PopularMoviesFragment(), getString(R.string.popular))
 
         navigationBar = bottomNavigationView
         navigationBar.setOnNavigationItemSelectedListener(this)
@@ -35,15 +32,15 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         when (item.itemId) {
 
             R.id.action_popular -> {
-                addFragment(PopularMoviesFragment(), "popular")
+                addFragment(PopularMoviesFragment(), getString(R.string.popular))
             }
 
             R.id.action_favorites -> {
-                addFragment(FavoriteMoviesFragment(), "favorites")
+                addFragment(FavoriteMoviesFragment(), getString(R.string.my_favorites))
             }
 
             R.id.action_search -> {
-                addFragment(SearchFragment(), "search")
+                addFragment(SearchFragment(), getString(R.string.search))
             }
         }
 
@@ -53,6 +50,4 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
     override fun showErrorMessage(exception: Throwable) {
         showErrorToast(exception)
     }
-
-
 }
