@@ -11,7 +11,7 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun setContentView(layoutResID: Int) {
         super.setContentView(layoutResID)
         setSupportActionBar(toolbar)
-        toolbar.title = getString(R.string.app_name)
+        toolbar?.title = getString(R.string.app_name)
     }
 
     protected fun addFragment(fragment: BaseFragment, title: String){
