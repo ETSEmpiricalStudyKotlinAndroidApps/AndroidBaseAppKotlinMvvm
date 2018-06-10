@@ -2,17 +2,25 @@ package co.androidbaseappkotlinmvvm
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.Fragment
 
 import android.view.MenuItem
-import co.androidbaseappkotlinmvvm.common.BaseActivity
+import co.androidbaseappkotlinmvvm.base.BaseActivity
 import co.androidbaseappkotlinmvvm.favorites.FavoriteMoviesFragment
 import co.androidbaseappkotlinmvvm.popularmovies.PopularMoviesFragment
 import co.androidbaseappkotlinmvvm.search.SearchFragment
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
-class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener, PopularMoviesFragment.PopularMoviesFragmentInteractionListener, SearchFragment.SearchFragmentInteractionListener {
+class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener, PopularMoviesFragment.PopularMoviesFragmentInteractionListener, SearchFragment.SearchFragmentInteractionListener, HasSupportFragmentInjector {
 
     private lateinit var navigationBar: BottomNavigationView
+
+    @Inject
+    lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +53,10 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         }
 
         return true
+    }
+
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
+        return fragmentDispatchingAndroidInjector
     }
 
     override fun showErrorMessage(exception: Throwable) {

@@ -1,6 +1,6 @@
 package co.androidbaseappkotlinmvvm
 
-import co.androidbaseappkotlinmvvm.common.mapper.MovieEntityMovieMapper
+import co.androidbaseappkotlinmvvm.mapper.MovieEntityMovieMapper
 import co.androidbaseappkotlinmvvm.domain.entities.*
 import junit.framework.Assert.assertEquals
 import org.junit.Test

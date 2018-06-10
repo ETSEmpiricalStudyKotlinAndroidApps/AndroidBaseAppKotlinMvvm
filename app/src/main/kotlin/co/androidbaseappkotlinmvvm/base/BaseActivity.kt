@@ -1,12 +1,19 @@
-package co.androidbaseappkotlinmvvm.common
+package co.androidbaseappkotlinmvvm.base
 
+import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import co.androidbaseappkotlinmvvm.R
 import co.androidbaseappkotlinmvvm.data.api.error.RetrofitException
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.toolbar.*
 
 abstract class BaseActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun setContentView(layoutResID: Int) {
         super.setContentView(layoutResID)

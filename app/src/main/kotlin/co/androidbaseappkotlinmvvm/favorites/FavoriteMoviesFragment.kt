@@ -12,8 +12,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import co.androidbaseappkotlinmvvm.R
-import co.androidbaseappkotlinmvvm.App
-import co.androidbaseappkotlinmvvm.common.BaseFragment
+import co.androidbaseappkotlinmvvm.base.BaseFragment
 import co.androidbaseappkotlinmvvm.common.ImageLoader
 import kotlinx.android.synthetic.main.fragment_favorite_movies.*
 import javax.inject.Inject
@@ -33,7 +32,6 @@ class FavoriteMoviesFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        (activity?.application as App).createFavoritesComponent().inject(this)
         viewModel = ViewModelProviders.of(this, factory).get(FavoriteMoviesViewModel::class.java)
     }
 
@@ -75,10 +73,5 @@ class FavoriteMoviesFragment : BaseFragment() {
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = favoriteMoviesAdapter
 
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        (activity?.application as App).releaseFavoritesComponent()
     }
 }

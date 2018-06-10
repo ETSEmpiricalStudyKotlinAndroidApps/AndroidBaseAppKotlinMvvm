@@ -1,15 +1,21 @@
-package co.androidbaseappkotlinmvvm.common
+package co.androidbaseappkotlinmvvm.base
 
 import android.app.ActivityOptions
+import android.content.Context
 import android.support.v4.app.Fragment
 import android.util.Pair
 import android.view.View
 import co.androidbaseappkotlinmvvm.R
 import co.androidbaseappkotlinmvvm.details.MovieDetailsActivity
 import co.androidbaseappkotlinmvvm.entities.Movie
+import dagger.android.support.AndroidSupportInjection
 
 open class BaseFragment: Fragment() {
 
+    override fun onAttach(context: Context?) {
+        AndroidSupportInjection.inject(this)
+        super.onAttach(context)
+    }
     protected fun navigateToMovieDetailsScreen(movie: Movie, view: View) {
         var activityOptions: ActivityOptions? = null
 

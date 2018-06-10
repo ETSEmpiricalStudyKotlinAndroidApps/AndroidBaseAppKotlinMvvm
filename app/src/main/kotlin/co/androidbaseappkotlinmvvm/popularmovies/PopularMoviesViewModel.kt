@@ -1,7 +1,7 @@
 package co.androidbaseappkotlinmvvm.popularmovies
 
 import android.arch.lifecycle.MutableLiveData
-import co.androidbaseappkotlinmvvm.common.BaseViewModel
+import co.androidbaseappkotlinmvvm.base.BaseViewModel
 import co.androidbaseappkotlinmvvm.common.SingleLiveEvent
 import co.androidbaseappkotlinmvvm.domain.common.Mapper
 import co.androidbaseappkotlinmvvm.domain.entities.MovieEntity

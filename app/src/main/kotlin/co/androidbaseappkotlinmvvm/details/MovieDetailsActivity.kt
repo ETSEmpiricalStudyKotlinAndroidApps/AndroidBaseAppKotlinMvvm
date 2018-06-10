@@ -17,13 +17,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import co.androidbaseappkotlinmvvm.R
-import co.androidbaseappkotlinmvvm.App
-import co.androidbaseappkotlinmvvm.common.BaseActivity
-import co.androidbaseappkotlinmvvm.common.BaseFragment
+import co.androidbaseappkotlinmvvm.base.BaseActivity
 import co.androidbaseappkotlinmvvm.common.ImageLoader
 import co.androidbaseappkotlinmvvm.common.SimpleTransitionEndedCallback
 import co.lujun.androidtagview.TagContainerLayout
 import co.androidbaseappkotlinmvvm.entities.Video
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import kotlinx.android.synthetic.main.details_overview_section.*
 import kotlinx.android.synthetic.main.details_video_section.*
@@ -62,12 +61,11 @@ class MovieDetailsActivity : BaseActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
         postponeEnterTransition()
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE and View.SYSTEM_UI_FLAG_FULLSCREEN
-
-        (application as App).createDetailsComponent().inject(this)
 
         factory.movieId = intent.getIntExtra(MOVIE_ID, 0)
         detailsViewModel = ViewModelProviders.of(this, factory).get(MovieDetailsViewModel::class.java)
@@ -165,10 +163,5 @@ class MovieDetailsActivity : BaseActivity() {
                     ContextCompat.getDrawable(this, R.drawable.ic_favorite_white_36dp)
                 else
                     ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_white_36dp))
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        (application as App).releaseDetailsComponent()
     }
 }

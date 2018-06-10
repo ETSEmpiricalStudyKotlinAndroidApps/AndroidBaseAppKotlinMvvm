@@ -11,8 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import co.androidbaseappkotlinmvvm.R
-import co.androidbaseappkotlinmvvm.App
-import co.androidbaseappkotlinmvvm.common.BaseFragment
+import co.androidbaseappkotlinmvvm.base.BaseFragment
 import co.androidbaseappkotlinmvvm.common.ImageLoader
 import kotlinx.android.synthetic.main.fragment_popular_movies.*
 import javax.inject.Inject
@@ -32,7 +31,6 @@ class PopularMoviesFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity?.application as App).createPopularComponenet().inject(this)
         viewModel = ViewModelProviders.of(this, factory).get(PopularMoviesViewModel::class.java)
 
         if (savedInstanceState == null) {
@@ -52,7 +50,7 @@ class PopularMoviesFragment : BaseFragment() {
         })
     }
 
-    override fun onAttach(context: Context) {
+    override fun onAttach(context: Context?) {
         super.onAttach(context)
         if (context is PopularMoviesFragmentInteractionListener) {
             popularMoviesFragmentInteractionListener = context
@@ -60,6 +58,8 @@ class PopularMoviesFragment : BaseFragment() {
             throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
         }
     }
+
+
 
     override fun onDetach() {
         super.onDetach()
@@ -84,11 +84,6 @@ class PopularMoviesFragment : BaseFragment() {
         recyclerView = popular_movies_recyclerview
         recyclerView.layoutManager = GridLayoutManager(activity, 2)
         recyclerView.adapter = popularMoviesAdapter
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        (activity?.application as App).releasePopularComponent()
     }
 
     interface PopularMoviesFragmentInteractionListener {

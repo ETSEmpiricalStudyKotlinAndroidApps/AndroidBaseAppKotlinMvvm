@@ -59,6 +59,8 @@ dependencies {
 
     kapt rootProject.ext.daggerCompiler
     implementation rootProject.ext.dagger
+    implementation 'com.google.dagger:dagger-android-support:2.13'
+    kapt 'com.google.dagger:dagger-android-processor:2.13'
     implementation rootProject.ext.rxJava
     implementation rootProject.ext.retrofit
     implementation rootProject.ext.retrofitGsonConverter

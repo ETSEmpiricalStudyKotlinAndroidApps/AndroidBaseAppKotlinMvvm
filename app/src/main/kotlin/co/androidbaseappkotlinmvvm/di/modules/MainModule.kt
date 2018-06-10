@@ -10,16 +10,6 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class AppModule {
-
-    @Provides
-    fun provideAppContext(application: Application): Context {
-        return application.applicationContext
-    }
-
-    @Singleton
-    @Provides
-    fun provideImageLoader(context: Context) : ImageLoader {
-        return PicassoImageLoader(Picasso.with(context))
-    }
+class MainModule {
+    //empty because the activity don't need dependencies for now
 }

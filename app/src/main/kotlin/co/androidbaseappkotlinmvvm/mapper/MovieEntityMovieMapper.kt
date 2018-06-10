@@ -1,4 +1,4 @@
-package co.androidbaseappkotlinmvvm.common.mapper
+package co.androidbaseappkotlinmvvm.mapper
 
 import co.androidbaseappkotlinmvvm.domain.common.Mapper
 import co.androidbaseappkotlinmvvm.domain.entities.MovieEntity

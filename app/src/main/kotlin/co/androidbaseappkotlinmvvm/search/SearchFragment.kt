@@ -18,8 +18,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import co.androidbaseappkotlinmvvm.R
-import co.androidbaseappkotlinmvvm.App
-import co.androidbaseappkotlinmvvm.common.BaseFragment
+import co.androidbaseappkotlinmvvm.base.BaseFragment
 import co.androidbaseappkotlinmvvm.common.ImageLoader
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -59,7 +58,6 @@ class SearchFragment : BaseFragment(), TextWatcher {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        (activity?.application as App).createSearchComponent().inject(this)
         viewModel = ViewModelProviders.of(this, factory).get(SearchViewModel::class.java)
         searchSubject = PublishSubject.create()
 
@@ -138,7 +136,8 @@ class SearchFragment : BaseFragment(), TextWatcher {
         outState.putString("lastSearch", searchEditText.text.toString())
     }
 
-    override fun onAttach(context: Context) {
+
+    override fun onAttach(context: Context?) {
         super.onAttach(context)
         if (context is SearchFragmentInteractionListener) {
             searchFragmentInteractionListener = context
@@ -157,7 +156,6 @@ class SearchFragment : BaseFragment(), TextWatcher {
         super.onDestroyView()
         showSoftKeyboard(false)
         compositeDisposable.clear()
-        (activity?.application as App).releaseSearchComponent()
     }
 
     interface SearchFragmentInteractionListener {

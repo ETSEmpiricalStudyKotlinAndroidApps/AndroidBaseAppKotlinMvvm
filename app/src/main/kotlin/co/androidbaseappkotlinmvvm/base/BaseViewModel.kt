@@ -1,4 +1,4 @@
-package co.androidbaseappkotlinmvvm.common
+package co.androidbaseappkotlinmvvm.base
 
 import android.arch.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
