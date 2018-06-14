@@ -17,7 +17,7 @@ Libraries and tools included:
 - [Leakcanary](https://github.com/square/leakcanary)
 - [Android architecture components](https://developer.android.com/topic/libraries/architecture/index.html)
 - [Room Persistence Library](https://developer.android.com/topic/libraries/architecture/room.html)
-- [Codacy](https://www.codacy.com/) for code analysis)
+- [Codacy](https://www.codacy.com/) for code analysis
 
 ### The check task
 
