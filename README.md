@@ -21,7 +21,7 @@ Libraries and tools included:
 
 ### The check task
 
-To ensure that your code is valid and stable use check: 
+To ensure that tests are running: 
 
 ```
-./gradlew check
+./gradlew runAllTests
