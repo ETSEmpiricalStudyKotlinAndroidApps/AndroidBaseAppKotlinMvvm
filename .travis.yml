@@ -3,6 +3,10 @@ sudo: false
 language: android
 jdk: oraclejdk8
 
+env:
+  global:
+    - ADB_INSTALL_TIMEOUT=8
+
 android:
   components:
     - platform-tools
