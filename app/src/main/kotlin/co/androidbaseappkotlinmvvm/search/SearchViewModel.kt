@@ -4,13 +4,11 @@ import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import co.androidbaseappkotlinmvvm.base.BaseViewModel
 import co.androidbaseappkotlinmvvm.common.SingleLiveEvent
-import co.androidbaseappkotlinmvvm.domain.common.Mapper
-import co.androidbaseappkotlinmvvm.domain.entities.MovieEntity
 import co.androidbaseappkotlinmvvm.domain.usecases.SearchMovie
-import co.androidbaseappkotlinmvvm.entities.Movie
+import javax.inject.Inject
 
-class SearchViewModel(private val searchMovie: SearchMovie,
-                      private val entityMovieMapper: Mapper<MovieEntity, Movie>) : BaseViewModel() {
+class SearchViewModel
+@Inject constructor(private val searchMovie: SearchMovie) : BaseViewModel() {
 
     var viewState: MutableLiveData<SearchViewState> = MutableLiveData()
     var errorState: SingleLiveEvent<Throwable?> = SingleLiveEvent()
@@ -42,7 +40,7 @@ class SearchViewModel(private val searchMovie: SearchMovie,
         Log.d(javaClass.simpleName, "Searching $query")
 
         addDisposable(searchMovie.search(query)
-                .flatMap { entityMovieMapper.observable(it) }
+                .flatMap { movieEntityMovieMapper.observable(it) }
                 .subscribe({ movies ->
                     viewState.value = viewState.value?.copy(
                             isLoading = false,

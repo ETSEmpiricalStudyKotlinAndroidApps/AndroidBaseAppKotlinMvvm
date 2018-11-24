@@ -27,7 +27,26 @@ import kotlinx.android.synthetic.main.fragment_search_movies.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class SearchFragment : BaseFragment(), TextWatcher {
+class SearchFragment : BaseFragment<SearchViewModel>(), TextWatcher {
+
+    @Inject
+    lateinit var imageLoader: ImageLoader
+    private lateinit var searchEditText: EditText
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var noResultsMessage: TextView
+    private lateinit var searchResultsAdapter: SearchResultsAdapter
+    private lateinit var searchSubject: PublishSubject<String>
+    private val compositeDisposable = CompositeDisposable()
+
+    private var searchFragmentInteractionListener: SearchFragmentInteractionListener? = null
+
+    override fun layoutId(): Int {
+        return R.layout.fragment_search_movies
+    }
+
+    override fun getViewModelClass(): Class<SearchViewModel> = SearchViewModel::class.java
+
     override fun afterTextChanged(s: Editable?) {
 
     }
@@ -40,25 +59,9 @@ class SearchFragment : BaseFragment(), TextWatcher {
         searchSubject.onNext(s.toString())
     }
 
-    @Inject
-    lateinit var factory: SearchVMFactory
-    @Inject
-    lateinit var imageLoader: ImageLoader
-    private lateinit var viewModel: SearchViewModel
-    private lateinit var searchEditText: EditText
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var progressBar: ProgressBar
-    private lateinit var noResultsMessage: TextView
-    private lateinit var searchResultsAdapter: SearchResultsAdapter
-    private lateinit var searchSubject: PublishSubject<String>
-    private val compositeDisposable = CompositeDisposable()
-
-    private var searchFragmentInteractionListener: SearchFragmentInteractionListener? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this, factory).get(SearchViewModel::class.java)
         searchSubject = PublishSubject.create()
 
         //TODO: Handle screen rotation during debounce
@@ -99,10 +102,6 @@ class SearchFragment : BaseFragment(), TextWatcher {
             noResultsMessage.visibility = View.GONE
         }
         searchResultsAdapter.setResults(movies, state.lastSearchedQuery)
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return layoutInflater.inflate(R.layout.fragment_search_movies, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

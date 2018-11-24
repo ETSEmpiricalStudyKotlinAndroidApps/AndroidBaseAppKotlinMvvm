@@ -3,13 +3,11 @@ package co.androidbaseappkotlinmvvm.favorites
 import android.arch.lifecycle.MutableLiveData
 import co.androidbaseappkotlinmvvm.base.BaseViewModel
 import co.androidbaseappkotlinmvvm.common.SingleLiveEvent
-import co.androidbaseappkotlinmvvm.domain.common.Mapper
-import co.androidbaseappkotlinmvvm.domain.entities.MovieEntity
 import co.androidbaseappkotlinmvvm.domain.usecases.GetFavoriteMovies
-import co.androidbaseappkotlinmvvm.entities.Movie
+import javax.inject.Inject
 
-class FavoriteMoviesViewModel(private val getFavoriteMovies: GetFavoriteMovies,
-                              private val movieEntityMovieMapper: Mapper<MovieEntity, Movie>) : BaseViewModel() {
+class FavoriteMoviesViewModel
+@Inject constructor(private val getFavoriteMovies: GetFavoriteMovies) : BaseViewModel() {
 
     var viewState: MutableLiveData<FavoritesMoviesViewState> = MutableLiveData()
     var errorState: SingleLiveEvent<Throwable?> = SingleLiveEvent()

@@ -1,21 +1,42 @@
 package co.androidbaseappkotlinmvvm.base
 
 import android.app.ActivityOptions
-import android.content.Context
-import android.support.v4.app.Fragment
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
+import android.os.Bundle
 import android.util.Pair
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import co.androidbaseappkotlinmvvm.R
 import co.androidbaseappkotlinmvvm.details.MovieDetailsActivity
 import co.androidbaseappkotlinmvvm.entities.Movie
-import dagger.android.support.AndroidSupportInjection
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-open class BaseFragment: Fragment() {
+abstract class BaseFragment<VM : BaseViewModel> : DaggerFragment() {
 
-    override fun onAttach(context: Context?) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
+    protected lateinit var viewModel: VM
+
+    abstract fun getViewModelClass(): Class<VM>
+    abstract fun layoutId(): Int
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = ViewModelProviders.of(this, viewModelFactory)[getViewModelClass()]
     }
+
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View {
+        return inflater.inflate(layoutId(), container, false)
+    }
+
     protected fun navigateToMovieDetailsScreen(movie: Movie, view: View) {
         var activityOptions: ActivityOptions? = null
 

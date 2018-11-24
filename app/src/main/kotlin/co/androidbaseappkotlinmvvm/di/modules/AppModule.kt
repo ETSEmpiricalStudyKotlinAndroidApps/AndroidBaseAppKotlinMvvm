@@ -4,12 +4,19 @@ import android.app.Application
 import android.content.Context
 import co.androidbaseappkotlinmvvm.common.ImageLoader
 import co.androidbaseappkotlinmvvm.common.PicassoImageLoader
+import co.androidbaseappkotlinmvvm.di.viewmodel.ViewModelModule
 import com.squareup.picasso.Picasso
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-@Module
+@Module(
+        includes = [(DataModule::class),
+            (NetworkModule::class),
+            (UseCaseModule::class),
+            (ViewModelModule::class)
+        ]
+)
 class AppModule {
 
     @Provides
@@ -19,7 +26,7 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideImageLoader(context: Context) : ImageLoader {
+    fun provideImageLoader(context: Context): ImageLoader {
         return PicassoImageLoader(Picasso.with(context))
     }
 }

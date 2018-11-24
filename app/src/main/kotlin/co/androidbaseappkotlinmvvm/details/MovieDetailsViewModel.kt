@@ -3,27 +3,27 @@ package co.androidbaseappkotlinmvvm.details
 import android.arch.lifecycle.MutableLiveData
 import co.androidbaseappkotlinmvvm.base.BaseViewModel
 import co.androidbaseappkotlinmvvm.common.SingleLiveEvent
-import co.androidbaseappkotlinmvvm.domain.common.Mapper
 import co.androidbaseappkotlinmvvm.domain.entities.MovieEntity
-import co.androidbaseappkotlinmvvm.domain.usecases.CheckFavoriteStatus
+import co.androidbaseappkotlinmvvm.domain.usecases.CheckFavoriteStatusUsecase
 import co.androidbaseappkotlinmvvm.domain.usecases.GetMovieDetails
-import co.androidbaseappkotlinmvvm.domain.usecases.RemoveFavoriteMovie
+import co.androidbaseappkotlinmvvm.domain.usecases.RemoveFavoriteMovieUsecase
 import co.androidbaseappkotlinmvvm.domain.usecases.SaveFavoriteMovie
 import co.androidbaseappkotlinmvvm.entities.Movie
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
+import javax.inject.Inject
 
-class MovieDetailsViewModel(private val getMovieDetails: GetMovieDetails,
-                            private val saveFavoriteMovie: SaveFavoriteMovie,
-                            private val removeFavoriteMovie: RemoveFavoriteMovie,
-                            private val checkFavoriteStatus: CheckFavoriteStatus,
-                            private val mapper: Mapper<MovieEntity, Movie>,
-                            private val movieId: Int) : BaseViewModel() {
+class MovieDetailsViewModel
+@Inject constructor(private val getMovieDetails: GetMovieDetails,
+                    private val saveFavoriteMovie: SaveFavoriteMovie,
+                    private val removeFavoriteMovieUsecase: RemoveFavoriteMovieUsecase,
+                    private val checkFavoriteStatusUsecase: CheckFavoriteStatusUsecase) : BaseViewModel() {
 
     lateinit var movieEntity: MovieEntity
     var viewState: MutableLiveData<MovieDetailsViewState> = MutableLiveData()
     var favoriteState: MutableLiveData<Boolean> = MutableLiveData()
     var errorState: SingleLiveEvent<Throwable> = SingleLiveEvent()
+    var movieId = -1
 
     init {
         viewState.value = MovieDetailsViewState(isLoading = true)
@@ -35,12 +35,12 @@ class MovieDetailsViewModel(private val getMovieDetails: GetMovieDetails,
                         .map {
                             it.value?.let {
                                 movieEntity = it
-                                mapper.mapFrom(movieEntity)
+                                movieEntityMovieMapper.mapFrom(movieEntity)
                             } ?: run {
                                 throw Throwable("Something went wrong :(")
                             }
                         }
-                        .zipWith(checkFavoriteStatus.check(movieId), BiFunction<Movie, Boolean, Movie> { movie, isFavorite ->
+                        .zipWith(checkFavoriteStatusUsecase.check(movieId), BiFunction<Movie, Boolean, Movie> { movie, isFavorite ->
                             movie.isFavorite = isFavorite
                             return@BiFunction movie
                         })
@@ -52,7 +52,7 @@ class MovieDetailsViewModel(private val getMovieDetails: GetMovieDetails,
     }
 
     fun favoriteButtonClicked() {
-        addDisposable(checkFavoriteStatus.check(movieId).flatMap {
+        addDisposable(checkFavoriteStatusUsecase.check(movieId).flatMap {
             when (it) {
                 true -> {
                     removeFavorite(movieEntity)
@@ -62,10 +62,10 @@ class MovieDetailsViewModel(private val getMovieDetails: GetMovieDetails,
                 }
             }
         }.subscribe({ isFavorite ->
-                    favoriteState.value = isFavorite
-                }, {
-                    errorState.value = it
-                }))
+            favoriteState.value = isFavorite
+        }, {
+            errorState.value = it
+        }))
     }
 
     private fun onMovieDetailsReceived(movie: Movie) {
@@ -90,6 +90,6 @@ class MovieDetailsViewModel(private val getMovieDetails: GetMovieDetails,
     }
 
     private fun removeFavorite(movieEntity: MovieEntity): Observable<Boolean> {
-        return removeFavoriteMovie.remove(movieEntity)
+        return removeFavoriteMovieUsecase.remove(movieEntity)
     }
 }

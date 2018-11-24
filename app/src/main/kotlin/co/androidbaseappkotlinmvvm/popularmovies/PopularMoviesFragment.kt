@@ -16,22 +16,26 @@ import co.androidbaseappkotlinmvvm.common.ImageLoader
 import kotlinx.android.synthetic.main.fragment_popular_movies.*
 import javax.inject.Inject
 
-class PopularMoviesFragment : BaseFragment() {
+class PopularMoviesFragment : BaseFragment<PopularMoviesViewModel>() {
 
     @Inject
-    lateinit var factory: PopularMoviesVMFactory
-    @Inject
     lateinit var imageLoader: ImageLoader
-    private lateinit var viewModel: PopularMoviesViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
     private lateinit var popularMoviesAdapter: PopularMoviesAdapter
 
     private var popularMoviesFragmentInteractionListener: PopularMoviesFragmentInteractionListener? = null
 
+    override fun getViewModelClass(): Class<PopularMoviesViewModel> {
+        return PopularMoviesViewModel::class.java
+    }
+
+    override fun layoutId(): Int {
+        return R.layout.fragment_popular_movies
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, factory).get(PopularMoviesViewModel::class.java)
 
         if (savedInstanceState == null) {
             viewModel.getPopularMovies()
@@ -69,10 +73,6 @@ class PopularMoviesFragment : BaseFragment() {
     private fun handleViewState(state: PopularMoviesViewState) {
         progressBar.visibility = if (state.showLoading) View.VISIBLE else View.GONE
         state.movies?.let { popularMoviesAdapter.addMovies(it) }
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return layoutInflater.inflate(R.layout.fragment_popular_movies, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

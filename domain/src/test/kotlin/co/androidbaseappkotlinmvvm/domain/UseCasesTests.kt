@@ -81,7 +81,7 @@ class UseCasesTests {
     fun removeFavoriteMovie() {
         val moviesCache = TestMoviesCache()
         val saveFavoriteMovie = SaveFavoriteMovie(TestTransformer(), moviesCache)
-        val removeFavoriteMovies = RemoveFavoriteMovie(TestTransformer(), moviesCache)
+        val removeFavoriteMovies = RemoveFavoriteMovieUsecase(TestTransformer(), moviesCache)
         val movieEntity = DomainTestUtils.getTestMovieEntity(1)
         saveFavoriteMovie.save(movieEntity)
         assertNotNull(moviesCache.get(movieEntity.id))
@@ -108,7 +108,7 @@ class UseCasesTests {
         val movieCache = mock(MoviesCache::class.java)
         `when`(movieCache.get(99)).thenReturn(Observable.just(Optional.empty()))
         `when`(movieCache.get(100)).thenReturn(Observable.just(Optional.of(DomainTestUtils.getTestMovieEntity(100))))
-        val checkFavoriteStatus = CheckFavoriteStatus(TestTransformer(), movieCache)
+        val checkFavoriteStatus = CheckFavoriteStatusUsecase(TestTransformer(), movieCache)
         checkFavoriteStatus.check(99).test()
                 .assertValue { result -> !result }
                 .assertComplete()

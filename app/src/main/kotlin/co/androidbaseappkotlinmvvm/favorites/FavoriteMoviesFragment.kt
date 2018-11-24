@@ -1,7 +1,6 @@
 package co.androidbaseappkotlinmvvm.favorites
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -17,22 +16,21 @@ import co.androidbaseappkotlinmvvm.common.ImageLoader
 import kotlinx.android.synthetic.main.fragment_favorite_movies.*
 import javax.inject.Inject
 
-class FavoriteMoviesFragment : BaseFragment() {
+class FavoriteMoviesFragment : BaseFragment<FavoriteMoviesViewModel>() {
 
     @Inject
-    lateinit var factory: FavoriteMoviesVMFactory
-    @Inject
     lateinit var imageLoader: ImageLoader
-    private lateinit var viewModel: FavoriteMoviesViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
     private lateinit var emptyMessage: TextView
     private lateinit var favoriteMoviesAdapter: FavoriteMoviesAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun getViewModelClass(): Class<FavoriteMoviesViewModel> {
+        return FavoriteMoviesViewModel::class.java
+    }
 
-        viewModel = ViewModelProviders.of(this, factory).get(FavoriteMoviesViewModel::class.java)
+    override fun layoutId(): Int {
+        return R.layout.fragment_favorite_movies
     }
 
     override fun onResume() {
@@ -56,10 +54,6 @@ class FavoriteMoviesFragment : BaseFragment() {
         progressBar.visibility = if (state.isLoading) View.VISIBLE else View.GONE
         emptyMessage.visibility = if (!state.isLoading && state.isEmpty) View.VISIBLE else View.GONE
         state.movies?.let { favoriteMoviesAdapter.setMovies(it) }
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return layoutInflater.inflate(R.layout.fragment_favorite_movies, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

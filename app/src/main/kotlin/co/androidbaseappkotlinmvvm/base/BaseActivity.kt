@@ -1,18 +1,29 @@
 package co.androidbaseappkotlinmvvm.base
 
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentActivity
 import android.widget.Toast
 import co.androidbaseappkotlinmvvm.R
 import co.androidbaseappkotlinmvvm.data.api.error.RetrofitException
-import dagger.android.AndroidInjection
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.toolbar.*
+import javax.inject.Inject
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : DaggerAppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
-        super.onCreate(savedInstanceState)
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    inline fun <reified T : ViewModel> FragmentActivity.viewModel(
+            factory: ViewModelProvider.Factory,
+            body: T.() -> Unit
+    ): T {
+        val vm = ViewModelProviders.of(this, factory)[T::class.java]
+        vm.body()
+        return vm
     }
 
     override fun setContentView(layoutResID: Int) {
@@ -21,7 +32,7 @@ abstract class BaseActivity : AppCompatActivity() {
         toolbar?.title = getString(R.string.app_name)
     }
 
-    protected fun addFragment(fragment: BaseFragment, title: String){
+    protected fun addFragment(fragment: Fragment, title: String) {
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainer, fragment, title)
                 .commit()
@@ -37,7 +48,7 @@ abstract class BaseActivity : AppCompatActivity() {
                 RetrofitException.Kind.NETWORK ->
                     Toast.makeText(this, R.string.default_network_error_message, Toast.LENGTH_LONG).show()
 
-                RetrofitException.Kind.UNEXPECTED->
+                RetrofitException.Kind.UNEXPECTED ->
                     Toast.makeText(this, R.string.default_unexpected_error_message, Toast.LENGTH_LONG).show()
             }
 

@@ -3,14 +3,11 @@ package co.androidbaseappkotlinmvvm.popularmovies
 import android.arch.lifecycle.MutableLiveData
 import co.androidbaseappkotlinmvvm.base.BaseViewModel
 import co.androidbaseappkotlinmvvm.common.SingleLiveEvent
-import co.androidbaseappkotlinmvvm.domain.common.Mapper
-import co.androidbaseappkotlinmvvm.domain.entities.MovieEntity
 import co.androidbaseappkotlinmvvm.domain.usecases.GetPopularMovies
-import co.androidbaseappkotlinmvvm.entities.Movie
+import javax.inject.Inject
 
-class PopularMoviesViewModel(private val getPopularMovies: GetPopularMovies,
-                             private val movieEntityMovieMapper: Mapper<MovieEntity, Movie>) :
-        BaseViewModel() {
+class PopularMoviesViewModel
+@Inject constructor(private val getPopularMovies: GetPopularMovies) : BaseViewModel() {
 
     var viewState: MutableLiveData<PopularMoviesViewState> = MutableLiveData()
     var errorState: SingleLiveEvent<Throwable?> = SingleLiveEvent()
