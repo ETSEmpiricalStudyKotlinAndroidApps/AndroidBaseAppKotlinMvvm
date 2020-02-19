@@ -20,8 +20,11 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import co.androidbaseappkotlinmvvm.core.network.NetworkState
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListViewEvent
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListViewModel
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListViewState
 import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.paging.CharactersPageDataSource
-import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.paging.MoviesPageDataSourceFactory
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.paging.MoviesPageDataSourceFactory
 import co.androidbaseappkotlinmvvm.libraries.testutils.rules.CoroutineRule
 import io.mockk.MockKAnnotations
 import io.mockk.every
@@ -204,7 +207,7 @@ class MoviesListViewModelTest {
     @Test
     fun refreshCharacterList_ShouldInvokeDataSourceMethod() {
         viewModel = MoviesListViewModel(dataSourceFactory = dataSourceFactory)
-        viewModel.refreshLoadedCharactersList()
+        viewModel.refreshLoadedMoviesList()
 
         verify { dataSourceFactory.refresh() }
         verify(exactly = 0) { dataSourceFactory.retry() }
@@ -213,7 +216,7 @@ class MoviesListViewModelTest {
     @Test
     fun retryCharacterList_ShouldInvokeDataSourceMethod() {
         viewModel = MoviesListViewModel(dataSourceFactory = dataSourceFactory)
-        viewModel.retryAddCharactersList()
+        viewModel.retryAddMoviesList()
 
         verify { dataSourceFactory.retry() }
         verify(exactly = 0) { dataSourceFactory.refresh() }
@@ -225,9 +228,9 @@ class MoviesListViewModelTest {
         viewModel.event.observeForever(eventObserver)
 
         val characterId = 1L
-        viewModel.openCharacterDetail(characterId)
+        viewModel.openMovieDetail(characterId)
 
-        val expectedEvent = MoviesListViewEvent.OpenCharacterDetail(characterId)
+        val expectedEvent = MoviesListViewEvent.OpenMovieDetail(characterId)
         assertEquals(expectedEvent, viewModel.event.value)
         verify { eventObserver.onChanged(expectedEvent) }
     }

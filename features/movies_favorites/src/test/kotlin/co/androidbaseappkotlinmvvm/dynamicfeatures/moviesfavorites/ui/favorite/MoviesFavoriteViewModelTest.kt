@@ -21,8 +21,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import co.androidbaseappkotlinmvvm.core.database.moviefavorite.MovieFavorite
 import co.androidbaseappkotlinmvvm.core.database.moviefavorite.MovieFavoriteRepository
-import co.androidbaseappkotlinmvvm.favorite.moviesfavorites.ui.favorite.MoviesFavoriteViewModel
-import co.androidbaseappkotlinmvvm.favorite.moviesfavorites.ui.favorite.MoviesFavoriteViewState
 import co.androidbaseappkotlinmvvm.libraries.testutils.rules.CoroutineRule
 import io.mockk.MockKAnnotations
 import io.mockk.coVerify
@@ -74,7 +72,7 @@ class MoviesFavoriteViewModelTest {
     @Test
     fun removeFavoriteCharacter_ShouldInvokeRepositoryDeleteMethod() {
         val character = mockk<MovieFavorite>()
-        viewModel.removeFavoriteCharacter(character)
+        viewModel.removeFavoriteMovie(character)
 
         coVerify {
             repository.deleteCharacterFavorite(character)

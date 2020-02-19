@@ -20,10 +20,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import co.androidbaseappkotlinmvvm.commons.ui.extensions.viewModel
 import co.androidbaseappkotlinmvvm.core.network.repositiories.MovieRepository
-import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.MoviesListFragment
-import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.MoviesListViewModel
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListFragment
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListViewModel
 import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.model.CharacterItemMapper
-import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.paging.MoviesPageDataSourceFactory
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.paging.MoviesPageDataSourceFactory
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -83,7 +83,7 @@ class MoviesListModuleTest {
         every { viewModel.viewModelScope } returns scope
 
         module = MoviesListModule(fragment)
-        val dataSource = module.providesCharactersPageDataSource(
+        val dataSource = module.providesMoviesPageDataSource(
             viewModel = viewModel,
             repository = repository,
             mapper = mapper

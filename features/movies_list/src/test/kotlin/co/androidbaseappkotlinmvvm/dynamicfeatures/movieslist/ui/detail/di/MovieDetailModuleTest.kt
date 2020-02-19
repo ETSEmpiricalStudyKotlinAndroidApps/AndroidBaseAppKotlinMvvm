@@ -20,10 +20,9 @@ import androidx.lifecycle.ViewModel
 import co.androidbaseappkotlinmvvm.commons.ui.extensions.viewModel
 import co.androidbaseappkotlinmvvm.core.database.moviefavorite.MovieFavoriteRepository
 import co.androidbaseappkotlinmvvm.core.network.repositiories.MovieRepository
-import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.detail.MovieDetailFragment
-import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.detail.MovieDetailViewModel
-import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.detail.di.MovieDetailModule
-import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.detail.model.MovieDetailMapper
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.detail.MovieDetailFragment
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.detail.MovieDetailViewModel
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.detail.model.MovieDetailMapper
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK

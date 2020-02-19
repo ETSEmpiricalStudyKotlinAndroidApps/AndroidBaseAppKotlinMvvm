@@ -20,7 +20,6 @@ import co.androidbaseappkotlinmvvm.core.network.responses.BaseResponse
 import co.androidbaseappkotlinmvvm.core.network.responses.MovieResponse
 import co.androidbaseappkotlinmvvm.core.network.responses.MovieThumbnailResponse
 import co.androidbaseappkotlinmvvm.core.network.responses.DataResponse
-import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.detail.model.MovieDetailMapper
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test

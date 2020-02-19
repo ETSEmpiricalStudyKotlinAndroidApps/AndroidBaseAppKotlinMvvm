@@ -16,6 +16,7 @@
 
 package co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list
 
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListViewEvent
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -26,9 +27,9 @@ class MoviesListViewEventTest {
     @Test
     fun setEventOpenCharacterDetail_ShouldSettledCorrectly() {
         val characterId = 1L
-        event = MoviesListViewEvent.OpenCharacterDetail(characterId)
+        event = MoviesListViewEvent.OpenMovieDetail(characterId)
 
-        val eventOpenDetail = event as MoviesListViewEvent.OpenCharacterDetail
+        val eventOpenDetail = event as MoviesListViewEvent.OpenMovieDetail
         assertEquals(characterId, eventOpenDetail.id)
     }
 }

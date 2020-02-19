@@ -19,9 +19,9 @@ package co.androidbaseappkotlinmvvm.favorite.caractersfavorites.ui.favorite.di
 import androidx.lifecycle.ViewModel
 import co.androidbaseappkotlinmvvm.commons.ui.extensions.viewModel
 import co.androidbaseappkotlinmvvm.core.database.moviefavorite.MovieFavoriteRepository
-import co.androidbaseappkotlinmvvm.favorite.moviesfavorites.ui.favorite.MoviesFavoriteFragment
-import co.androidbaseappkotlinmvvm.favorite.moviesfavorites.ui.favorite.MoviesFavoriteViewModel
-import co.androidbaseappkotlinmvvm.favorite.moviesfavorites.ui.favorite.di.MoviesFavoriteModule
+import co.androidbaseappkotlinmvvm.dynamicfeatures.moviesfavorites.ui.favorite.MoviesFavoriteFragment
+import co.androidbaseappkotlinmvvm.dynamicfeatures.moviesfavorites.ui.favorite.MoviesFavoriteViewModel
+import co.androidbaseappkotlinmvvm.dynamicfeatures.moviesfavorites.ui.favorite.di.MoviesFavoriteModule
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK

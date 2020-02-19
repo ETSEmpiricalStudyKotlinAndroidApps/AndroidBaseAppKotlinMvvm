@@ -7,7 +7,7 @@
     tools:ignore="UnusedNavigation,UnusedIds">
     <fragment
         android:id="@+id/movies_list_fragment"
-        android:name="co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.MoviesListFragment"
+        android:name="co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListFragment"
         android:label="Characters">
         <action
             android:id="@+id/action_moviesListFragment_to_movie_detail_fragment"
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/movie_detail_fragment"
-        android:name="co.androidbaseappkotlinmvvm.favorite.movieslist.ui.detail.MovieDetailFragment">
+        android:name="co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.detail.MovieDetailFragment">
         <argument
             android:name="character_id"
             app:argType="long" />

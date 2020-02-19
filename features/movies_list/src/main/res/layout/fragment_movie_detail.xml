@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="co.androidbaseappkotlinmvvm.favorite.movieslist.ui.detail.MovieDetailViewModel" />
+            type="co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.detail.MovieDetailViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -45,7 +45,7 @@
                     app:layout_collapseMode="pin"
                     app:contentInsetStartWithNavigation="0dp"
                     app:navigationIcon="@android:drawable/ic_menu_close_clear_cancel"
-                    app:navigationOnClickListener="@{() -> viewModel.dismissCharacterDetail()}"/>
+                    app:navigationOnClickListener="@{() -> viewModel.dismissMovieDetail()}"/>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -71,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/movie_detail_floating_button_margin"
-            android:onClick="@{() -> viewModel.addCharacterToFavorite()}"
+            android:onClick="@{() -> viewModel.addMovieToFavorite()}"
             app:visible="@{viewModel.state.isAddToFavorite()}"
             app:layout_anchor="@id/appbar"
             app:layout_anchorGravity="bottom|end"

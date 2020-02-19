@@ -16,6 +16,7 @@
 
 package co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.model
 
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.model.MovieItem
 import org.junit.Assert
 import org.junit.Test
 

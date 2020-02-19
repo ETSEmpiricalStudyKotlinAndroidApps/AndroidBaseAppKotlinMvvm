@@ -6,7 +6,7 @@
 
         <variable
             name="viewState"
-            type="co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.MoviesListViewState" />
+            type="co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListViewState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

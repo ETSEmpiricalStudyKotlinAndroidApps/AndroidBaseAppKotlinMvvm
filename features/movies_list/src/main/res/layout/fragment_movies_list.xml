@@ -2,20 +2,20 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".SampleMainActivity">
+    tools:context=".MovieMainActivity">
 
     <data>
 
         <variable
             name="viewModel"
-            type="co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.MoviesListViewModel" />
+            type="co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListViewModel" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:onRefreshListener="@{() -> viewModel.refreshLoadedCharactersList()}"
+        app:onRefreshListener="@{() -> viewModel.refreshLoadedMoviesList()}"
         app:refreshing="@{viewModel.state.refreshing}">
 
         <androidx.constraintlayout.widget.ConstraintLayout

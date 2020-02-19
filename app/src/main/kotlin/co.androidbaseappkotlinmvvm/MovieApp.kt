@@ -17,17 +17,15 @@
 package co.androidbaseappkotlinmvvm
 
 import android.content.Context
-import com.crashlytics.android.Crashlytics
-import com.google.android.play.core.splitcompat.SplitCompatApplication
 import co.androidbaseappkotlinmvvm.core.di.CoreComponent
 import co.androidbaseappkotlinmvvm.core.di.DaggerCoreComponent
 import co.androidbaseappkotlinmvvm.core.di.modules.ContextModule
 import co.androidbaseappkotlinmvvm.core.utils.ThemeUtils
 import co.androidbaseappkotlinmvvm.di.DaggerAppComponent
-import io.fabric.sdk.android.Fabric
+import com.google.android.play.core.splitcompat.SplitCompatApplication
+import timber.log.Timber
 import javax.inject.Inject
 import kotlin.random.Random
-import timber.log.Timber
 
 /**
  * Base class for maintaining global application state.
@@ -62,7 +60,6 @@ class MovieApp : SplitCompatApplication() {
     override fun onCreate() {
         super.onCreate()
         initTimber()
-        initFabric()
         initCoreDependencyInjection()
         initAppDependencyInjection()
         initRandomNightMode()
@@ -99,15 +96,6 @@ class MovieApp : SplitCompatApplication() {
     private fun initTimber() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
-        }
-    }
-
-    /**
-     * Initialize crash report library Fabric on non debug build.
-     */
-    private fun initFabric() {
-        if (!BuildConfig.DEBUG) {
-            Fabric.with(this, Crashlytics())
         }
     }
 

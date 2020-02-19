@@ -16,7 +16,6 @@
 
 package co.androidbaseappkotlinmvvm.dynamicfeatures.moviesfavorites.ui.favorite
 
-import co.androidbaseappkotlinmvvm.favorite.moviesfavorites.ui.favorite.MoviesFavoriteViewState
 import org.junit.Assert
 import org.junit.Test
 

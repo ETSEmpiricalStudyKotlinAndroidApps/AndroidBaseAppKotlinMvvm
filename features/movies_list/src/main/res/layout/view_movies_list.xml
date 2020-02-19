@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewState"
-            type="co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.MoviesListViewState" />
+            type="co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListViewState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +15,7 @@
         app:visible="@{viewState.isLoaded || viewState.addLoading || viewState.addError || viewState.NoMoreElements}">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/characters_list"
+            android:id="@+id/movies_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:theme="@style/AppTheme.BackgroundStyle"

@@ -5,5 +5,5 @@
         android:id="@+id/menu_toggle_theme"
         android:title="@string/home_toolbar_theme"
         app:showAsAction="always"
-        app:actionViewClass="co.androidbaseappkotlinmvvm.favorite.home.ui.menu.ToggleThemeCheckBox" />
+        app:actionViewClass="co.androidbaseappkotlinmvvm.dynamicfeatures.home.menu.ToggleThemeCheckBox" />
 </menu>

@@ -17,8 +17,8 @@
 package co.androidbaseappkotlinmvvm.favorite.home.ui.di
 
 import androidx.lifecycle.ViewModel
-import co.androidbaseappkotlinmvvm.commons.ui.extensions.viewModel
-import co.androidbaseappkotlinmvvm.dynamicfeatures.home.ui.HomeFragment
+import co.androidbaseappkotlinmvvm.dynamicfeatures.home.di.HomeModule
+import co.androidbaseappkotlinmvvm.dynamicfeatures.home.dynamicfeatures.ui.HomeFragment
 import co.androidbaseappkotlinmvvm.dynamicfeatures.home.ui.HomeViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.every

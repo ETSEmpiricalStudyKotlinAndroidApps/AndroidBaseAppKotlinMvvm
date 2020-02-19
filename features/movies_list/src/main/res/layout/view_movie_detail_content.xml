@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="co.androidbaseappkotlinmvvm.favorite.movieslist.ui.detail.MovieDetailViewModel" />
+            type="co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.detail.MovieDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
         android:paddingTop="@dimen/movie_detail_content_padding_top">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/character_name"
+            android:id="@+id/movie_name"
             style="@style/TextAppearance.Title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             android:text="@{viewModel.data.description}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/character_name"
+            app:layout_constraintTop_toBottomOf="@+id/movie_name"
             tools:text="Character description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

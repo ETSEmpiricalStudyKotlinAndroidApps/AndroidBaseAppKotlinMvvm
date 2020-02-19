@@ -26,7 +26,7 @@ import co.androidbaseappkotlinmvvm.core.network.NetworkState
 import co.androidbaseappkotlinmvvm.core.network.repositiories.MovieRepository
 import co.androidbaseappkotlinmvvm.core.network.responses.BaseResponse
 import co.androidbaseappkotlinmvvm.core.network.responses.MovieResponse
-import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.model.MovieItem
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.model.MovieItem
 import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.model.CharacterItemMapper
 import co.androidbaseappkotlinmvvm.libraries.testutils.rules.CoroutineRule
 import io.mockk.Called

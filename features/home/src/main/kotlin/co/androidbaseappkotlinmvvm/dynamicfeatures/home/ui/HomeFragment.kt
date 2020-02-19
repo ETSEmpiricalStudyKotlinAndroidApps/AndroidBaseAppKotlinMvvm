@@ -26,9 +26,11 @@ import co.androidbaseappkotlinmvvm.MovieApp
 import co.androidbaseappkotlinmvvm.commons.ui.base.BaseFragment
 import co.androidbaseappkotlinmvvm.commons.ui.extensions.setupWithNavController
 import co.androidbaseappkotlinmvvm.core.utils.ThemeUtils
+import co.androidbaseappkotlinmvvm.dynamicfeatures.home.R
 import co.androidbaseappkotlinmvvm.dynamicfeatures.home.databinding.FragmentHomeBinding
-import co.androidbaseappkotlinmvvm.favorite.home.ui.di.HomeModule
-import co.androidbaseappkotlinmvvm.favorite.home.ui.menu.ToggleThemeCheckBox
+import co.androidbaseappkotlinmvvm.dynamicfeatures.home.di.DaggerHomeComponent
+import co.androidbaseappkotlinmvvm.dynamicfeatures.home.di.HomeModule
+import co.androidbaseappkotlinmvvm.dynamicfeatures.home.menu.ToggleThemeCheckBox
 import javax.inject.Inject
 
 private const val DELAY_TO_APPLY_THEME = 1000L

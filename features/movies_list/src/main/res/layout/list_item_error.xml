@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.MoviesListViewModel" />
+            type="co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,7 +32,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/movies_list_item_error_button_top_margin"
             android:text="@string/movies_list_add_retry_button"
-            android:onClick="@{() -> viewModel.retryAddCharactersList()}"
+            android:onClick="@{() -> viewModel.retryAddMoviesList()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

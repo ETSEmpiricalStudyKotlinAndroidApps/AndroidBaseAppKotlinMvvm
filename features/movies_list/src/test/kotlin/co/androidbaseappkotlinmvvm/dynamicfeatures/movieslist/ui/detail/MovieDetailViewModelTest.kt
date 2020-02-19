@@ -22,8 +22,10 @@ import co.androidbaseappkotlinmvvm.core.database.moviefavorite.MovieFavoriteRepo
 import co.androidbaseappkotlinmvvm.core.network.repositiories.MovieRepository
 import co.androidbaseappkotlinmvvm.core.network.responses.BaseResponse
 import co.androidbaseappkotlinmvvm.core.network.responses.MovieResponse
-import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.detail.model.MovieDetail
-import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.detail.model.MovieDetailMapper
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.detail.MovieDetailViewModel
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.detail.MovieDetailViewState
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.detail.model.MovieDetail
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.detail.model.MovieDetailMapper
 import co.androidbaseappkotlinmvvm.libraries.testutils.rules.CoroutineRule
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -72,14 +74,14 @@ class MovieDetailViewModelTest {
 
     @Test
     fun loadCharacterDetail_ShouldSetLoadingState() {
-        viewModel.loadCharacterDetail(1L)
+        viewModel.loadMovieDetail(1L)
 
         verify { stateObserver.onChanged(MovieDetailViewState.Loading) }
     }
 
     @Test
     fun loadCharacterDetail_WhenError_ShouldBeErrorState() {
-        viewModel.loadCharacterDetail(1L)
+        viewModel.loadMovieDetail(1L)
 
         val expectedState: MovieDetailViewState = MovieDetailViewState.Error
         Assert.assertEquals(expectedState, viewModel.state.value)
@@ -94,7 +96,7 @@ class MovieDetailViewModelTest {
         coEvery { movieDetailMapper.map(any()) } returns characterDetail
 
         val characterId = 1L
-        viewModel.loadCharacterDetail(characterId)
+        viewModel.loadMovieDetail(characterId)
 
         verify { dataObserver.onChanged(characterDetail) }
         coVerify { movieRepository.getMovie(characterId) }
@@ -108,7 +110,7 @@ class MovieDetailViewModelTest {
         coEvery { movieRepository.getMovie(any()) } returns mockk()
         coEvery { movieDetailMapper.map(any()) } returns characterDetail
 
-        viewModel.loadCharacterDetail(1L)
+        viewModel.loadMovieDetail(1L)
 
         val expectedState = MovieDetailViewState.AddToFavorite
         Assert.assertEquals(expectedState, viewModel.state.value)
@@ -122,7 +124,7 @@ class MovieDetailViewModelTest {
         coEvery { movieRepository.getMovie(any()) } returns mockk()
         coEvery { movieDetailMapper.map(any()) } returns characterDetail
 
-        viewModel.loadCharacterDetail(1L)
+        viewModel.loadMovieDetail(1L)
 
         val expectedState = MovieDetailViewState.AlreadyAddedToFavorite
         Assert.assertEquals(expectedState, viewModel.state.value)
@@ -131,7 +133,7 @@ class MovieDetailViewModelTest {
 
     @Test
     fun addCharacterToFavorite_WhenNotLoadedDetail_ShouldDoNothing() {
-        viewModel.addCharacterToFavorite()
+        viewModel.addMovieToFavorite()
 
         coVerify(exactly = 0) {
             movieFavoriteRepository.insertMovieFavorite(any(), any(), any())
@@ -150,8 +152,8 @@ class MovieDetailViewModelTest {
         coEvery { movieRepository.getMovie(any()) } returns mockk()
         coEvery { movieDetailMapper.map(any()) } returns characterDetail
 
-        viewModel.loadCharacterDetail(1L)
-        viewModel.addCharacterToFavorite()
+        viewModel.loadMovieDetail(1L)
+        viewModel.addMovieToFavorite()
 
         val expectedState = MovieDetailViewState.AddedToFavorite
         Assert.assertEquals(expectedState, viewModel.state.value)
@@ -167,7 +169,7 @@ class MovieDetailViewModelTest {
 
     @Test
     fun dismissCharacterDetail_ShouldBeDismissState() {
-        viewModel.dismissCharacterDetail()
+        viewModel.dismissMovieDetail()
 
         val expectedState = MovieDetailViewState.Dismiss
         Assert.assertEquals(expectedState, viewModel.state.value)
