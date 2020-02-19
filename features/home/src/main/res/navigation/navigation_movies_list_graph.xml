@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_movies_list_graph"
+    app:startDestination="@+id/movies_list_fragment"
+    tools:ignore="UnusedNavigation,UnusedIds">
+    <fragment
+        android:id="@+id/movies_list_fragment"
+        android:name="co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.MoviesListFragment"
+        android:label="Characters">
+        <action
+            android:id="@+id/action_moviesListFragment_to_movie_detail_fragment"
+            app:destination="@+id/movie_detail_fragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/movies_list_fragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/movie_detail_fragment"
+        android:name="co.androidbaseappkotlinmvvm.favorite.movieslist.ui.detail.MovieDetailFragment">
+        <argument
+            android:name="character_id"
+            app:argType="long" />
+    </fragment>
+</navigation>

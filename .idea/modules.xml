@@ -4,8 +4,17 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidBaseAppKotlinMvvm.iml" filepath="$PROJECT_DIR$/AndroidBaseAppKotlinMvvm.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/data/data.iml" filepath="$PROJECT_DIR$/data/data.iml" />
-      <module fileurl="file://$PROJECT_DIR$/domain/domain.iml" filepath="$PROJECT_DIR$/domain/domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commons/commons.iml" filepath="$PROJECT_DIR$/commons/commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/features/features.iml" filepath="$PROJECT_DIR$/features/features.iml" />
+      <module fileurl="file://$PROJECT_DIR$/features/home/home.iml" filepath="$PROJECT_DIR$/features/home/home.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libraries/libraries.iml" filepath="$PROJECT_DIR$/libraries/libraries.iml" />
+      <module fileurl="file://$PROJECT_DIR$/features/movies_favorites/movies_favorites.iml" filepath="$PROJECT_DIR$/features/movies_favorites/movies_favorites.iml" />
+      <module fileurl="file://$PROJECT_DIR$/features/movies_list/movies_list.iml" filepath="$PROJECT_DIR$/features/movies_list/movies_list.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libraries/test_utils/test_utils.iml" filepath="$PROJECT_DIR$/libraries/test_utils/test_utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commons/ui/ui.iml" filepath="$PROJECT_DIR$/commons/ui/ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commons/views/views.iml" filepath="$PROJECT_DIR$/commons/views/views.iml" />
     </modules>
   </component>
 </project>

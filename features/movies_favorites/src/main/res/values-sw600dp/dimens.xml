@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Movie favorite-->
+    <dimen name="movies_favorite_list_item_size">150dp</dimen>
+    <dimen name="movies_favorite_list_item_text_padding">15dp</dimen>
+</resources>
