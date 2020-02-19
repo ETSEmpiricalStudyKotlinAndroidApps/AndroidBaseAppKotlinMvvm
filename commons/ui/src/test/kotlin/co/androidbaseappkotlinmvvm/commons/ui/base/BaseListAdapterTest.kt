@@ -36,7 +36,7 @@ import org.mockito.Mock
 import org.mockito.Mockito.anyString
 import org.mockito.MockitoAnnotations
 import org.mockito.Spy
-import org.robolectric.shadows.ShadowLooper
+//import org.robolectric.shadows.ShadowLooper
 
 class BaseListAdapterTest : TestRobolectric() {
 
@@ -63,7 +63,7 @@ class BaseListAdapterTest : TestRobolectric() {
 
     @After
     fun tearDown() {
-        ShadowLooper.idleMainLooper()
+        //ShadowLooper.idleMainLooper()
     }
 
     @Test

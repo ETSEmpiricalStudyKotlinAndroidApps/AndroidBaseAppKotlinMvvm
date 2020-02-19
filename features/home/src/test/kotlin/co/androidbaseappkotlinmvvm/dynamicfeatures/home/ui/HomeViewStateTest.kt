@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package co.androidbaseappkotlinmvvm.favorite.home.ui
+package co.androidbaseappkotlinmvvm.dynamicfeatures.home.ui
 
 import co.androidbaseappkotlinmvvm.dynamicfeatures.home.ui.HomeViewState
 import org.junit.Assert.assertFalse

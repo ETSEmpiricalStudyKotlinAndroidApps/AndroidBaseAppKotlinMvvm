@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package co.androidbaseappkotlinmvvm.favorite.caractersfavorites.ui.favorite.di
+package co.androidbaseappkotlinmvvm.dynamicfeatures.moviesfavorites.ui.favorite.di
 
 import androidx.lifecycle.ViewModel
 import co.androidbaseappkotlinmvvm.commons.ui.extensions.viewModel

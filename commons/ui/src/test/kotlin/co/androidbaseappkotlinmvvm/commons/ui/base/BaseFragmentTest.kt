@@ -29,7 +29,7 @@ import com.nhaarman.mockitokotlin2.verify
 import co.androidbaseappkotlinmvvm.libraries.testutils.TestCompatActivity
 import co.androidbaseappkotlinmvvm.libraries.testutils.TestFragmentActivity
 import co.androidbaseappkotlinmvvm.libraries.testutils.robolectric.TestRobolectric
-import org.hamcrest.Matchers.instanceOf
+import org.hamcrest.core.IsInstanceOf.instanceOf
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertThat
 import org.junit.Before

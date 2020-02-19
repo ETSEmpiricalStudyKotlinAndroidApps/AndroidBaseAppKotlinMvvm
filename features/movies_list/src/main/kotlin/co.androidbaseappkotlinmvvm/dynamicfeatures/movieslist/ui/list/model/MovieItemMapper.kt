@@ -20,7 +20,7 @@ import co.androidbaseappkotlinmvvm.core.mapper.Mapper
 import co.androidbaseappkotlinmvvm.core.network.responses.BaseResponse
 import co.androidbaseappkotlinmvvm.core.network.responses.MovieResponse
 
-private const val IMAGE_URL_FORMAT = "%s.%s"
+private const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w342/%s"
 
 /**
  * Helper class to transforms network response to visual model, catching the necessary data.
@@ -32,8 +32,8 @@ open class MovieItemMapper : Mapper<BaseResponse<MovieResponse>, List<MovieItem>
     /**
      * Transform network response to [MovieItem].
      *
-     * @param from Network characters response.
-     * @return List of parsed characters items.
+     * @param from Network movies response.
+     * @return List of parsed movies items.
      */
     override suspend fun map(from: BaseResponse<MovieResponse>) =
         from.data.results.map {
@@ -41,9 +41,8 @@ open class MovieItemMapper : Mapper<BaseResponse<MovieResponse>, List<MovieItem>
                 id = it.id,
                 name = it.name,
                 description = it.description,
-                imageUrl = IMAGE_URL_FORMAT.format(
-                    it.thumbnail.path.replace("http", "https"),
-                    it.thumbnail.extension
+                imageUrl = IMAGE_BASE_URL.format(
+                    it.thumbnail.path
                 )
             )
         }

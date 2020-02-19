@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.adapter.holders
+package co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.adapter.holders
 
  import android.view.LayoutInflater
  import android.view.View
  import androidx.databinding.ViewDataBinding
- import co.androidbaseappkotlinmvvm.dynamicfeatures.characterslist.databinding.ListItemErrorBinding
- import co.androidbaseappkotlinmvvm.dynamicfeatures.characterslist.ui.list.CharactersListViewModel
- import co.androidbaseappkotlinmvvm.dynamicfeatures.characterslist.ui.list.adapter.holders.ErrorViewHolder
+ import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.databinding.ListItemErrorBinding
+ import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListViewModel
+ import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.adapter.holders.ErrorViewHolder
  import io.mockk.MockKAnnotations
  import io.mockk.every
  import io.mockk.impl.annotations.MockK
@@ -64,7 +64,7 @@ class ErrorViewHolderTest {
        every { (binding as ViewDataBinding).root } returns view
        every { ListItemErrorBinding.inflate(layoutInflater) } returns binding
 
-       val viewModel = mockk<CharactersListViewModel>()
+       val viewModel = mockk<MoviesListViewModel>()
        viewHolder = ErrorViewHolder(layoutInflater)
        viewHolder.bind(viewModel)
 

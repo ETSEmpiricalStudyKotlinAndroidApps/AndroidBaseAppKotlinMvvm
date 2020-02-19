@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package co.androidbaseappkotlinmvvm.core.database.charactersfavorite
+package co.androidbaseappkotlinmvvm.core.database.moviesfavorite
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
@@ -25,8 +25,8 @@ import co.androidbaseappkotlinmvvm.core.database.moviefavorite.MovieFavoriteDao
 import co.androidbaseappkotlinmvvm.libraries.testutils.livedata.getValue
 import co.androidbaseappkotlinmvvm.libraries.testutils.robolectric.TestRobolectric
 import kotlinx.coroutines.runBlocking
-import org.hamcrest.Matchers.hasItem
-import org.hamcrest.Matchers.not
+import org.hamcrest.CoreMatchers.hasItem
+import org.hamcrest.core.IsNot.not
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
@@ -43,8 +43,8 @@ class MovieFavoriteDaoTest : TestRobolectric() {
 
     private lateinit var database: MovieDatabase
     private lateinit var movieFavoriteDao: MovieFavoriteDao
-    private val fakeCharactersFavorite = listOf(
-        MovieFavorite(0, "3-D Man", "http://i.annihil.us/535fecbbb9784.jpg"),
+    private val fakeMoviesFavorite = listOf(
+        MovieFavorite(0, "3-D Man", "/h28t2JNNGrZx0fIuAw8aHQFhIxR.jpg"),
         MovieFavorite(1, "A-Bomb (HAS)", "http://i.annihil.us/5232158de5b16.jpg"),
         MovieFavorite(2, "A.I.M", "http://i.annihil.us/52602f21f29ec.jpg")
     )
@@ -65,100 +65,100 @@ class MovieFavoriteDaoTest : TestRobolectric() {
     }
 
     @Test
-    fun obtainAllCharactersFavoriteLiveData_WithoutData_ShouldReturnNull() {
-        val characters = movieFavoriteDao.getAllMoviesFavoriteLiveData()
-        assertTrue(getValue(characters).isNullOrEmpty())
+    fun obtainAllMoviesFavoriteLiveData_WithoutData_ShouldReturnNull() {
+        val movies = movieFavoriteDao.getAllMoviesFavoriteLiveData()
+        assertTrue(getValue(movies).isNullOrEmpty())
     }
 
     @Test
-    fun obtainAllCharactersFavoriteLiveData_WithData_ShouldReturnSorted() = runBlocking {
-        movieFavoriteDao.insertMoviesFavorites(fakeCharactersFavorite)
-        val characters = movieFavoriteDao.getAllMoviesFavoriteLiveData()
+    fun obtainAllMoviesFavoriteLiveData_WithData_ShouldReturnSorted() = runBlocking {
+        movieFavoriteDao.insertMoviesFavorites(fakeMoviesFavorite)
+        val movies = movieFavoriteDao.getAllMoviesFavoriteLiveData()
 
-        assertEquals(fakeCharactersFavorite, getValue(characters))
+        assertEquals(fakeMoviesFavorite, getValue(movies))
     }
 
     @Test
-    fun obtainAllCharactersFavorite_WithoutData_ShouldReturnEmpty() = runBlocking {
+    fun obtainAllMoviesFavorite_WithoutData_ShouldReturnEmpty() = runBlocking {
         assertTrue(movieFavoriteDao.getAllMoviesFavorite().isNullOrEmpty())
     }
 
     @Test
-    fun obtainAllCharactersFavorite_WithData_ShouldReturnSorted() = runBlocking {
-        movieFavoriteDao.insertMoviesFavorites(fakeCharactersFavorite)
+    fun obtainAllMoviesFavorite_WithData_ShouldReturnSorted() = runBlocking {
+        movieFavoriteDao.insertMoviesFavorites(fakeMoviesFavorite)
 
-        assertEquals(fakeCharactersFavorite, movieFavoriteDao.getAllMoviesFavorite())
+        assertEquals(fakeMoviesFavorite, movieFavoriteDao.getAllMoviesFavorite())
     }
 
     @Test
-    fun obtainCharacterFavoriteById_WithoutData_ShouldNotFound() = runBlocking {
-        val characterToFind = fakeCharactersFavorite.first()
+    fun obtainMovieFavoriteById_WithoutData_ShouldNotFound() = runBlocking {
+        val movieToFind = fakeMoviesFavorite.first()
 
-        assertNull(movieFavoriteDao.getMovieFavorite(characterToFind.id))
+        assertNull(movieFavoriteDao.getMovieFavorite(movieToFind.id))
     }
 
     @Test
-    fun obtainCharacterFavoriteById_WithData_ShouldFound() = runBlocking {
-        movieFavoriteDao.insertMoviesFavorites(fakeCharactersFavorite)
+    fun obtainMovieFavoriteById_WithData_ShouldFound() = runBlocking {
+        movieFavoriteDao.insertMoviesFavorites(fakeMoviesFavorite)
 
-        val characterToFind = fakeCharactersFavorite.first()
-        assertEquals(characterToFind, movieFavoriteDao.getMovieFavorite(characterToFind.id))
+        val movieToFind = fakeMoviesFavorite.first()
+        assertEquals(movieToFind, movieFavoriteDao.getMovieFavorite(movieToFind.id))
     }
 
     @Test
-    fun insertCharacterFavorite_ShouldAdd() = runBlocking {
-        fakeCharactersFavorite.forEach {
+    fun insertMovieFavorite_ShouldAdd() = runBlocking {
+        fakeMoviesFavorite.forEach {
             movieFavoriteDao.insertMovieFavorite(it)
         }
 
-        assertEquals(fakeCharactersFavorite, movieFavoriteDao.getAllMoviesFavorite())
+        assertEquals(fakeMoviesFavorite, movieFavoriteDao.getAllMoviesFavorite())
     }
 
     @Test
-    fun deleteAllCharactersFavorite_ShouldRemoveAll() = runBlocking {
-        movieFavoriteDao.insertMoviesFavorites(fakeCharactersFavorite)
+    fun deleteAllMoviesFavorite_ShouldRemoveAll() = runBlocking {
+        movieFavoriteDao.insertMoviesFavorites(fakeMoviesFavorite)
         movieFavoriteDao.deleteAllMoviesFavorite()
 
         assertTrue(movieFavoriteDao.getAllMoviesFavorite().isNullOrEmpty())
     }
 
     @Test
-    fun deleteCharacterFavorite_Stored_ShouldRemoveIt() = runBlocking {
-        movieFavoriteDao.insertMoviesFavorites(fakeCharactersFavorite)
+    fun deleteMovieFavorite_Stored_ShouldRemoveIt() = runBlocking {
+        movieFavoriteDao.insertMoviesFavorites(fakeMoviesFavorite)
 
-        val characterToRemove = fakeCharactersFavorite.first()
-        movieFavoriteDao.deleteMovieFavorite(characterToRemove)
+        val movieToRemove = fakeMoviesFavorite.first()
+        movieFavoriteDao.deleteMovieFavorite(movieToRemove)
 
-        assertThat(movieFavoriteDao.getAllMoviesFavorite(), not(hasItem(characterToRemove)))
+        assertThat(movieFavoriteDao.getAllMoviesFavorite(), not(hasItem(movieToRemove)))
     }
 
     @Test
-    fun deleteCharacterFavorite_NoStored_ShouldNotRemoveNothing() = runBlocking {
-        movieFavoriteDao.insertMoviesFavorites(fakeCharactersFavorite)
+    fun deleteMovieFavorite_NoStored_ShouldNotRemoveNothing() = runBlocking {
+        movieFavoriteDao.insertMoviesFavorites(fakeMoviesFavorite)
 
-        val characterToRemove = MovieFavorite(5, "test", "url")
-        movieFavoriteDao.deleteMovieFavorite(characterToRemove)
+        val movieToRemove = MovieFavorite(5, "test", "url")
+        movieFavoriteDao.deleteMovieFavorite(movieToRemove)
 
-        assertEquals(fakeCharactersFavorite, movieFavoriteDao.getAllMoviesFavorite())
+        assertEquals(fakeMoviesFavorite, movieFavoriteDao.getAllMoviesFavorite())
     }
 
     @Test
-    fun deleteCharacterFavoriteById_Stored_ShouldRemoveIt() = runBlocking {
-        movieFavoriteDao.insertMoviesFavorites(fakeCharactersFavorite)
+    fun deleteMovieFavoriteById_Stored_ShouldRemoveIt() = runBlocking {
+        movieFavoriteDao.insertMoviesFavorites(fakeMoviesFavorite)
 
-        val characterToRemove = fakeCharactersFavorite.first()
-        movieFavoriteDao.deleteMovieFavoriteById(characterToRemove.id)
+        val movieToRemove = fakeMoviesFavorite.first()
+        movieFavoriteDao.deleteMovieFavoriteById(movieToRemove.id)
 
-        assertThat(movieFavoriteDao.getAllMoviesFavorite(), not(hasItem(characterToRemove)))
+        assertThat(movieFavoriteDao.getAllMoviesFavorite(), not(hasItem(movieToRemove)))
     }
 
     @Test
-    fun deleteCharacterFavoriteById_NoStored_ShouldNotRemoveNothing() = runBlocking {
-        movieFavoriteDao.insertMoviesFavorites(fakeCharactersFavorite)
+    fun deleteMovieFavoriteById_NoStored_ShouldNotRemoveNothing() = runBlocking {
+        movieFavoriteDao.insertMoviesFavorites(fakeMoviesFavorite)
 
-        val characterNoStoredId = 100L
-        movieFavoriteDao.deleteMovieFavoriteById(characterNoStoredId)
+        val movieNoStoredId = 100L
+        movieFavoriteDao.deleteMovieFavoriteById(movieNoStoredId)
 
-        assertEquals(fakeCharactersFavorite, movieFavoriteDao.getAllMoviesFavorite())
+        assertEquals(fakeMoviesFavorite, movieFavoriteDao.getAllMoviesFavorite())
     }
 }

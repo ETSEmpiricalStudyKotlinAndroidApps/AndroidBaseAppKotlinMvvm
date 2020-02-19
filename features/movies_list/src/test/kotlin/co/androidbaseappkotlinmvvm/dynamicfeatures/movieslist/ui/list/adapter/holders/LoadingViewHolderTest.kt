@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.adapter.holders
+package co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.adapter.holders
 
 import android.view.LayoutInflater
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.databinding.ListItemLoadingBinding
+import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.adapter.holders.LoadingViewHolder
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package co.androidbaseappkotlinmvvm.core.database.charactersfavorite
+package co.androidbaseappkotlinmvvm.core.database.moviesfavorite
 
 import com.nhaarman.mockitokotlin2.argumentCaptor
 import com.nhaarman.mockitokotlin2.verify
@@ -41,14 +41,14 @@ class MovieFavoriteRepositoryTest {
     }
 
     @Test
-    fun getAllCharactersFavoriteLiveData_ShouldInvokeCorrectDaoMethod() {
+    fun getAllMoviesFavoriteLiveData_ShouldInvokeCorrectDaoMethod() {
         movieFavoriteRepository.getAllMoviesFavoriteLiveData()
 
         verify(movieFavoriteDao).getAllMoviesFavoriteLiveData()
     }
 
     @Test
-    fun getAllCharactersFavorite_ShouldInvokeCorrectDaoMethod() {
+    fun getAllMoviesFavorite_ShouldInvokeCorrectDaoMethod() {
         runBlocking {
             movieFavoriteRepository.getAllMoviesFavorite()
 
@@ -57,75 +57,75 @@ class MovieFavoriteRepositoryTest {
     }
 
     @Test
-    fun getCharacterFavorite_ShouldInvokeCorrectDaoMethod() = runBlocking {
-        val characterIdToFind = 1L
-        val characterIdCaptor = argumentCaptor<Long>()
-        movieFavoriteRepository.getCharacterFavorite(characterIdToFind)
+    fun getMovieFavorite_ShouldInvokeCorrectDaoMethod() = runBlocking {
+        val movieIdToFind = 1L
+        val movieIdCaptor = argumentCaptor<Long>()
+        movieFavoriteRepository.getMovieFavorite(movieIdToFind)
 
-        verify(movieFavoriteDao).getMovieFavorite(characterIdCaptor.capture())
-        assertEquals(characterIdToFind, characterIdCaptor.lastValue)
+        verify(movieFavoriteDao).getMovieFavorite(movieIdCaptor.capture())
+        assertEquals(movieIdToFind, movieIdCaptor.lastValue)
     }
 
     @Test
-    fun deleteAllCharactersFavorite_ShouldInvokeCorrectDaoMethod() = runBlocking {
-        movieFavoriteRepository.deleteAllCharactersFavorite()
+    fun deleteAllMoviesFavorite_ShouldInvokeCorrectDaoMethod() = runBlocking {
+        movieFavoriteRepository.deleteAllMoviesFavorite()
 
         verify(movieFavoriteDao).deleteAllMoviesFavorite()
     }
 
     @Test
-    fun deleteCharacterFavoriteById_ShouldInvokeCorrectDaoMethod() = runBlocking {
-        val characterIdToDelete = 1L
-        val characterIdCaptor = argumentCaptor<Long>()
-        movieFavoriteRepository.deleteCharacterFavoriteById(characterIdToDelete)
+    fun deleteMovieFavoriteById_ShouldInvokeCorrectDaoMethod() = runBlocking {
+        val movieIdToDelete = 1L
+        val movieIdCaptor = argumentCaptor<Long>()
+        movieFavoriteRepository.deleteMovieFavoriteById(movieIdToDelete)
 
-        verify(movieFavoriteDao).deleteMovieFavoriteById(characterIdCaptor.capture())
-        assertEquals(characterIdToDelete, characterIdCaptor.lastValue)
+        verify(movieFavoriteDao).deleteMovieFavoriteById(movieIdCaptor.capture())
+        assertEquals(movieIdToDelete, movieIdCaptor.lastValue)
     }
 
     @Test
-    fun deleteCharacterFavorite_ShouldInvokeCorrectDaoMethod() = runBlocking {
-        val characterToDelete = MovieFavorite(
+    fun deleteMovieFavorite_ShouldInvokeCorrectDaoMethod() = runBlocking {
+        val movieToDelete = MovieFavorite(
             0,
             "A.I.M",
-            "http://i.annihil.us/535fecbbb9784.jpg"
+            "/vOipe2myi26UDwP978hsYOrnUWC.jpg"
         )
-        val characterFavoriteCaptor = argumentCaptor<MovieFavorite>()
-        movieFavoriteRepository.deleteCharacterFavorite(characterToDelete)
+        val movieFavoriteCaptor = argumentCaptor<MovieFavorite>()
+        movieFavoriteRepository.deleteMovieFavorite(movieToDelete)
 
-        verify(movieFavoriteDao).deleteMovieFavorite(characterFavoriteCaptor.capture())
-        assertEquals(characterToDelete, characterFavoriteCaptor.lastValue)
+        verify(movieFavoriteDao).deleteMovieFavorite(movieFavoriteCaptor.capture())
+        assertEquals(movieToDelete, movieFavoriteCaptor.lastValue)
     }
 
     @Test
-    fun insertCharactersFavorites_ShouldInvokeCorrectDaoMethod() = runBlocking {
-        val charactersToInsert = listOf(
-            MovieFavorite(0, "3-D Man", "http://i.annihil.us/535fecbbb9784.jpg"),
-            MovieFavorite(1, "A-Bomb (HAS)", "http://i.annihil.us/5232158de5b16.jpg"),
-            MovieFavorite(2, "A.I.M", "http://i.annihil.us/52602f21f29ec.jpg")
+    fun insertMoviesFavorites_ShouldInvokeCorrectDaoMethod() = runBlocking {
+        val moviesToInsert = listOf(
+            MovieFavorite(0, "3-D Man", "/h28t2JNNGrZx0fIuAw8aHQFhIxR.jpg"),
+            MovieFavorite(1, "A-Bomb (HAS)", "/hU0E130tsGdsYa4K9lc3Xrn5Wyt.jpg"),
+            MovieFavorite(2, "A.I.M", "/vOipe2myi26UDwP978hsYOrnUWC.jpg")
         )
-        val charactersInsertedCaptor = argumentCaptor<List<MovieFavorite>>()
-        movieFavoriteRepository.insertCharactersFavorites(charactersToInsert)
+        val moviesInsertedCaptor = argumentCaptor<List<MovieFavorite>>()
+        movieFavoriteRepository.insertMoviesFavorites(moviesToInsert)
 
-        verify(movieFavoriteDao).insertMoviesFavorites(charactersInsertedCaptor.capture())
-        assertEquals(charactersToInsert, charactersInsertedCaptor.lastValue)
+        verify(movieFavoriteDao).insertMoviesFavorites(moviesInsertedCaptor.capture())
+        assertEquals(moviesToInsert, moviesInsertedCaptor.lastValue)
     }
 
     @Test
-    fun insertCharacterFavorite_ShouldInvokeCorrectDaoMethod() = runBlocking {
-        val characterToInsert = MovieFavorite(
+    fun insertMovieFavorite_ShouldInvokeCorrectDaoMethod() = runBlocking {
+        val movieToInsert = MovieFavorite(
             0,
             "A.I.M",
-            "http://i.annihil.us/535fecbbb9784.jpg"
+            "/h28t2JNNGrZx0fIuAw8aHQFhIxR.jpg"
         )
-        val characterInsertedCaptor = argumentCaptor<MovieFavorite>()
-        movieFavoriteRepository.insertCharacterFavorite(
-            id = characterToInsert.id,
-            name = characterToInsert.name,
-            imageUrl = characterToInsert.imageUrl
+        val movieInsertedCaptor = argumentCaptor<MovieFavorite>()
+        movieFavoriteRepository.insertMovieFavorite(
+            id = movieToInsert.id,
+            name = movieToInsert.name,
+            imageUrl = movieToInsert.imageUrl
         )
 
-        verify(movieFavoriteDao).insertMovieFavorite(characterInsertedCaptor.capture())
-        assertEquals(characterToInsert, characterInsertedCaptor.lastValue)
+        verify(movieFavoriteDao).insertMovieFavorite(movieInsertedCaptor.capture())
+        assertEquals(movieToInsert, movieInsertedCaptor.lastValue)
     }
 }

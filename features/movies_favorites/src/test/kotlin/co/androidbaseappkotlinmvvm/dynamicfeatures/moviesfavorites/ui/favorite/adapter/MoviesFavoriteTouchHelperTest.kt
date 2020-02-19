@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package co.androidbaseappkotlinmvvm.favorite.caractersfavorites.ui.favorite.adapter
+package co.androidbaseappkotlinmvvm.dynamicfeatures.moviesfavorites.ui.favorite.adapter
 
 import androidx.recyclerview.widget.ItemTouchHelper.ACTION_STATE_IDLE
 import androidx.recyclerview.widget.ItemTouchHelper.LEFT

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.model
+package co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.model
 
 import co.androidbaseappkotlinmvvm.core.network.responses.BaseResponse
 import co.androidbaseappkotlinmvvm.core.network.responses.MovieResponse
@@ -27,10 +27,10 @@ import org.junit.Test
 
 class MovieItemMapperTest {
 
-    private val mapper = CharacterItemMapper()
+    private val mapper = MovieItemMapper()
 
     @Test
-    fun characterMapper_WithEmptyResults_ShouldReturnEmptyList() = runBlocking {
+    fun movieMapper_WithEmptyResults_ShouldReturnEmptyList() = runBlocking {
         val response = BaseResponse(
             code = 200,
             status = "Ok",
@@ -48,7 +48,7 @@ class MovieItemMapperTest {
     }
 
     @Test
-    fun characterMapper_WithResults_ShouldReturnParsedList() = runBlocking {
+    fun movieMapper_WithResults_ShouldReturnParsedList() = runBlocking {
         val response = BaseResponse(
             code = 200,
             status = "Ok",
@@ -64,7 +64,7 @@ class MovieItemMapperTest {
                         name = "3-D Man",
                         description = "",
                         thumbnail = MovieThumbnailResponse(
-                            path = "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784",
+                            path = "/AoT2YrJUJlg5vKE3iMOLvHlTd3m.jpg",
                             extension = "jpg"
                         )
                     )
@@ -77,7 +77,7 @@ class MovieItemMapperTest {
             assertEquals("3-D Man", this.name)
             assertEquals("", this.description)
             assertEquals(
-                "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg",
+                "/AoT2YrJUJlg5vKE3iMOLvHlTd3m.jpg",
                 this.imageUrl
             )
         }

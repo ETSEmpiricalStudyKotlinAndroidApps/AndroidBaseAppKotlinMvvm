@@ -14,13 +14,17 @@
  * limitations under the License.
  */
 
-package co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.adapter.holders
+package co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.adapter.holders
 
 import android.view.LayoutInflater
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.databinding.ListItemMovieBinding
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListViewModel
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.model.MovieItem
+import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.adapter.holders.MovieViewHolder
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -41,7 +45,7 @@ class MovieViewHolderTest {
     @MockK
     lateinit var layoutInflater: LayoutInflater
     @MockK(relaxed = true)
-    lateinit var binding: ListItemCharacterBinding
+    lateinit var binding: ListItemMovieBinding
     lateinit var viewHolder: MovieViewHolder
 
     @Before
@@ -51,9 +55,9 @@ class MovieViewHolderTest {
 
     @Test
     fun createViewHolder_ShouldInitializeCorrectly() {
-        mockkStatic(ListItemCharacterBinding::class)
+        mockkStatic(ListItemMovieBinding::class)
         every { (binding as ViewDataBinding).root } returns view
-        every { ListItemCharacterBinding.inflate(layoutInflater) } returns binding
+        every { ListItemMovieBinding.inflate(layoutInflater) } returns binding
 
         viewHolder = MovieViewHolder(layoutInflater)
 
@@ -62,17 +66,17 @@ class MovieViewHolderTest {
 
     @Test
     fun bindViewHolder_ShouldBindingDataVariable() {
-        mockkStatic(ListItemCharacterBinding::class)
+        mockkStatic(ListItemMovieBinding::class)
         every { (binding as ViewDataBinding).root } returns view
-        every { ListItemCharacterBinding.inflate(layoutInflater) } returns binding
+        every { ListItemMovieBinding.inflate(layoutInflater) } returns binding
 
-        val viewModel = mockk<CharactersListViewModel>()
-        val characterItem = mockk<CharacterItem>()
+        val viewModel = mockk<MoviesListViewModel>()
+        val characterItem = mockk<MovieItem>()
         viewHolder = MovieViewHolder(layoutInflater)
         viewHolder.bind(viewModel, characterItem)
 
         verify { binding.viewModel = viewModel }
-        verify { binding.character = characterItem }
+        verify { binding.movie = characterItem }
         verify { binding.executePendingBindings() }
     }
 }

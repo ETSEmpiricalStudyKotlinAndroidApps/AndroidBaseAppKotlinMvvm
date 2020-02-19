@@ -41,7 +41,7 @@ object BuildDependenciesVersions {
     const val PLAY_CORE = "1.6.4"
     const val LEAKCANARY = "2.0"
     const val DATABINDING = "3.1.4"
-    const val AUTO_SERVICE = "1.0"
+    const val AUTO_SERVICE = "1.0-rc4"
 
     // Tests
     const val TEST = "1.2.0"

@@ -70,17 +70,17 @@ class MoviesFavoriteViewModelTest {
     }
 
     @Test
-    fun removeFavoriteCharacter_ShouldInvokeRepositoryDeleteMethod() {
-        val character = mockk<MovieFavorite>()
-        viewModel.removeFavoriteMovie(character)
+    fun removeFavoriteMovie_ShouldInvokeRepositoryDeleteMethod() {
+        val movie = mockk<MovieFavorite>()
+        viewModel.removeFavoriteMovie(movie)
 
         coVerify {
-            repository.deleteCharacterFavorite(character)
+            repository.deleteMovieFavorite(movie)
         }
     }
 
     @Test
-    fun emptyCharactersFavorite_ShouldBeEmptyState() {
+    fun emptyMoviesFavorite_ShouldBeEmptyState() {
         data.postValue(listOf())
 
         val expectedState = MoviesFavoriteViewState.Empty
@@ -91,9 +91,9 @@ class MoviesFavoriteViewModelTest {
     }
 
     @Test
-    fun addedCharactersFavorite_ShouldBeListedState() {
-        val favoriteCharacter = mockk<MovieFavorite>()
-        data.postValue(listOf(favoriteCharacter))
+    fun addedMoviesFavorite_ShouldBeListedState() {
+        val favoriteMovie = mockk<MovieFavorite>()
+        data.postValue(listOf(favoriteMovie))
 
         val expectedState = MoviesFavoriteViewState.Listed
         assertEquals(expectedState, viewModel.state.value)

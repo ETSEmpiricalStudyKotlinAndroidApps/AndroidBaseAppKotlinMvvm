@@ -65,8 +65,7 @@ class MovieDetailMapperTest {
                         name = "3-D Man",
                         description = "",
                         thumbnail = MovieThumbnailResponse(
-                        path = "/AoT2YrJUJlg5vKE3iMOLvHlTd3m.jpg",
-                        extension = "jpg"
+                        path = "/AoT2YrJUJlg5vKE3iMOLvHlTd3m.jpg"
                         )
                     )
                 )

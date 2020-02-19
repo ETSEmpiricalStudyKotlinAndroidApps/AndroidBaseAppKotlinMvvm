@@ -22,16 +22,13 @@ import org.junit.Test
 class MovieThumbnailResponseTest {
 
     @Test
-    fun createCharacterThumbnailResponse_ShouldAddCorrectAttributes() {
-        val path = "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784"
-        val extension = "jpg"
+    fun createMovieThumbnailResponse_ShouldAddCorrectAttributes() {
+        val path = "https://image.tmdb.org/t/p/w342/vj4IhmH4HCMZYYjTMiYBybTWR5o.jpg"
 
-        val characterThumbnailResponse = MovieThumbnailResponse(
-            path = path,
-            extension = extension
+        val movieThumbnailResponse = MovieThumbnailResponse(
+            path = path
         )
 
-        Assert.assertEquals(path, characterThumbnailResponse.path)
-        Assert.assertEquals(extension, characterThumbnailResponse.extension)
+        Assert.assertEquals(path, movieThumbnailResponse.path)
     }
 }

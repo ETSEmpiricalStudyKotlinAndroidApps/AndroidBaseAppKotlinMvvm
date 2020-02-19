@@ -14,20 +14,16 @@
  * limitations under the License.
  */
 
-package co.androidbaseappkotlinmvvm.favorite.home.ui.di
+package co.androidbaseappkotlinmvvm.dynamicfeatures.home.ui.di
 
 import androidx.lifecycle.ViewModel
+import co.androidbaseappkotlinmvvm.commons.ui.extensions.viewModel
 import co.androidbaseappkotlinmvvm.dynamicfeatures.home.di.HomeModule
-import co.androidbaseappkotlinmvvm.dynamicfeatures.home.dynamicfeatures.ui.HomeFragment
+import co.androidbaseappkotlinmvvm.dynamicfeatures.home.ui.HomeFragment
 import co.androidbaseappkotlinmvvm.dynamicfeatures.home.ui.HomeViewModel
-import io.mockk.MockKAnnotations
-import io.mockk.every
+import io.mockk.*
 import io.mockk.impl.annotations.MockK
-import io.mockk.mockk
-import io.mockk.mockkStatic
-import io.mockk.slot
-import io.mockk.verify
-import org.hamcrest.Matchers.instanceOf
+import org.hamcrest.CoreMatchers.instanceOf
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThat
 import org.junit.Before

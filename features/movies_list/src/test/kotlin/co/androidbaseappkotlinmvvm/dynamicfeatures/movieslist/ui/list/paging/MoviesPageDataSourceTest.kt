@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.paging
+package co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.paging
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
@@ -27,7 +27,7 @@ import co.androidbaseappkotlinmvvm.core.network.repositiories.MovieRepository
 import co.androidbaseappkotlinmvvm.core.network.responses.BaseResponse
 import co.androidbaseappkotlinmvvm.core.network.responses.MovieResponse
 import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.model.MovieItem
-import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.model.CharacterItemMapper
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.model.MovieItemMapper
 import co.androidbaseappkotlinmvvm.libraries.testutils.rules.CoroutineRule
 import io.mockk.Called
 import io.mockk.MockKAnnotations
@@ -45,7 +45,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-class CharactersPageDataSourceTest {
+class MoviesPageDataSourceTest {
 
     @ExperimentalCoroutinesApi
     @get:Rule
@@ -59,14 +59,14 @@ class CharactersPageDataSourceTest {
     @MockK(relaxed = true)
     lateinit var repository: MovieRepository
     @MockK(relaxed = true)
-    lateinit var mapper: CharacterItemMapper
+    lateinit var mapper: MovieItemMapper
     @MockK(relaxed = true)
     lateinit var networkState: MutableLiveData<NetworkState>
     @MockK(relaxed = true)
     lateinit var retry: Callback
 
     @InjectMockKs(injectImmutable = true, overrideValues = true)
-    lateinit var dataSource: CharactersPageDataSource
+    lateinit var dataSource: MoviesPageDataSource
 
     private var scope = CoroutineScope(Dispatchers.Main)
 
@@ -102,13 +102,13 @@ class CharactersPageDataSourceTest {
         val response = mockk<BaseResponse<MovieResponse>>()
 
         coEvery { mapper.map(any()) } returns emptyData
-        coEvery { repository.getCharacters(any(), any()) } returns response
+        coEvery { repository.getMovies(any()) } returns response
 
         dataSource.loadInitial(params, callback)
 
-        coVerify { repository.getCharacters(0, PAGE_MAX_ELEMENTS) }
+        coVerify { repository.getMovies(0) }
         coVerify { mapper.map(response) }
-        verify { callback.onResult(emptyData, null, PAGE_MAX_ELEMENTS) }
+        verify { callback.onResult(emptyData, null, PAGE_INIT_ELEMENTS) }
         verify {
             networkState.postValue(
                 NetworkState.Success(
@@ -127,13 +127,13 @@ class CharactersPageDataSourceTest {
         val response = mockk<BaseResponse<MovieResponse>>()
 
         coEvery { mapper.map(any()) } returns data
-        coEvery { repository.getCharacters(any(), any()) } returns response
+        coEvery { repository.getMovies(any()) } returns response
 
         dataSource.loadInitial(params, callback)
 
-        coVerify { repository.getCharacters(0, PAGE_MAX_ELEMENTS) }
+        coVerify { repository.getMovies(0) }
         coVerify { mapper.map(response) }
-        verify { callback.onResult(data, null, PAGE_MAX_ELEMENTS) }
+        verify { callback.onResult(data, null, PAGE_INIT_ELEMENTS) }
         verify { networkState.postValue(NetworkState.Success()) }
     }
 
@@ -165,13 +165,13 @@ class CharactersPageDataSourceTest {
         val response = mockk<BaseResponse<MovieResponse>>()
 
         coEvery { mapper.map(any()) } returns emptyData
-        coEvery { repository.getCharacters(any(), any()) } returns response
+        coEvery { repository.getMovies(any()) } returns response
 
         dataSource.loadAfter(params, callback)
 
-        coVerify { repository.getCharacters(paramKey, PAGE_MAX_ELEMENTS) }
+        coVerify { repository.getMovies(PAGE_INIT_ELEMENTS) }
         coVerify { mapper.map(response) }
-        verify { callback.onResult(emptyData, paramKey + PAGE_MAX_ELEMENTS) }
+        verify { callback.onResult(emptyData, paramKey + PAGE_INIT_ELEMENTS) }
         verify {
             networkState.postValue(
                 NetworkState.Success(
@@ -191,13 +191,13 @@ class CharactersPageDataSourceTest {
         val response = mockk<BaseResponse<MovieResponse>>()
 
         coEvery { mapper.map(any()) } returns data
-        coEvery { repository.getCharacters(any(), any()) } returns response
+        coEvery { repository.getMovies(any()) } returns response
 
         dataSource.loadAfter(params, callback)
 
-        coVerify { repository.getCharacters(paramKey, PAGE_MAX_ELEMENTS) }
+        coVerify { repository.getMovies(paramKey) }
         coVerify { mapper.map(response) }
-        verify { callback.onResult(data, paramKey + PAGE_MAX_ELEMENTS) }
+        verify { callback.onResult(data, paramKey + PAGE_INIT_ELEMENTS) }
         verify {
             networkState.postValue(
                 NetworkState.Success(

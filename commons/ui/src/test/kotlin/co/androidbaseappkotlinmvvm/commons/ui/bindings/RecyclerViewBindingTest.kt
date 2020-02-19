@@ -19,7 +19,7 @@ package co.androidbaseappkotlinmvvm.commons.ui.bindings
 import androidx.recyclerview.widget.RecyclerView
 import co.androidbaseappkotlinmvvm.commons.ui.recyclerview.RecyclerViewItemDecoration
 import co.androidbaseappkotlinmvvm.libraries.testutils.robolectric.TestRobolectric
-import org.hamcrest.Matchers.instanceOf
+import org.hamcrest.CoreMatchers.instanceOf
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThat
 import org.junit.Before

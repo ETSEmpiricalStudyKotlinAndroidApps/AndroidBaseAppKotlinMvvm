@@ -20,7 +20,7 @@ import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
 import co.androidbaseappkotlinmvvm.core.database.moviefavorite.MovieFavoriteDao
 import co.androidbaseappkotlinmvvm.libraries.testutils.robolectric.TestRobolectric
-import org.hamcrest.Matchers.instanceOf
+import org.hamcrest.CoreMatchers.instanceOf
 import org.junit.Assert.assertThat
 import org.junit.Before
 import org.junit.Test
@@ -40,7 +40,7 @@ class MovieDatabaseTest : TestRobolectric() {
     }
 
     @Test
-    fun obtainCharacterFavoriteDao() {
+    fun obtainMovieFavoriteDao() {
         doReturn(movieFavoriteDao).whenever(movieDatabase).movieFavoriteDao()
 
         assertThat(

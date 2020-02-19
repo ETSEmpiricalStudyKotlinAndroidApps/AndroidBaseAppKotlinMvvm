@@ -26,6 +26,5 @@ import co.androidbaseappkotlinmvvm.core.annotations.OpenForTesting
  */
 @OpenForTesting
 data class MovieThumbnailResponse(
-    val path: String,
-    val extension: String
+    val path: String
 )

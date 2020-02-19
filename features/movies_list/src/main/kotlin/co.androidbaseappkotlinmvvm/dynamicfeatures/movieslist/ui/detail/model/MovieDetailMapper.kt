@@ -20,7 +20,7 @@ import co.androidbaseappkotlinmvvm.core.mapper.Mapper
 import co.androidbaseappkotlinmvvm.core.network.responses.BaseResponse
 import co.androidbaseappkotlinmvvm.core.network.responses.MovieResponse
 
-private const val IMAGE_URL_FORMAT = "%s.%s"
+private const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w342/%s"
 
 /**
  * Helper class to transforms network response to visual model, catching the necessary data.
@@ -43,10 +43,7 @@ class MovieDetailMapper : Mapper<BaseResponse<MovieResponse>, MovieDetail> {
             id = movieResponse.id,
             name = movieResponse.name,
             description = movieResponse.description,
-            imageUrl = IMAGE_URL_FORMAT.format(
-                movieResponse.thumbnail.path.replace("http", "https"),
-                movieResponse.thumbnail.extension
-            )
+            imageUrl = IMAGE_BASE_URL.format(movieResponse.thumbnail.path)
         )
     }
 }

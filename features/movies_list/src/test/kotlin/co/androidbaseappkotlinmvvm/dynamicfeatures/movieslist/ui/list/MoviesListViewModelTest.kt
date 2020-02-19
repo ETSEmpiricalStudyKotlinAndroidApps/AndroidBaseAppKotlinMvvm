@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 
-package co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list
+package co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import co.androidbaseappkotlinmvvm.core.network.NetworkState
-import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListViewEvent
-import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListViewModel
-import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListViewState
-import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.paging.CharactersPageDataSource
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.paging.MoviesPageDataSource
 import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.paging.MoviesPageDataSourceFactory
 import co.androidbaseappkotlinmvvm.libraries.testutils.rules.CoroutineRule
 import io.mockk.MockKAnnotations
@@ -60,12 +57,12 @@ class MoviesListViewModelTest {
     }
 
     @Test
-    fun networkSuccessEmptyCharacters_ShouldBeEmptyState() {
+    fun networkSuccessEmptyMovies_ShouldBeEmptyState() {
         val networkState = NetworkState.Success(
             isEmptyResponse = true
         )
-        val fakePageDataSource = FakeCharactersPageDataSource(networkState)
-        val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
+        val fakePageDataSource = FakeMoviesPageDataSource(networkState)
+        val fakeSourceLiveData = MutableLiveData<MoviesPageDataSource>(fakePageDataSource)
         every {
             dataSourceFactory.sourceLiveData
         } returns fakeSourceLiveData
@@ -79,13 +76,13 @@ class MoviesListViewModelTest {
     }
 
     @Test
-    fun networkSuccessAdditionalEmptyCharacters_ShouldBeNoMoreElementsState() {
+    fun networkSuccessAdditionalEmptyMovies_ShouldBeNoMoreElementsState() {
         val networkState = NetworkState.Success(
             isAdditional = true,
             isEmptyResponse = true
         )
-        val fakePageDataSource = FakeCharactersPageDataSource(networkState)
-        val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
+        val fakePageDataSource = FakeMoviesPageDataSource(networkState)
+        val fakeSourceLiveData = MutableLiveData<MoviesPageDataSource>(fakePageDataSource)
         every {
             dataSourceFactory.sourceLiveData
         } returns fakeSourceLiveData
@@ -99,12 +96,12 @@ class MoviesListViewModelTest {
     }
 
     @Test
-    fun networkSuccessAdditionalCharacters_ShouldBeLoadedState() {
+    fun networkSuccessAdditionalMovies_ShouldBeLoadedState() {
         val networkState = NetworkState.Success(
             isAdditional = true
         )
-        val fakePageDataSource = FakeCharactersPageDataSource(networkState)
-        val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
+        val fakePageDataSource = FakeMoviesPageDataSource(networkState)
+        val fakeSourceLiveData = MutableLiveData<MoviesPageDataSource>(fakePageDataSource)
         every {
             dataSourceFactory.sourceLiveData
         } returns fakeSourceLiveData
@@ -118,10 +115,10 @@ class MoviesListViewModelTest {
     }
 
     @Test
-    fun networkSuccessCharacters_ShouldBeLoadedState() {
+    fun networkSuccessMovies_ShouldBeLoadedState() {
         val networkState = NetworkState.Success()
-        val fakePageDataSource = FakeCharactersPageDataSource(networkState)
-        val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
+        val fakePageDataSource = FakeMoviesPageDataSource(networkState)
+        val fakeSourceLiveData = MutableLiveData<MoviesPageDataSource>(fakePageDataSource)
         every {
             dataSourceFactory.sourceLiveData
         } returns fakeSourceLiveData
@@ -135,10 +132,10 @@ class MoviesListViewModelTest {
     }
 
     @Test
-    fun networkLoadingCharacters_ShouldBeLoadingState() {
+    fun networkLoadingMovies_ShouldBeLoadingState() {
         val networkState = NetworkState.Loading()
-        val fakePageDataSource = FakeCharactersPageDataSource(networkState)
-        val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
+        val fakePageDataSource = FakeMoviesPageDataSource(networkState)
+        val fakeSourceLiveData = MutableLiveData<MoviesPageDataSource>(fakePageDataSource)
         every {
             dataSourceFactory.sourceLiveData
         } returns fakeSourceLiveData
@@ -152,12 +149,12 @@ class MoviesListViewModelTest {
     }
 
     @Test
-    fun networkAdditionalLoadingCharacters_ShouldBeAddLoadingState() {
+    fun networkAdditionalLoadingMovies_ShouldBeAddLoadingState() {
         val networkState = NetworkState.Loading(
             isAdditional = true
         )
-        val fakePageDataSource = FakeCharactersPageDataSource(networkState)
-        val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
+        val fakePageDataSource = FakeMoviesPageDataSource(networkState)
+        val fakeSourceLiveData = MutableLiveData<MoviesPageDataSource>(fakePageDataSource)
         every {
             dataSourceFactory.sourceLiveData
         } returns fakeSourceLiveData
@@ -171,10 +168,10 @@ class MoviesListViewModelTest {
     }
 
     @Test
-    fun networkErrorCharacters_ShouldBeErrorState() {
+    fun networkErrorMovies_ShouldBeErrorState() {
         val networkState = NetworkState.Error()
-        val fakePageDataSource = FakeCharactersPageDataSource(networkState)
-        val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
+        val fakePageDataSource = FakeMoviesPageDataSource(networkState)
+        val fakeSourceLiveData = MutableLiveData<MoviesPageDataSource>(fakePageDataSource)
         every {
             dataSourceFactory.sourceLiveData
         } returns fakeSourceLiveData
@@ -188,10 +185,10 @@ class MoviesListViewModelTest {
     }
 
     @Test
-    fun networkAdditionalErrorCharacters_ShouldBeAddErrorState() {
+    fun networkAdditionalErrorMovies_ShouldBeAddErrorState() {
         val networkState = NetworkState.Error(true)
-        val fakePageDataSource = FakeCharactersPageDataSource(networkState)
-        val fakeSourceLiveData = MutableLiveData<CharactersPageDataSource>(fakePageDataSource)
+        val fakePageDataSource = FakeMoviesPageDataSource(networkState)
+        val fakeSourceLiveData = MutableLiveData<MoviesPageDataSource>(fakePageDataSource)
         every {
             dataSourceFactory.sourceLiveData
         } returns fakeSourceLiveData
@@ -205,7 +202,7 @@ class MoviesListViewModelTest {
     }
 
     @Test
-    fun refreshCharacterList_ShouldInvokeDataSourceMethod() {
+    fun refreshMovieList_ShouldInvokeDataSourceMethod() {
         viewModel = MoviesListViewModel(dataSourceFactory = dataSourceFactory)
         viewModel.refreshLoadedMoviesList()
 
@@ -214,7 +211,7 @@ class MoviesListViewModelTest {
     }
 
     @Test
-    fun retryCharacterList_ShouldInvokeDataSourceMethod() {
+    fun retryMovieList_ShouldInvokeDataSourceMethod() {
         viewModel = MoviesListViewModel(dataSourceFactory = dataSourceFactory)
         viewModel.retryAddMoviesList()
 
@@ -223,21 +220,21 @@ class MoviesListViewModelTest {
     }
 
     @Test
-    fun openCharacterDetail_ShouldSendAsEvent() {
+    fun openMovieDetail_ShouldSendAsEvent() {
         viewModel = MoviesListViewModel(dataSourceFactory = dataSourceFactory)
         viewModel.event.observeForever(eventObserver)
 
-        val characterId = 1L
-        viewModel.openMovieDetail(characterId)
+        val movieId = 1L
+        viewModel.openMovieDetail(movieId)
 
-        val expectedEvent = MoviesListViewEvent.OpenMovieDetail(characterId)
+        val expectedEvent = MoviesListViewEvent.OpenMovieDetail(movieId)
         assertEquals(expectedEvent, viewModel.event.value)
         verify { eventObserver.onChanged(expectedEvent) }
     }
 
-    inner class FakeCharactersPageDataSource(
+    inner class FakeMoviesPageDataSource(
         forceNetworkState: NetworkState
-    ) : CharactersPageDataSource(
+    ) : MoviesPageDataSource(
         repository = mockk(),
         scope = mockk(),
         mapper = mockk()

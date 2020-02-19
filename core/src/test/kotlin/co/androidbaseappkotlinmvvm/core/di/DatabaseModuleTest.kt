@@ -41,13 +41,13 @@ class DatabaseModuleTest {
     @Test
     fun verifyProvidedMarvelDatabase() {
         val context: Context = mock()
-        val marvelDatabase = databaseModule.provideMarvelDatabase(context)
+        val marvelDatabase = databaseModule.provideMovieDatabase(context)
 
-        assertNotNull(marvelDatabase.characterFavoriteDao())
+        assertNotNull(marvelDatabase.movieFavoriteDao())
     }
 
     @Test
-    fun verifyProvidedCharacterFavoriteDao() {
+    fun verifyProvidedMovieFavoriteDao() {
         val movieDatabase: MovieDatabase = mock()
         val movieFavoriteDao: MovieFavoriteDao = mock()
 
@@ -55,15 +55,15 @@ class DatabaseModuleTest {
 
         assertEquals(
             movieFavoriteDao,
-            databaseModule.provideCharacterFavoriteDao(movieDatabase)
+            databaseModule.provideMovieFavoriteDao(movieDatabase)
         )
         verify(movieDatabase).movieFavoriteDao()
     }
 
     @Test
-    fun verifyProvidedCharacterFavoriteRepository() {
+    fun verifyProvidedMovieFavoriteRepository() {
         val movieFavoriteDao: MovieFavoriteDao = mock()
-        val repository = databaseModule.provideCharacterFavoriteRepository(movieFavoriteDao)
+        val repository = databaseModule.provideMovieFavoriteRepository(movieFavoriteDao)
 
         assertEquals(movieFavoriteDao, repository.movieFavoriteDao)
     }

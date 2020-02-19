@@ -25,11 +25,9 @@ import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import okio.buffer
 import okio.source
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.instanceOf
+import org.hamcrest.core.IsInstanceOf.instanceOf
 import org.junit.After
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNull
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -39,7 +37,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object MockResponses {
     object GetMovies {
         const val STATUS_200 = "mock-responses/get-movies-status200.json"
-        const val STATUS_204 = "mock-responses/get-movies-status404.json"
+        const val STATUS_204 = "mock-responses/get-movies-status204.json"
         const val STATUS_401 = "mock-responses/get-movies-status401.json"
     }
 
@@ -86,7 +84,7 @@ class MovieServiceTest {
         val request = mockWebServer.takeRequest()
         assertEquals("GET", request.method)
         assertEquals(
-            "/v1/public/characters?apikey=$apiKey",
+            "/movie/popular?apikey=$apiKey&page=$page",
             request.path
         )
     }
@@ -94,7 +92,6 @@ class MovieServiceTest {
     @Test
     fun responseGetMovies_StatusCode200() = runBlocking {
         enqueueResponse(MockResponses.GetMovies.STATUS_200)
-        val limit = 20
         val page = 1
         val response = service.getMovies(
             apiKey = "",
@@ -106,15 +103,13 @@ class MovieServiceTest {
         assertNull(response.message)
 
         val responseData = response.data
-        assertEquals(limit, responseData.limit)
-        assertEquals(limit, responseData.count)
         assertEquals(1492, responseData.total)
-        assertEquals(limit, responseData.results.size)
+        assertEquals(100, responseData.results.size)
         assertThat(responseData.results, instanceOf(List::class.java))
     }
 
     @Test
-    fun responseGetCharacters_StatusCode204() = runBlocking {
+    fun responseGetMovies_StatusCode204() = runBlocking {
         enqueueResponse(MockResponses.GetMovies.STATUS_204)
         val page = 1
         val response = service.getMovies(
@@ -126,14 +121,13 @@ class MovieServiceTest {
         assertNull(response.message)
 
         val responseData = response.data
-        assertEquals(page, responseData.limit)
         assertEquals(0, responseData.count)
         assertEquals(1493, responseData.total)
         assertEquals(0, responseData.results.size)
     }
 
     @Test
-    fun responseGetCharacters_StatusCode401() = runBlocking {
+    fun responseGetMovies_StatusCode401() = runBlocking {
         enqueueResponse(MockResponses.GetMovies.STATUS_401)
         val response = service.getMovies()
 
@@ -144,12 +138,10 @@ class MovieServiceTest {
     }
 
     @Test
-    fun requestCharacterId() = runBlocking {
+    fun requestMovieId() = runBlocking {
         enqueueResponse(MockResponses.GetMovieId.STATUS_200)
         val id = 1L
         val apiKey = "MockApiKey"
-        val hash = "MockHash"
-        val timestamp = "MockTimestamp"
         service.getMovie(
             id = id,
             apiKey = apiKey
@@ -158,48 +150,44 @@ class MovieServiceTest {
         val request = mockWebServer.takeRequest()
         assertEquals("GET", request.method)
         assertEquals(
-            "/v1/public/characters/$id?apikey=$apiKey&hash=$hash&ts=$timestamp",
-            request.path
+            "/movie/$id?apikey=$apiKey", request.path
         )
     }
 
     @Test
-    fun responseCharacterId_StatusCode200() {
+    fun responseMovieId_StatusCode200() {
         runBlocking {
             enqueueResponse(MockResponses.GetMovieId.STATUS_200)
-            val characterId = 1011334L
-            val response = service.getCharacter(characterId)
+            val movieId = 1011334L
+            val response = service.getMovie(movieId)
 
             assertCodeStatus(200, response.code)
             assertEquals("Ok", response.status)
             assertNull(response.message)
 
             response.data.run {
-                assertEquals(0, offset)
-                assertEquals(20, limit)
                 assertEquals(1, count)
                 assertEquals(1, total)
                 assertEquals(1, results.size)
             }
 
             response.data.results.first().run {
-                assertEquals(characterId, id)
+                assertEquals(movieId, id)
                 assertEquals("3-D Man", name)
                 assertEquals("", description)
 
                 assertEquals(
-                    "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784",
+                    "/h28t2JNNGrZx0fIuAw8aHQFhIxR.jpg",
                     thumbnail.path
                 )
-                assertEquals("jpg", thumbnail.extension)
             }
         }
     }
 
     @Test
-    fun responseCharacterId_StatusCode401() = runBlocking {
+    fun responseMovieId_StatusCode401() = runBlocking {
         enqueueResponse(MockResponses.GetMovieId.STATUS_401)
-        val response = service.getCharacter()
+        val response = service.getMovie()
 
         assertEquals("InvalidCredentials", response.code)
         assertEquals("That hash, timestamp and key combination is invalid.", response.message)
@@ -208,12 +196,12 @@ class MovieServiceTest {
     }
 
     @Test
-    fun responseCharacterId_StatusCode404() = runBlocking {
+    fun responseMovieId_StatusCode404() = runBlocking {
         enqueueResponse(MockResponses.GetMovieId.STATUS_404)
-        val response = service.getCharacter()
+        val response = service.getMovie()
 
         assertCodeStatus(404, response.code)
-        assertEquals("We couldn't find that character", response.status)
+        assertEquals("We couldn't find that movie", response.status)
         assertNull(response.message)
         assertNull(response.data)
     }
@@ -234,7 +222,7 @@ class MovieServiceTest {
         assertEquals(number1, (number2 as Double).roundToInt())
     }
 
-    private suspend fun MovieService.getCharacter(
+    private suspend fun MovieService.getMovie(
         id: Long = 0L
     ): BaseResponse<MovieResponse> {
         return service.getMovie(

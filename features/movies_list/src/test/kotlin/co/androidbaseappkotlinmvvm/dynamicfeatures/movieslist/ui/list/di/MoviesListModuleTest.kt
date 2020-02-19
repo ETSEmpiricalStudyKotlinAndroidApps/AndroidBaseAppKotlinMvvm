@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.di
+package co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -22,8 +22,9 @@ import co.androidbaseappkotlinmvvm.commons.ui.extensions.viewModel
 import co.androidbaseappkotlinmvvm.core.network.repositiories.MovieRepository
 import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListFragment
 import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListViewModel
-import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.model.CharacterItemMapper
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.model.MovieItemMapper
 import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.paging.MoviesPageDataSourceFactory
+import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.di.MoviesListModule
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -48,14 +49,14 @@ class MoviesListModuleTest {
     }
 
     @Test
-    fun initializeCharactersListModule_ShouldSetUpCorrectly() {
+    fun initializeMoviesListModule_ShouldSetUpCorrectly() {
         module = MoviesListModule(fragment)
 
         assertEquals(fragment, module.fragment)
     }
 
     @Test
-    fun verifyProvidedCharactersListViewModel() {
+    fun verifyProvidedMoviesListViewModel() {
         mockkStatic("co.androidbaseappkotlinmvvm.commons.ui.extensions.FragmentExtensionsKt")
 
         every {
@@ -75,9 +76,9 @@ class MoviesListModuleTest {
     }
 
     @Test
-    fun verifyProvidedCharactersPageDataSource() {
+    fun verifyProvidedMoviesPageDataSource() {
         val repository = mockk<MovieRepository>(relaxed = true)
-        val mapper = mockk<CharacterItemMapper>(relaxed = true)
+        val mapper = mockk<MovieItemMapper>(relaxed = true)
         val viewModel = mockk<MoviesListViewModel>(relaxed = true)
         val scope = mockk<CoroutineScope>()
         every { viewModel.viewModelScope } returns scope

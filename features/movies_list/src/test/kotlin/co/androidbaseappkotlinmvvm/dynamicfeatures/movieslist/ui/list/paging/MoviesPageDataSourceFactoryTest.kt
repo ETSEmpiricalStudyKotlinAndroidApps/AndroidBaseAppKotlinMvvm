@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.paging
+package co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.paging
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
+import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.paging.MoviesPageDataSource
 import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.paging.MoviesPageDataSourceFactory
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
@@ -43,9 +44,9 @@ class MoviesPageDataSourceFactoryTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Spy
-    lateinit var providerDataSource: Provider<CharactersPageDataSource>
+    lateinit var providerDataSource: Provider<MoviesPageDataSource>
     @Spy
-    lateinit var sourceLiveData: MutableLiveData<CharactersPageDataSource>
+    lateinit var sourceLiveData: MutableLiveData<MoviesPageDataSource>
     @InjectMocks
     lateinit var dataSourceFactory: MoviesPageDataSourceFactory
 
@@ -63,17 +64,17 @@ class MoviesPageDataSourceFactoryTest {
     @Test
     fun initializeFactory_WithCreate_ShouldHaveDataSource() {
         doReturn(
-            CharactersPageDataSource(mock(), mock(), mock())
+            MoviesPageDataSource(mock(), mock(), mock())
         ).whenever(providerDataSource).get()
 
-        val dataSource = dataSourceFactory.create() as CharactersPageDataSource
+        val dataSource = dataSourceFactory.create() as MoviesPageDataSource
 
         verify(dataSourceFactory.sourceLiveData).postValue(same(dataSource))
     }
 
     @Test
     fun refreshDataSource_ShouldInvalidateData() {
-        val dataSource = mock<CharactersPageDataSource>()
+        val dataSource = mock<MoviesPageDataSource>()
         doReturn(dataSource).whenever(sourceLiveData).value
 
         dataSourceFactory.refresh()
@@ -84,7 +85,7 @@ class MoviesPageDataSourceFactoryTest {
 
     @Test
     fun retryDataSource_ShouldRetryData() {
-        val dataSource = mock<CharactersPageDataSource>()
+        val dataSource = mock<MoviesPageDataSource>()
         doReturn(dataSource).whenever(sourceLiveData).value
 
         dataSourceFactory.retry()

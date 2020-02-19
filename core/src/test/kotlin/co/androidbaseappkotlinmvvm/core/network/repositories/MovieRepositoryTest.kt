@@ -21,7 +21,7 @@ import com.nhaarman.mockitokotlin2.argumentCaptor
 import com.nhaarman.mockitokotlin2.verify
 import co.androidbaseappkotlinmvvm.core.BuildConfig
 import co.androidbaseappkotlinmvvm.core.network.repositiories.MovieRepository
-import co.androidbaseappkotlinmvvm.core.network.services.MarvelService
+import co.androidbaseappkotlinmvvm.core.network.services.MovieService
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -31,7 +31,7 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-private const val API_PUBLIC_KEY = BuildConfig.MARVEL_API_KEY_PUBLIC
+private const val API_PUBLIC_KEY = BuildConfig.MOVIE_API_KEY
 
 class MovieRepositoryTest {
 
@@ -39,59 +39,47 @@ class MovieRepositoryTest {
     val rule = InstantTaskExecutorRule()
 
     @Mock
-    lateinit var marvelService: MarvelService
-    private lateinit var MovieRepository: MovieRepository
+    lateinit var movieService: MovieService
+    private lateinit var movieRepository: MovieRepository
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        MovieRepository = MovieRepository(marvelService)
+        movieRepository = MovieRepository(movieService)
     }
 
     @Test
-    fun getCharacters() = runBlocking {
-        val charactersOffset = 0
-        val charactersLimit = 20
-        val (apiKey, hash, timestamp, offset, limit) =
-            argumentCaptor<String, String, String, Int, Int>()
+    fun getMovies() = runBlocking {
+        val pageRequest = 1
+        val (apiKey, page) =
+            argumentCaptor<String, Int>()
 
-        MovieRepository.getCharacters(
-            offset = charactersOffset,
-            limit = charactersLimit
+        movieRepository.getMovies(
+            page = pageRequest
         )
 
-        verify(marvelService).getCharacters(
+        verify(movieService).getMovies(
             apiKey = apiKey.capture(),
-            hash = hash.capture(),
-            timestamp = timestamp.capture(),
-            offset = offset.capture(),
-            limit = limit.capture()
+            page = page.capture()
         )
 
         assertEquals(API_PUBLIC_KEY, apiKey.lastValue)
-        assertEquals(charactersOffset, offset.lastValue)
-        assertEquals(charactersLimit, limit.lastValue)
-        assertNotNull(hash.lastValue)
-        assertNotNull(timestamp.lastValue)
+        assertNotNull(page.lastValue)
     }
 
     @Test
-    fun getCharacter() = runBlocking {
-        val characterId = 3L
-        val (id, apiKey, hash, timestamp) = argumentCaptor<Long, String, String, String>()
+    fun getMovie() = runBlocking {
+        val movieId = 3L
+        val (id, apiKey) = argumentCaptor<Long, String>()
 
-        MovieRepository.getCharacter(characterId)
+        movieRepository.getMovie(movieId)
 
-        verify(marvelService).getCharacter(
+        verify(movieService).getMovie(
             id = id.capture(),
-            apiKey = apiKey.capture(),
-            hash = hash.capture(),
-            timestamp = timestamp.capture()
+            apiKey = apiKey.capture()
         )
 
-        assertEquals(characterId, id.lastValue)
+        assertEquals(movieId, id.lastValue)
         assertEquals(API_PUBLIC_KEY, apiKey.lastValue)
-        assertNotNull(hash.lastValue)
-        assertNotNull(timestamp.lastValue)
     }
 }
