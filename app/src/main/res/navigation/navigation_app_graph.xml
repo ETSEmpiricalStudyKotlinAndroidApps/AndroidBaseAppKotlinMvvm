@@ -5,6 +5,5 @@
     <fragment
         android:id="@+id/home_fragment"
         android:name="co.androidbaseappkotlinmvvm.dynamicfeatures.home.ui.HomeFragment"
-        android:label="HomeFragment">
-    </fragment>
+        android:label="HomeFragment" />
 </navigation>

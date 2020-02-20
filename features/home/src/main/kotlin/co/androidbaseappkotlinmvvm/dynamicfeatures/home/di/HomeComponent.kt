@@ -18,7 +18,6 @@ package co.androidbaseappkotlinmvvm.dynamicfeatures.home.di
 
 import co.androidbaseappkotlinmvvm.core.di.CoreComponent
 import co.androidbaseappkotlinmvvm.core.di.scopes.FeatureScope
-import co.androidbaseappkotlinmvvm.dynamicfeatures.home.di.HomeModule
 import co.androidbaseappkotlinmvvm.dynamicfeatures.home.ui.HomeFragment
 import dagger.Component
 

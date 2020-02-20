@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/movies_list_fragment"
         android:name="co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListFragment"
-        android:label="Characters">
+        android:label="Movies">
         <action
             android:id="@+id/action_moviesListFragment_to_movie_detail_fragment"
             app:destination="@+id/movie_detail_fragment"
@@ -22,7 +22,7 @@
         android:id="@+id/movie_detail_fragment"
         android:name="co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.detail.MovieDetailFragment">
         <argument
-            android:name="character_id"
+            android:name="movie_id"
             app:argType="long" />
     </fragment>
 </navigation>

@@ -58,7 +58,7 @@ class MovieDetailFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observe(viewModel.state, ::onViewStateChange)
-        viewModel.loadMovieDetail(args.characterId)
+        viewModel.loadMovieDetail(args.movieId)
     }
 
     /**
