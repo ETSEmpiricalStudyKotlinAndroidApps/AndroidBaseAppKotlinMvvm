@@ -18,6 +18,7 @@ package co.androidbaseappkotlinmvvm.core.network.services
 
 import co.androidbaseappkotlinmvvm.core.network.responses.BaseResponse
 import co.androidbaseappkotlinmvvm.core.network.responses.MovieResponse
+import co.androidbaseappkotlinmvvm.core.network.responses.ResultsResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -38,7 +39,7 @@ interface MovieService {
     suspend fun getMovie(
         @Path("id") id: Long,
         @Query("apikey") apiKey: String
-    ): BaseResponse<MovieResponse>
+    ): MovieResponse
 
     /**
      * Fetches lists of movies with optional filters.
@@ -51,5 +52,5 @@ interface MovieService {
     suspend fun getMovies(
         @Query("apikey") apiKey: String,
         @Query("page") page: Int
-    ): BaseResponse<MovieResponse>
+    ): ResultsResponse<MovieResponse>
 }

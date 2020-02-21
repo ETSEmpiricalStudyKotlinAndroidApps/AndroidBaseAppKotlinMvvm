@@ -17,19 +17,18 @@
 package co.androidbaseappkotlinmvvm.core.network.responses
 
 import co.androidbaseappkotlinmvvm.core.annotations.OpenForTesting
+import com.google.gson.annotations.SerializedName
 
 /**
- * Generic network response for any type data [T].
+ * Generic base response for any type
  *
  * @param code The HTTP status code of the returned result.
- * @param status A string description of the call status.
  * @param message A more descriptive message of the failure call status.
- * @param data The results returned by the call.
  */
 @OpenForTesting
-data class BaseResponse<T>(
-    val code: Any,
-    val status: String,
-    val message: String,
-    val data: DataResponse<T>
+open class BaseResponse(
+    @SerializedName("status_code")
+    val code: Int?,
+    @SerializedName("status_message")
+    val message: String?
 )

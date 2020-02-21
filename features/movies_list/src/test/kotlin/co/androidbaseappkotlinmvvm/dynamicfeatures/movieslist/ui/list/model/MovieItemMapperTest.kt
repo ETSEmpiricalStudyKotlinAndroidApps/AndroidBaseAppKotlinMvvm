@@ -16,10 +16,8 @@
 
 package co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.model
 
-import co.androidbaseappkotlinmvvm.core.network.responses.BaseResponse
 import co.androidbaseappkotlinmvvm.core.network.responses.MovieResponse
-import co.androidbaseappkotlinmvvm.core.network.responses.MovieThumbnailResponse
-import co.androidbaseappkotlinmvvm.core.network.responses.DataResponse
+import co.androidbaseappkotlinmvvm.core.network.responses.ResultsResponse
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -31,17 +29,9 @@ class MovieItemMapperTest {
 
     @Test
     fun movieMapper_WithEmptyResults_ShouldReturnEmptyList() = runBlocking {
-        val response = BaseResponse(
-            code = 200,
-            status = "Ok",
-            message = "Ok",
-            data = DataResponse<MovieResponse>(
-                offset = 0,
-                limit = 0,
-                total = 0,
-                count = 0,
-                results = emptyList()
-            )
+        val response = ResultsResponse<MovieResponse>(
+            total = 0,
+            results = emptyList()
         )
 
         assertTrue(mapper.map(response).isNullOrEmpty())
@@ -49,25 +39,15 @@ class MovieItemMapperTest {
 
     @Test
     fun movieMapper_WithResults_ShouldReturnParsedList() = runBlocking {
-        val response = BaseResponse(
-            code = 200,
-            status = "Ok",
-            message = "Ok",
-            data = DataResponse(
-                offset = 0,
-                limit = 0,
-                total = 1,
-                count = 1,
-                results = listOf(
-                    MovieResponse(
-                        id = 1011334,
-                        name = "3-D Man",
-                        description = "",
-                        thumbnail = MovieThumbnailResponse(
-                            path = "/AoT2YrJUJlg5vKE3iMOLvHlTd3m.jpg",
-                            extension = "jpg"
-                        )
-                    )
+        val response = ResultsResponse<MovieResponse>(
+            total = 0,
+            results = listOf(
+                MovieResponse(
+                    id = 1011334,
+                    name = "3-D Man",
+                    description = "",
+                    image = "/AoT2YrJUJlg5vKE3iMOLvHlTd3m.jpg",
+                    detailImage = ""
                 )
             )
         )
@@ -76,9 +56,7 @@ class MovieItemMapperTest {
             assertEquals(1011334, this.id)
             assertEquals("3-D Man", this.name)
             assertEquals("", this.description)
-            assertEquals(
-                "/AoT2YrJUJlg5vKE3iMOLvHlTd3m.jpg",
-                this.imageUrl
+            assertEquals("https://image.tmdb.org/t/p/w342/AoT2YrJUJlg5vKE3iMOLvHlTd3m.jpg", this.imageUrl
             )
         }
     }

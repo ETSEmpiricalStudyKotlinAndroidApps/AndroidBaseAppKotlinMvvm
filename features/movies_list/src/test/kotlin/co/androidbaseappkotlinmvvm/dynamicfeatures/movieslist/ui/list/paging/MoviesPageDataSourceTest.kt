@@ -24,8 +24,8 @@ import androidx.paging.PageKeyedDataSource.LoadInitialParams
 import androidx.paging.PageKeyedDataSource.LoadParams
 import co.androidbaseappkotlinmvvm.core.network.NetworkState
 import co.androidbaseappkotlinmvvm.core.network.repositiories.MovieRepository
-import co.androidbaseappkotlinmvvm.core.network.responses.BaseResponse
 import co.androidbaseappkotlinmvvm.core.network.responses.MovieResponse
+import co.androidbaseappkotlinmvvm.core.network.responses.ResultsResponse
 import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.model.MovieItem
 import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.model.MovieItemMapper
 import co.androidbaseappkotlinmvvm.libraries.testutils.rules.CoroutineRule
@@ -99,7 +99,7 @@ class MoviesPageDataSourceTest {
         val params = LoadInitialParams<Int>(100, false)
         val callback = mockk<LoadInitialCallback<Int, MovieItem>>(relaxed = true)
         val emptyData = emptyList<MovieItem>()
-        val response = mockk<BaseResponse<MovieResponse>>()
+        val response = mockk<ResultsResponse<MovieResponse>>()
 
         coEvery { mapper.map(any()) } returns emptyData
         coEvery { repository.getMovies(any()) } returns response
@@ -124,7 +124,7 @@ class MoviesPageDataSourceTest {
         val params = LoadInitialParams<Int>(0, true)
         val callback = mockk<LoadInitialCallback<Int, MovieItem>>(relaxed = true)
         val data = listOf(mockk<MovieItem>())
-        val response = mockk<BaseResponse<MovieResponse>>()
+        val response = mockk<ResultsResponse<MovieResponse>>()
 
         coEvery { mapper.map(any()) } returns data
         coEvery { repository.getMovies(any()) } returns response
@@ -162,7 +162,7 @@ class MoviesPageDataSourceTest {
         val params = LoadParams(paramKey, 0)
         val callback = mockk<LoadCallback<Int, MovieItem>>(relaxed = true)
         val emptyData = emptyList<MovieItem>()
-        val response = mockk<BaseResponse<MovieResponse>>()
+        val response = mockk<ResultsResponse<MovieResponse>>()
 
         coEvery { mapper.map(any()) } returns emptyData
         coEvery { repository.getMovies(any()) } returns response
@@ -188,7 +188,7 @@ class MoviesPageDataSourceTest {
         val params = LoadParams(paramKey, 0)
         val callback = mockk<LoadCallback<Int, MovieItem>>(relaxed = true)
         val data = listOf(mockk<MovieItem>())
-        val response = mockk<BaseResponse<MovieResponse>>()
+        val response = mockk<ResultsResponse<MovieResponse>>()
 
         coEvery { mapper.map(any()) } returns data
         coEvery { repository.getMovies(any()) } returns response

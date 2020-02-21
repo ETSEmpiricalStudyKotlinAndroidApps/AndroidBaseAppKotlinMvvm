@@ -16,26 +16,18 @@
 
 package co.androidbaseappkotlinmvvm.core.network.responses
 
-import com.nhaarman.mockitokotlin2.mock
-import org.junit.Assert
-import org.junit.Test
+import co.androidbaseappkotlinmvvm.core.annotations.OpenForTesting
+import com.google.gson.annotations.SerializedName
 
-class DataResponseTest {
-
-    @Test
-    fun createDataResponse_ShouldAddCorrectAttributes() {
-        val total = 1000
-        val count = 50
-        val results: List<String> = mock()
-
-        val dataResponse = DataResponse(
-            total = total,
-            count = count,
-            results = results
-        )
-
-        Assert.assertEquals(total, dataResponse.total)
-        Assert.assertEquals(count, dataResponse.count)
-        Assert.assertEquals(results, dataResponse.results)
-    }
-}
+/**
+ * Generic network response for any type data [T].
+ *
+ * @param results A set of data
+ * @param total Total available results
+ */
+@OpenForTesting
+data class ResultsResponse<T>(
+    val results: List<T>,
+    @SerializedName("total_results")
+    val total: Int?
+) : BaseResponse(null,null)

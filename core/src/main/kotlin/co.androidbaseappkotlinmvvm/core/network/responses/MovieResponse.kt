@@ -17,6 +17,7 @@
 package co.androidbaseappkotlinmvvm.core.network.responses
 
 import co.androidbaseappkotlinmvvm.core.annotations.OpenForTesting
+import com.google.gson.annotations.SerializedName
 
 /**
  * Movie API network response item.
@@ -24,12 +25,18 @@ import co.androidbaseappkotlinmvvm.core.annotations.OpenForTesting
  * @param id The unique ID of the movies resource.
  * @param name The name of the movie.
  * @param description A short bio or description of the movie.
- * @param thumbnail The representative image for this movie.
+ * @param image The representative image for this movie.
+ * @param detailImage The representative detail image for this movie.
  */
 @OpenForTesting
 data class MovieResponse(
     val id: Long,
+    @SerializedName("original_title")
     val name: String,
+    @SerializedName("overview")
     val description: String,
-    val thumbnail: MovieThumbnailResponse
-)
+    @SerializedName("poster_path")
+    val image: String,
+    @SerializedName("backdrop_path")
+    val detailImage: String
+) : BaseResponse(null, null)

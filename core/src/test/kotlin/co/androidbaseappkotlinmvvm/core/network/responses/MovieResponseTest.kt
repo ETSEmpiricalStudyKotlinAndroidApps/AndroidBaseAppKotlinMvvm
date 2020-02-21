@@ -16,7 +16,6 @@
 
 package co.androidbaseappkotlinmvvm.core.network.responses
 
-import com.nhaarman.mockitokotlin2.mock
 import org.junit.Assert
 import org.junit.Test
 
@@ -24,21 +23,22 @@ class MovieResponseTest {
 
     @Test
     fun createCharacterResponse_ShouldAddCorrectAttributes() {
-        val id = 131231L
+        val id = 1L
         val name = "A.I.M"
         val description = "AIM is a terrorist organization bent on destroying the world."
-        val thumbnail: MovieThumbnailResponse = mock()
+        val path = "/h28t2JNNGrZx0fIuAw8aHQFhIxR.jpg"
+
 
         val characterResponse = MovieResponse(
             id = id,
             name = name,
             description = description,
-            thumbnail = thumbnail
+            image = path
         )
 
         Assert.assertEquals(id, characterResponse.id)
         Assert.assertEquals(name, characterResponse.name)
         Assert.assertEquals(description, characterResponse.description)
-        Assert.assertEquals(thumbnail, characterResponse.thumbnail)
+        Assert.assertEquals(path, characterResponse.image)
     }
 }

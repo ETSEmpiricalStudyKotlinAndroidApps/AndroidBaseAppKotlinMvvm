@@ -20,7 +20,6 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import co.androidbaseappkotlinmvvm.core.database.moviefavorite.MovieFavoriteRepository
 import co.androidbaseappkotlinmvvm.core.network.repositiories.MovieRepository
-import co.androidbaseappkotlinmvvm.core.network.responses.BaseResponse
 import co.androidbaseappkotlinmvvm.core.network.responses.MovieResponse
 import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.detail.MovieDetailViewModel
 import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.detail.MovieDetailViewState
@@ -91,7 +90,7 @@ class MovieDetailViewModelTest {
     @Test
     fun loadCharacterDetail_WhenSuccess_ShouldPostDataResult() {
         val characterDetail = mockk<MovieDetail>()
-        val characterResponse = mockk<BaseResponse<MovieResponse>>()
+        val characterResponse = mockk<MovieResponse>()
         coEvery { movieRepository.getMovie(any()) } returns characterResponse
         coEvery { movieDetailMapper.map(any()) } returns characterDetail
 

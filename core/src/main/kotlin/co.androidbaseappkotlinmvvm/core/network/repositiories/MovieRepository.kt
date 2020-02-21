@@ -19,8 +19,8 @@ package co.androidbaseappkotlinmvvm.core.network.repositiories
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.VisibleForTesting.PRIVATE
 import co.androidbaseappkotlinmvvm.core.BuildConfig
-import co.androidbaseappkotlinmvvm.core.network.responses.BaseResponse
 import co.androidbaseappkotlinmvvm.core.network.responses.MovieResponse
+import co.androidbaseappkotlinmvvm.core.network.responses.ResultsResponse
 import co.androidbaseappkotlinmvvm.core.network.services.MovieService
 
 private const val API_KEY = BuildConfig.MOVIE_API_KEY
@@ -39,7 +39,7 @@ class MovieRepository(
      * @param id A single movie id.
      * @return Response for single movie resource.
      */
-    suspend fun getMovie(id: Long): BaseResponse<MovieResponse> {
+    suspend fun getMovie(id: Long): MovieResponse {
         return service.getMovie(
             id = id,
             apiKey = API_KEY)
@@ -51,7 +51,7 @@ class MovieRepository(
      * @param page Limit the result set to the specified number of resources.
      * @return Response for comic characters resource.
      */
-    suspend fun getMovies(page: Int): BaseResponse<MovieResponse> {
+    suspend fun getMovies(page: Int): ResultsResponse<MovieResponse> {
         return service.getMovies(
             apiKey = API_KEY,
             page = page)

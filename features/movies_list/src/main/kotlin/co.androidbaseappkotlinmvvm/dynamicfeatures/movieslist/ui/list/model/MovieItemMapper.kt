@@ -17,17 +17,17 @@
 package co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.model
 
 import co.androidbaseappkotlinmvvm.core.mapper.Mapper
-import co.androidbaseappkotlinmvvm.core.network.responses.BaseResponse
 import co.androidbaseappkotlinmvvm.core.network.responses.MovieResponse
+import co.androidbaseappkotlinmvvm.core.network.responses.ResultsResponse
 
-private const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w342/%s"
+private const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w342%s"
 
 /**
  * Helper class to transforms network response to visual model, catching the necessary data.
  *
  * @see Mapper
  */
-open class MovieItemMapper : Mapper<BaseResponse<MovieResponse>, List<MovieItem>> {
+open class MovieItemMapper : Mapper<ResultsResponse<MovieResponse>, List<MovieItem>> {
 
     /**
      * Transform network response to [MovieItem].
@@ -35,15 +35,13 @@ open class MovieItemMapper : Mapper<BaseResponse<MovieResponse>, List<MovieItem>
      * @param from Network movies response.
      * @return List of parsed movies items.
      */
-    override suspend fun map(from: BaseResponse<MovieResponse>) =
-        from.data.results.map {
+    override suspend fun map(from: ResultsResponse<MovieResponse>) =
+        from.results.map {
             MovieItem(
                 id = it.id,
                 name = it.name,
                 description = it.description,
-                imageUrl = IMAGE_BASE_URL.format(
-                    it.thumbnail.path
-                )
+                imageUrl = IMAGE_BASE_URL.format(it.image)
             )
         }
 }
