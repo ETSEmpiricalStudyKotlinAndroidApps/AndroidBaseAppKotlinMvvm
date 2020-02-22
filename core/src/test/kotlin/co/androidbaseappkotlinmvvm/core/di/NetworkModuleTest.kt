@@ -57,7 +57,10 @@ class NetworkModuleTest {
 
     @Test
     fun verifyProvidedRetrofitBuilder() {
-        val retrofit = networkModule.provideRetrofitBuilder()
+        val interceptor = mock<HttpLoggingInterceptor>()
+        val httpClient = networkModule.provideHttpClient(interceptor)
+
+        val retrofit = networkModule.provideRetrofitBuilder(httpClient)
 
         assertEquals(BuildConfig.MOVIE_API_BASE_URL, retrofit.baseUrl().toUrl().toString())
     }

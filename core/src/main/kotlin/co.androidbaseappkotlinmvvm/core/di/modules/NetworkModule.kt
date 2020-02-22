@@ -74,8 +74,9 @@ class NetworkModule {
      */
     @Singleton
     @Provides
-    fun provideRetrofitBuilder() =
+    fun provideRetrofitBuilder(client: OkHttpClient) =
         Retrofit.Builder()
+            .client(client)
             .baseUrl(BuildConfig.MOVIE_API_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

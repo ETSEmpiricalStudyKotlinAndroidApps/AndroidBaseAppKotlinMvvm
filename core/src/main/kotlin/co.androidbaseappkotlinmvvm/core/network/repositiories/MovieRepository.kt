@@ -46,10 +46,10 @@ class MovieRepository(
     }
 
     /**
-     * Get all movie characters paged.
+     * Get all movies paged.
      *
      * @param page Limit the result set to the specified number of resources.
-     * @return Response for comic characters resource.
+     * @return Response for cmovies resource.
      */
     suspend fun getMovies(page: Int): ResultsResponse<MovieResponse> {
         return service.getMovies(

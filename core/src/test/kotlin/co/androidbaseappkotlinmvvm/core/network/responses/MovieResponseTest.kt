@@ -22,23 +22,24 @@ import org.junit.Test
 class MovieResponseTest {
 
     @Test
-    fun createCharacterResponse_ShouldAddCorrectAttributes() {
+    fun createMovieResponse_ShouldAddCorrectAttributes() {
         val id = 1L
         val name = "A.I.M"
         val description = "AIM is a terrorist organization bent on destroying the world."
         val path = "/h28t2JNNGrZx0fIuAw8aHQFhIxR.jpg"
+        val detailPath = "/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jpg"
 
-
-        val characterResponse = MovieResponse(
+        val movieResponse = MovieResponse(
             id = id,
             name = name,
             description = description,
-            image = path
+            image = path,
+            detailImage = detailPath
         )
 
-        Assert.assertEquals(id, characterResponse.id)
-        Assert.assertEquals(name, characterResponse.name)
-        Assert.assertEquals(description, characterResponse.description)
-        Assert.assertEquals(path, characterResponse.image)
+        Assert.assertEquals(id, movieResponse.id)
+        Assert.assertEquals(name, movieResponse.name)
+        Assert.assertEquals(description, movieResponse.description)
+        Assert.assertEquals(path, movieResponse.image)
     }
 }

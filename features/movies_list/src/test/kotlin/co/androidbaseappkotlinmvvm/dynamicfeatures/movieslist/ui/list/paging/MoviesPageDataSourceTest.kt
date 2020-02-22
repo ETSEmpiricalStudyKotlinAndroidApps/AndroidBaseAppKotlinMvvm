@@ -106,7 +106,7 @@ class MoviesPageDataSourceTest {
 
         dataSource.loadInitial(params, callback)
 
-        coVerify { repository.getMovies(0) }
+        coVerify { repository.getMovies(1) }
         coVerify { mapper.map(response) }
         verify { callback.onResult(emptyData, null, PAGE_INIT_ELEMENTS) }
         verify {
@@ -131,7 +131,7 @@ class MoviesPageDataSourceTest {
 
         dataSource.loadInitial(params, callback)
 
-        coVerify { repository.getMovies(0) }
+        coVerify { repository.getMovies(1) }
         coVerify { mapper.map(response) }
         verify { callback.onResult(data, null, PAGE_INIT_ELEMENTS) }
         verify { networkState.postValue(NetworkState.Success()) }
@@ -169,7 +169,7 @@ class MoviesPageDataSourceTest {
 
         dataSource.loadAfter(params, callback)
 
-        coVerify { repository.getMovies(PAGE_INIT_ELEMENTS) }
+        coVerify { repository.getMovies(100) }
         coVerify { mapper.map(response) }
         verify { callback.onResult(emptyData, paramKey + PAGE_INIT_ELEMENTS) }
         verify {

@@ -39,8 +39,7 @@ class MovieDetailMapperTest {
             assertEquals(1011334, this.id)
             assertEquals("3-D Man", this.name)
             assertEquals("", this.description)
-            assertEquals("/AoT2YrJUJlg5vKE3iMOLvHlTd3m.jpg", this.imageUrl
-            )
+            assertEquals(IMAGE_BASE_URL.format("/AoT2YrJUJlg5vKE3iMOLvHlTd3m.jpg"), this.imageUrl)
         }
     }
 }
