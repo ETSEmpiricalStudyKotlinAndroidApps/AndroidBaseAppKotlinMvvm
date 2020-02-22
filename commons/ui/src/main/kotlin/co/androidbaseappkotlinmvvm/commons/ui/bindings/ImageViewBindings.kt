@@ -24,6 +24,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import coil.api.load
 import co.androidbaseappkotlinmvvm.commons.ui.R
+import coil.transform.CircleCropTransformation
 import kotlin.random.Random
 
 /**
@@ -36,6 +37,7 @@ import kotlin.random.Random
 fun ImageView.imageUrl(url: String?, @DrawableRes placeholderId: Int?) {
     load(url) {
         crossfade(true)
+        transformations(CircleCropTransformation)
         placeholder(placeholderId?.let {
             ContextCompat.getDrawable(context, it)
         } ?: run {

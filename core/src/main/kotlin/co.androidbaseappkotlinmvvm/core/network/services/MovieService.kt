@@ -38,7 +38,7 @@ interface MovieService {
     @GET("movie/{id}")
     suspend fun getMovie(
         @Path("id") id: Long,
-        @Query("apikey") apiKey: String
+        @Query("api_key") apiKey: String
     ): MovieResponse
 
     /**
@@ -50,7 +50,7 @@ interface MovieService {
      */
     @GET("movie/popular")
     suspend fun getMovies(
-        @Query("apikey") apiKey: String,
+        @Query("api_key") apiKey: String,
         @Query("page") page: Int
     ): ResultsResponse<MovieResponse>
 }
