@@ -37,7 +37,6 @@ import kotlin.random.Random
 fun ImageView.imageUrl(url: String?, @DrawableRes placeholderId: Int?) {
     load(url) {
         crossfade(true)
-        transformations(CircleCropTransformation)
         placeholder(placeholderId?.let {
             ContextCompat.getDrawable(context, it)
         } ?: run {
