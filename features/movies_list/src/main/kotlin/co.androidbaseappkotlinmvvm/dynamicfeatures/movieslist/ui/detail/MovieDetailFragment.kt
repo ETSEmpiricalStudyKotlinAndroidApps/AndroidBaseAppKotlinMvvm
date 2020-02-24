@@ -18,6 +18,7 @@ package co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.detail
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import co.androidbaseappkotlinmvvm.MovieApp.Companion.coreComponent
@@ -59,6 +60,11 @@ class MovieDetailFragment :
         super.onViewCreated(view, savedInstanceState)
         observe(viewModel.state, ::onViewStateChange)
         viewModel.loadMovieDetail(args.movieId)
+        // This callback will only be called when MyFragment is at least Started.
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            // Handle the back button event
+            findNavController().navigateUp()
+        }
     }
 
     /**
@@ -99,7 +105,7 @@ class MovieDetailFragment :
                 Snackbar.make(
                     requireView(),
                     R.string.movie_detail_added_to_favorite_message,
-                    BaseTransientBottomBar.LENGTH_LONG
+                    Snackbar.LENGTH_LONG
                 ).show()
             is MovieDetailViewState.Dismiss ->
                 findNavController().navigateUp()
