@@ -21,7 +21,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import co.androidbaseappkotlinmvvm.commons.ui.base.BaseListAdapter
 import co.androidbaseappkotlinmvvm.core.database.moviefavorite.MovieFavorite
-import co.androidbaseappkotlinmvvm.favorite.moviesfavorites.ui.favorite.adapter.holders.MovieFavoriteViewHolder
+import co.androidbaseappkotlinmvvm.dynamicfeatures.moviesfavorites.ui.favorite.adapter.holders.MovieFavoriteViewHolder
 
 /**
  * Class for presenting characters favorite List data in a [RecyclerView], including computing

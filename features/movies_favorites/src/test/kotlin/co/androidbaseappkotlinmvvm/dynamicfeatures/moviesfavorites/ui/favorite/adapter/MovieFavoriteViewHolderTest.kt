@@ -23,7 +23,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import co.androidbaseappkotlinmvvm.core.database.moviefavorite.MovieFavorite
 import co.androidbaseappkotlinmvvm.dynamicfeatures.moviesfavorites.databinding.ListItemMoviesFavoriteBinding
-import co.androidbaseappkotlinmvvm.favorite.moviesfavorites.ui.favorite.adapter.holders.MovieFavoriteViewHolder
+import co.androidbaseappkotlinmvvm.dynamicfeatures.moviesfavorites.ui.favorite.adapter.holders.MovieFavoriteViewHolder
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import org.junit.Assert

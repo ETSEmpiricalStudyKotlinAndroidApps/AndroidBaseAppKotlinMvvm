@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-package co.androidbaseappkotlinmvvm.favorite.moviesfavorites.ui.favorite.adapter.holders
+package co.androidbaseappkotlinmvvm.dynamicfeatures.moviesfavorites.ui.favorite.adapter.holders
 
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.RecyclerView
 import co.androidbaseappkotlinmvvm.commons.ui.base.BaseViewHolder
 import co.androidbaseappkotlinmvvm.core.database.moviefavorite.MovieFavorite
 import co.androidbaseappkotlinmvvm.dynamicfeatures.moviesfavorites.databinding.ListItemMoviesFavoriteBinding
-
 
 /**
  * Class describes movie favorite view and metadata about its place within the [RecyclerView].
