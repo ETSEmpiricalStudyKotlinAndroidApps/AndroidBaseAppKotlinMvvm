@@ -83,4 +83,3 @@ class MovieViewHolderTest {
         verify { binding.executePendingBindings() }
     }
 }
-

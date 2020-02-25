@@ -16,7 +16,6 @@
 
 package co.androidbaseappkotlinmvvm.dynamicfeatures.home.ui
 
-import co.androidbaseappkotlinmvvm.dynamicfeatures.home.ui.HomeViewState
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test

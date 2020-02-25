@@ -39,7 +39,7 @@ class BaseViewHolderTest {
         assertEquals(binding.root, baseViewHolder.itemView)
     }
 
-    inner class TestBaseViewHolder : co.androidbaseappkotlinmvvm.commons.ui.base.BaseViewHolder<ViewDataBinding>(
+    inner class TestBaseViewHolder : BaseViewHolder<ViewDataBinding>(
         binding = binding
     )
 }

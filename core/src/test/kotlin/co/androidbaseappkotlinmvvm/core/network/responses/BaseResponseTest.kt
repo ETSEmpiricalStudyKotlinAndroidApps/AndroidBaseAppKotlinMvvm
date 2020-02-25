@@ -16,7 +16,6 @@
 
 package co.androidbaseappkotlinmvvm.core.network.responses
 
-import com.nhaarman.mockitokotlin2.mock
 import org.junit.Assert
 import org.junit.Test
 

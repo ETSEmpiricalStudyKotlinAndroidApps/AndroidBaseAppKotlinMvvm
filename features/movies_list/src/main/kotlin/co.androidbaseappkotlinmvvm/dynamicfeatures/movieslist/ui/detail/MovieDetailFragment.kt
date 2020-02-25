@@ -29,7 +29,6 @@ import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.R
 import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.databinding.FragmentMovieDetailBinding
 import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.detail.di.DaggerMovieDetailComponent
 import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.detail.di.MovieDetailModule
-import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 

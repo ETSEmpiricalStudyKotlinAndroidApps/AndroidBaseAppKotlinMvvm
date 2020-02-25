@@ -18,15 +18,7 @@ package co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.paging
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
-import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.paging.MoviesPageDataSource
-import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.paging.MoviesPageDataSourceFactory
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.never
-import com.nhaarman.mockitokotlin2.same
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
-import javax.inject.Provider
+import com.nhaarman.mockitokotlin2.*
 import org.junit.Assert.assertNull
 import org.junit.Before
 import org.junit.Rule
@@ -36,6 +28,7 @@ import org.mockito.InjectMocks
 import org.mockito.MockitoAnnotations
 import org.mockito.Spy
 import org.mockito.junit.MockitoJUnitRunner
+import javax.inject.Provider
 
 @RunWith(MockitoJUnitRunner::class)
 class MoviesPageDataSourceFactoryTest {

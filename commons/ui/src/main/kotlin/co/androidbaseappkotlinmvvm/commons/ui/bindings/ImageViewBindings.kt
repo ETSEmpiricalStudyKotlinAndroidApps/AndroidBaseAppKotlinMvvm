@@ -22,9 +22,8 @@ import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import coil.api.load
 import co.androidbaseappkotlinmvvm.commons.ui.R
-import coil.transform.CircleCropTransformation
+import coil.api.load
 import kotlin.random.Random
 
 /**

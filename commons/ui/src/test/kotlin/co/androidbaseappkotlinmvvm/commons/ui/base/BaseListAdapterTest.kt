@@ -101,7 +101,7 @@ class BaseListAdapterTest : TestRobolectric() {
         verify(contentsSame, after(100).never()).invoke(anyString(), anyString())
     }
 
-    inner class TestBaseListAdapter : co.androidbaseappkotlinmvvm.commons.ui.base.BaseListAdapter<String>(
+    inner class TestBaseListAdapter : BaseListAdapter<String>(
         itemsSame = itemsSame,
         contentsSame = contentsSame
     ) {

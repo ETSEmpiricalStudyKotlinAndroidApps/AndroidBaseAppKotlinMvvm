@@ -17,7 +17,7 @@ When you obtain the keys, you can provide them to the app by putting the followi
 ```properties
 #Movie db API KEY
 movie.api.key=<insert>
- 
+
 Firebase
 Include generated json file on your project
 ```
@@ -31,7 +31,7 @@ signing.key.alias = <insert>
 signing.key.password = <insert>
 signing.store.file = <insert>
 signing.store.password = <insert>
-``` 
+```
 
 Libraries and tools included:
 
@@ -74,4 +74,3 @@ Libraries and tools included:
 -   [Versions](https://github.com/ben-manes/gradle-versions-plugin) - make easy to determine which dependencies have updates.
 -   [SafeArgs](https://developer.android.com/guide/navigation/navigation-pass-data#Safe-args) - generates simple object and builder classes for type-safe navigation and access to any associated arguments.
 -   [Jacoco](https://github.com/jacoco/jacoco) - code coverage library
-

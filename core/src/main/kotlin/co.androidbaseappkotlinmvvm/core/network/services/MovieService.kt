@@ -16,7 +16,6 @@
 
 package co.androidbaseappkotlinmvvm.core.network.services
 
-import co.androidbaseappkotlinmvvm.core.network.responses.BaseResponse
 import co.androidbaseappkotlinmvvm.core.network.responses.MovieResponse
 import co.androidbaseappkotlinmvvm.core.network.responses.ResultsResponse
 import retrofit2.http.GET

@@ -56,8 +56,8 @@ class MovieItemMapperTest {
             assertEquals(1011334, this.id)
             assertEquals("3-D Man", this.name)
             assertEquals("", this.description)
-            assertEquals("https://image.tmdb.org/t/p/w342/AoT2YrJUJlg5vKE3iMOLvHlTd3m.jpg", this.imageUrl
-            )
+            assertEquals("https://image.tmdb.org/t/p/w500/AoT2YrJUJlg5vKE3iMOLvHlTd3m.jpg",
+                this.imageUrl)
         }
     }
 }

@@ -333,13 +333,13 @@ naming:
     excludeClassPattern: '$^'
     ignoreOverridden: true
   InvalidPackageDeclaration:
-    active: true
+    active: false
     rootPackage: ''
   MatchingDeclarationName:
     active: true
   MemberNameEqualsClassName:
     active: true
-    ignoreOverriddenFunction: true
+    ignoreOverridden: true
   ObjectPropertyNaming:
     active: true
     excludes: "**/test/**,**/androidTest/**,**/*.Test.kt,**/*.Spec.kt,**/*.Spek.kt"
@@ -445,8 +445,8 @@ style:
   ExplicitItLambdaParameter:
     active: true
   ExpressionBodySyntax:
-    active: true
-    includeLineWrapping: true
+    active: false
+    includeLineWrapping: false
   ForbiddenComment:
     active: true
     values: 'TODO:,FIXME:,STOPSHIP:'

@@ -40,9 +40,7 @@ class MovieRepository(
      * @return Response for single movie resource.
      */
     suspend fun getMovie(id: Long): MovieResponse {
-        return service.getMovie(
-            id = id,
-            apiKey = API_KEY)
+        return service.getMovie(id = id, apiKey = API_KEY)
     }
 
     /**
@@ -52,8 +50,6 @@ class MovieRepository(
      * @return Response for cmovies resource.
      */
     suspend fun getMovies(page: Int): ResultsResponse<MovieResponse> {
-        return service.getMovies(
-            apiKey = API_KEY,
-            page = page)
+        return service.getMovies(apiKey = API_KEY, page = page)
     }
 }

@@ -83,7 +83,7 @@ class MovieServiceTest {
         val request = mockWebServer.takeRequest()
         assertEquals("GET", request.method)
         assertEquals(
-            "/movie/popular?apikey=$apiKey&page=$page",
+            "/movie/popular?api_key=$apiKey&page=$page",
             request.path
         )
     }
@@ -100,7 +100,7 @@ class MovieServiceTest {
         assertNull(response.code)
         assertNull(response.message)
 
-        val responseData  = response.results
+        val responseData = response.results
         assertEquals(19629, response.total)
         assertEquals(20, responseData.size)
         assertThat(responseData, instanceOf(List::class.java))
@@ -142,7 +142,7 @@ class MovieServiceTest {
         val request = mockWebServer.takeRequest()
         assertEquals("GET", request.method)
         assertEquals(
-            "/movie/$id?apikey=$apiKey", request.path
+            "/movie/$id?api_key=$apiKey", request.path
         )
     }
 
