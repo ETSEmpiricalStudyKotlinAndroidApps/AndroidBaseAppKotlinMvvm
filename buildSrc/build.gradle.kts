@@ -46,7 +46,7 @@ object PluginsVersions {
     const val DOKKA = "0.10.0"
     const val KTLINT = "0.36.0"
     const val SPOTLESS = "3.26.1"
-    const val DETEKT = "1.2.2"
+    const val DETEKT = "1.5.1"
     const val GRAPH_GENERATOR = "0.6.0-SNAPSHOT"
     const val GOOGLE_SERVICES = "4.3.3"
 }

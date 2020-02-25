@@ -16,6 +16,7 @@
 
 import utils.checkGoogleServicesFile
 import dependencies.Dependencies
+import dependencies.TestAndroidDependencies
 import dependencies.AnnotationProcessorsDependencies
 import extensions.getLocalProperty
 import extensions.buildConfigBooleanField
@@ -158,5 +159,9 @@ dependencies {
     implementation(Dependencies.PLAY_CORE)
     implementation(Dependencies.DAGGER)
 
+
     kapt(AnnotationProcessorsDependencies.DAGGER)
+
+    androidTestImplementation(TestAndroidDependencies.ESPRESSO)
+    androidTestImplementation(TestAndroidDependencies.RULES)
 }
