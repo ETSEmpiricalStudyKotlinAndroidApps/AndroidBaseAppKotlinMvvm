@@ -23,21 +23,21 @@ jobs:
       #- run:
       #    name: Run Detekt
       #    command: ./gradlew --stacktrace detekt
-      - run:
-          name: Run Ktlint
-          command: ./gradlew ktlint
-      - run:
-          name: Run Lint
-          command: ./gradlew lintDevDebug
-      - run:
-          name: Run Spotless
-          command: ./gradlew spotlessKotlinCheck
+      #- run:
+      #    name: Run Ktlint
+      #    command: ./gradlew ktlint
+      #- run:
+      #    name: Run Lint
+      #    command: ./gradlew lintDevDebug
+      #- run:
+      #    name: Run Spotless
+      #    command: ./gradlew spotlessKotlinCheck
       #- run:
       #    name: Run Unit Tests
       #    command: ./gradlew testDevDebugUnitTest
-      - run:
-          name: Run UI Tests
-          command: ./gradlew connectedDevDebugAndroidTest
+      #- run:
+      #    name: Run UI Tests
+      #    command: ./gradlew connectedDevDebugAndroidTest
       - run:
           name: Generate Code Coverage
           command: ./gradlew combinedTestReportDevDebug
