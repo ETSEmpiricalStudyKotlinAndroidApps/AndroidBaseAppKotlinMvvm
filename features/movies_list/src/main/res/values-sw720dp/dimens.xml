@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Movies list-->
+    <dimen name="movies_list_item_size">175dp</dimen>
+    <dimen name="movies_list_item_text_padding">20dp</dimen>
+
+    <!--Movie detail-->
+    <dimen name="movie_detail_app_bar_height">500dp</dimen>
+</resources>
