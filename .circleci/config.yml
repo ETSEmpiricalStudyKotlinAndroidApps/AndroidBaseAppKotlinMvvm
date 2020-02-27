@@ -11,6 +11,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx2048m
       GRADLE_OPTS: -Dorg.gradle.parallel=true -Dorg.gradle.caching=true -Dorg.gradle.configureondemand=true -Dkotlin.compiler.execution.strategy=in-process
+    steps:
       - checkout
       - run: echo "movie.api.key=$MOVIE_API_KEY" >> local.properties
       - run: echo "signing.key.alias=$SIGNING_KEY_ALIAS" >> local.properties
