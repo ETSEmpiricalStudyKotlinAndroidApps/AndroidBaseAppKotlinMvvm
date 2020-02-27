@@ -1,7 +1,7 @@
 # AndroidBaseAppKotlinMvvm
 Base reference for new Android projects (Kotlin&MVVM)
 
-[![CircleCI](https://circleci.com/gh/tecruz/AndroidBaseAppKotlinMvvm/tree/master.svg?style=shield)](https://circleci.com/tecruz/AndroidBaseAppKotlinMvvm/tree/master)
+[![CircleCI](https://circleci.com/gh/tecruz/AndroidBaseAppKotlinMvvm/tree/master.svg?style=shield)](https://circleci.com/gh/tecruz/AndroidBaseAppKotlinMvvm/tree/master)
 [![codecov](https://codecov.io/gh/tecruz/AndroidBaseAppKotlinMvvm/branch/master/graph/badge.svg)](https://codecov.io/gh/tecruz/AndroidBaseAppKotlinMvvm)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/171640011f3749d19a8de24877237522)](https://app.codacy.com/app/tecruz/AndroidBaseAppKotlinMvvm?utm_source=github.com&utm_medium=referral&utm_content=tecruz/AndroidBaseAppKotlinMvvm&utm_campaign=badger)
 
