@@ -20,9 +20,9 @@ jobs:
       - run: echo "signing.store.password=$SIGNING_STORE_PASSWORD" >> local.properties
       - restore_cache:
           key: gradle-{{ checksum "build.gradle.kts" }}
-      - run:
-          name: Run Detekt
-          command: ./gradlew --stacktrace detekt
+      #- run:
+      #    name: Run Detekt
+      #    command: ./gradlew --stacktrace detekt
       - run:
           name: Run Ktlint
           command: ./gradlew ktlint
