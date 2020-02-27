@@ -10,8 +10,7 @@ jobs:
       - image: circleci/android:api-28
     environment:
       JVM_OPTS: -Xmx2048m
-      GRADLE_OPTS: -Xmx1536m -XX:+HeapDumpOnOutOfMemoryError -Dorg.gradle.parallel=true -Dorg.gradle.caching=true -Dorg.gradle.configureondemand=true -Dkotlin.compiler.execution.strategy=in-process -Dkotlin.incremental=false
-    steps:
+      GRADLE_OPTS: -Dorg.gradle.parallel=true -Dorg.gradle.caching=true -Dorg.gradle.configureondemand=true -Dkotlin.compiler.execution.strategy=in-process
       - checkout
       - run: echo "movie.api.key=$MOVIE_API_KEY" >> local.properties
       - run: echo "signing.key.alias=$SIGNING_KEY_ALIAS" >> local.properties
@@ -20,24 +19,24 @@ jobs:
       - run: echo "signing.store.password=$SIGNING_STORE_PASSWORD" >> local.properties
       - restore_cache:
           key: gradle-{{ checksum "build.gradle.kts" }}
-      #- run:
-      #    name: Run Detekt
-      #    command: ./gradlew --stacktrace detekt
-      #- run:
-      #    name: Run Ktlint
-      #    command: ./gradlew ktlint
-      #- run:
-      #    name: Run Lint
-      #    command: ./gradlew lintDevDebug
-      #- run:
-      #    name: Run Spotless
-      #    command: ./gradlew spotlessKotlinCheck
-      #- run:
-      #    name: Run Unit Tests
-      #    command: ./gradlew testDevDebugUnitTest
-      #- run:
-      #    name: Run UI Tests
-      #    command: ./gradlew connectedDevDebugAndroidTest
+      - run:
+          name: Run Detekt
+          command: ./gradlew --stacktrace detekt
+      - run:
+          name: Run Ktlint
+          command: ./gradlew ktlint
+      - run:
+          name: Run Lint
+          command: ./gradlew lintDevDebug
+      - run:
+          name: Run Spotless
+          command: ./gradlew spotlessKotlinCheck
+      - run:
+          name: Run Unit Tests
+          command: ./gradlew testDevDebugUnitTest
+      - run:
+          name: Run UI Tests
+          command: ./gradlew connectedDevDebugAndroidTest
       - run:
           name: Generate Code Coverage
           command: ./gradlew combinedTestReportDevDebug
