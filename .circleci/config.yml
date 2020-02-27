@@ -9,7 +9,7 @@ jobs:
     docker:
       - image: circleci/android:api-28
     environment:
-      GRADLE_OPTS: -Xmx2g -Dorg.gradle.daemon=false
+      GRADLE_OPTS: -Dkotlin.compiler.execution.strategy=in-process -Dorg.gradle.daemon=false
       JVM_OPTS: -Xmx2g
     steps:
       - checkout
@@ -22,7 +22,7 @@ jobs:
           key: gradle-{{ checksum "build.gradle.kts" }}
       - run:
           name: Run Detekt
-          command: ./gradlew detekt
+          command: ./gradlew --stacktrace detekt
       - run:
           name: Run Ktlint
           command: ./gradlew ktlint
