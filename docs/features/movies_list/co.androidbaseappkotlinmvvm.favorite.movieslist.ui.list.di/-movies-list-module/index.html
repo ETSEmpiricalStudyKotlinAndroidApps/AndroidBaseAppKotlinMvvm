@@ -1,0 +1,79 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>MoviesListModule - features/movies_list</title>
+<link rel="stylesheet" href="../../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">features/movies_list</a>&nbsp;/&nbsp;<a href="../index.html">co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.di</a>&nbsp;/&nbsp;<a href="./index.html">MoviesListModule</a><br/>
+<br/>
+<h1>MoviesListModule</h1>
+<code><span class="identifier">@Module</span> <span class="keyword">class </span><span class="identifier">MoviesListModule</span></code>
+<p>Class that contributes to the object graph <a href="../-movies-list-component/index.html">MoviesListComponent</a>.</p>
+<p><strong>See Also</strong><br/>
+<p><a href="#">Module</a></p>
+</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Class that contributes to the object graph <a href="../-movies-list-component/index.html">MoviesListComponent</a>.</p>
+<code><span class="identifier">MoviesListModule</span><span class="symbol">(</span><span class="identifier" id="co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.di.MoviesListModule$<init>(co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListFragment)/fragment">fragment</span><span class="symbol">:</span>&nbsp;<a href="../../co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list/-movies-list-fragment/index.html"><span class="identifier">MoviesListFragment</span></a><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="fragment.html">fragment</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">fragment</span><span class="symbol">: </span><a href="../../co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list/-movies-list-fragment/index.html"><span class="identifier">MoviesListFragment</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="provides-movie-item-mapper.html">providesMovieItemMapper</a></h4>
+</td>
+<td>
+<p>Create a provider method binding for <a href="../../co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.model/-movie-item-mapper/index.html">MovieItemMapper</a>.</p>
+<code><span class="keyword">fun </span><span class="identifier">providesMovieItemMapper</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.model/-movie-item-mapper/index.html"><span class="identifier">MovieItemMapper</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="provides-movies-list-adapter.html">providesMoviesListAdapter</a></h4>
+</td>
+<td>
+<p>Create a provider method binding for <a href="../../co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.adapter/-movies-list-adapter/index.html">MoviesListAdapter</a>.</p>
+<code><span class="keyword">fun </span><span class="identifier">providesMoviesListAdapter</span><span class="symbol">(</span><span class="identifier" id="co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.di.MoviesListModule$providesMoviesListAdapter(co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListViewModel)/viewModel">viewModel</span><span class="symbol">:</span>&nbsp;<a href="../../co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list/-movies-list-view-model/index.html"><span class="identifier">MoviesListViewModel</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.adapter/-movies-list-adapter/index.html"><span class="identifier">MoviesListAdapter</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="provides-movies-list-view-model.html">providesMoviesListViewModel</a></h4>
+</td>
+<td>
+<p>Create a provider method binding for <a href="../../co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list/-movies-list-view-model/index.html">MoviesListViewModel</a>.</p>
+<code><span class="keyword">fun </span><span class="identifier">providesMoviesListViewModel</span><span class="symbol">(</span><span class="identifier" id="co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.di.MoviesListModule$providesMoviesListViewModel(co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.paging.MoviesPageDataSourceFactory)/dataFactory">dataFactory</span><span class="symbol">:</span>&nbsp;<a href="../../co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.paging/-movies-page-data-source-factory/index.html"><span class="identifier">MoviesPageDataSourceFactory</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list/-movies-list-view-model/index.html"><span class="identifier">MoviesListViewModel</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="provides-movies-page-data-source.html">providesMoviesPageDataSource</a></h4>
+</td>
+<td>
+<p>Create a provider method binding for <a href="../../co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.paging/-movies-page-data-source/index.html">MoviesPageDataSource</a>.</p>
+<code><span class="keyword">fun </span><span class="identifier">providesMoviesPageDataSource</span><span class="symbol">(</span><span class="identifier" id="co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.di.MoviesListModule$providesMoviesPageDataSource(co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListViewModel, co.androidbaseappkotlinmvvm.core.network.repositiories.MovieRepository, co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.model.MovieItemMapper)/viewModel">viewModel</span><span class="symbol">:</span>&nbsp;<a href="../../co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list/-movies-list-view-model/index.html"><span class="identifier">MoviesListViewModel</span></a><span class="symbol">, </span><span class="identifier" id="co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.di.MoviesListModule$providesMoviesPageDataSource(co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListViewModel, co.androidbaseappkotlinmvvm.core.network.repositiories.MovieRepository, co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.model.MovieItemMapper)/repository">repository</span><span class="symbol">:</span>&nbsp;<span class="identifier">MovieRepository</span><span class="symbol">, </span><span class="identifier" id="co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.di.MoviesListModule$providesMoviesPageDataSource(co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListViewModel, co.androidbaseappkotlinmvvm.core.network.repositiories.MovieRepository, co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.model.MovieItemMapper)/mapper">mapper</span><span class="symbol">:</span>&nbsp;<a href="../../co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.model/-movie-item-mapper/index.html"><span class="identifier">MovieItemMapper</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.paging/-movies-page-data-source/index.html"><span class="identifier">MoviesPageDataSource</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

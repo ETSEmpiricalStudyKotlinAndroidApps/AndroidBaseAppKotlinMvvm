@@ -1,0 +1,18 @@
+$dokka.format:html
+$dokka.linkExtension:html
+$dokka.location:co.androidbaseappkotlinmvvm.core.extensions$toHex(kotlin.ByteArray)co.androidbaseappkotlinmvvm.core.extensions/kotlin.-byte-array/to-hex.html
+$dokka.location:co.androidbaseappkotlinmvvm.core.extensions$toMD5(kotlin.String)co.androidbaseappkotlinmvvm.core.extensions/kotlin.-string/to-m-d5.html
+co.androidbaseappkotlinmvvm.core.annotations
+co.androidbaseappkotlinmvvm.core.database
+co.androidbaseappkotlinmvvm.core.database.migrations
+co.androidbaseappkotlinmvvm.core.database.moviefavorite
+co.androidbaseappkotlinmvvm.core.di
+co.androidbaseappkotlinmvvm.core.di.modules
+co.androidbaseappkotlinmvvm.core.di.scopes
+co.androidbaseappkotlinmvvm.core.extensions
+co.androidbaseappkotlinmvvm.core.mapper
+co.androidbaseappkotlinmvvm.core.network
+co.androidbaseappkotlinmvvm.core.network.repositiories
+co.androidbaseappkotlinmvvm.core.network.responses
+co.androidbaseappkotlinmvvm.core.network.services
+co.androidbaseappkotlinmvvm.core.utils

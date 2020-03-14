@@ -1,0 +1,10 @@
+$dokka.format:html
+$dokka.linkExtension:html
+$dokka.location:co.androidbaseappkotlinmvvm.libraries.testutils.livedata$getOrAwaitValue(androidx.lifecycle.LiveData((co.androidbaseappkotlinmvvm.libraries.testutils.livedata.getOrAwaitValue.T)), kotlin.Long, java.util.concurrent.TimeUnit, kotlin.Function0((kotlin.Unit)))co.androidbaseappkotlinmvvm.libraries.testutils.livedata/androidx.lifecycle.-live-data/get-or-await-value.html
+co.androidbaseappkotlinmvvm.libraries.testutils
+co.androidbaseappkotlinmvvm.libraries.testutils.datasource
+co.androidbaseappkotlinmvvm.libraries.testutils.lifecycle
+co.androidbaseappkotlinmvvm.libraries.testutils.livedata
+co.androidbaseappkotlinmvvm.libraries.testutils.pagelist
+co.androidbaseappkotlinmvvm.libraries.testutils.robolectric
+co.androidbaseappkotlinmvvm.libraries.testutils.rules
