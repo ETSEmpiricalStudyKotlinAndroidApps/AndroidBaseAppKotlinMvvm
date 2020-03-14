@@ -161,6 +161,7 @@ dependencies {
 
     kapt(AnnotationProcessorsDependencies.DAGGER)
 
+    androidTestImplementation(TestAndroidDependencies.RUNNER)
     androidTestImplementation(TestAndroidDependencies.ESPRESSO)
     androidTestImplementation(TestAndroidDependencies.RULES)
 }

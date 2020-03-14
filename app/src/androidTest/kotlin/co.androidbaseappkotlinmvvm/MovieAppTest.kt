@@ -29,9 +29,8 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4ClassRunner::class)
 class MovieAppTest {
 
-    @Rule
-    @JvmField
-    val activityTestRule = ActivityTestRule<MovieMainActivity>(MovieMainActivity::class.java)
+    @get:Rule
+    val activityTestRule = ActivityTestRule(MovieMainActivity::class.java)
 
     @Test
     fun initApp() {
