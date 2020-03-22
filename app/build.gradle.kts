@@ -158,6 +158,7 @@ dependencies {
     implementation(Dependencies.CRASHLYTICS)
     implementation(Dependencies.PLAY_CORE)
     implementation(Dependencies.DAGGER)
+    implementation(Dependencies.COIL)
 
     kapt(AnnotationProcessorsDependencies.DAGGER)
 
