@@ -49,7 +49,8 @@ script:
   - ./gradlew spotlessKotlinCheck
   - ./gradlew testDevDebugUnitTest
   - ./gradlew connectedDevDebugAndroidTest
-  - ./gradlew clean combinedTestReportDevDebug
+  - ./gradlew clean
+  - ./gradlew combinedTestReportDevDebug
 
 after_success:
   - codecov
