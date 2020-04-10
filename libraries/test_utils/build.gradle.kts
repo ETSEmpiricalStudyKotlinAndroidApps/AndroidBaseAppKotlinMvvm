@@ -38,7 +38,9 @@ dependencies {
     implementation(TestDependencies.EXT)
     implementation(TestDependencies.MOCK_WEB_SERVER)
 
-    implementation(TestDependencies.ROBOELECTRIC)
+    implementation(TestDependencies.ROBOELECTRIC){
+        exclude(group = "org.apache.maven", module = "maven-ant-tasks")
+    }
 
     annotationProcessor(AnnotationProcessorsDependencies.AUTO_SERVICE)
 }

@@ -48,8 +48,8 @@ script:
   - ./gradlew lintDevDebug
   - ./gradlew spotlessKotlinCheck
   - ./gradlew testDevDebugUnitTest
-#  - ./gradlew connectedDevDebugAndroidTest
-#  - ./gradlew combinedTestReportDevDebug
+  - ./gradlew connectedDevDebugAndroidTest
+  - ./gradlew combinedTestReportDevDebug
 
 after_success:
   - codecov
