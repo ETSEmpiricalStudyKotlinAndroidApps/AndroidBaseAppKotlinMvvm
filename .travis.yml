@@ -49,7 +49,7 @@ script:
   - ./gradlew spotlessKotlinCheck
   - ./gradlew testDevDebugUnitTest
   - ./gradlew connectedDevDebugAndroidTest
-  - ./gradlew combinedTestReportDevDebug
+  - ./gradlew clean combinedTestReportDevDebug
 
 after_success:
   - codecov
