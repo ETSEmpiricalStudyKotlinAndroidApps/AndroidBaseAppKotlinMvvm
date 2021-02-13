@@ -28,7 +28,8 @@ import org.robolectric.annotation.Config
 @Config(
     manifest = "AndroidManifest.xml",
     application = TestRobolectric.ApplicationStub::class,
-    sdk = [Build.VERSION_CODES.LOLLIPOP]
+    maxSdk = Build.VERSION_CODES.P,
+    minSdk = Build.VERSION_CODES.P
 )
 open class TestRobolectric {
 

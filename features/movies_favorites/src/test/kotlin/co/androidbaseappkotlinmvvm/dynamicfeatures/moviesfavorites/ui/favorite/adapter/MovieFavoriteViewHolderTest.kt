@@ -19,8 +19,6 @@ package co.androidbaseappkotlinmvvm.dynamicfeatures.moviesfavorites.ui.favorite.
 import android.view.LayoutInflater
 import android.view.View
 import androidx.databinding.ViewDataBinding
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.filters.SmallTest
 import co.androidbaseappkotlinmvvm.core.database.moviefavorite.MovieFavorite
 import co.androidbaseappkotlinmvvm.dynamicfeatures.moviesfavorites.databinding.ListItemMoviesFavoriteBinding
 import co.androidbaseappkotlinmvvm.dynamicfeatures.moviesfavorites.ui.favorite.adapter.holders.MovieFavoriteViewHolder
@@ -29,10 +27,7 @@ import io.mockk.impl.annotations.MockK
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
-@SmallTest
 class MovieFavoriteViewHolderTest {
 
     @MockK

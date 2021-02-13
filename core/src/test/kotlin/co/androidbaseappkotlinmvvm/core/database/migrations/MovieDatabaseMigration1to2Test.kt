@@ -17,7 +17,6 @@
 package co.androidbaseappkotlinmvvm.core.database.migrations
 
 import androidx.sqlite.db.SupportSQLiteDatabase
-import io.mockk.Called
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.MockK
 import io.mockk.verify
@@ -46,6 +45,6 @@ class MovieDatabaseMigration1to2Test {
     fun executeMigrationDatabase() {
         migration.migrate(supportSQLiteDatabase)
 
-        verify { supportSQLiteDatabase.beginTransaction() wasNot Called }
+        verify(exactly = 0) { supportSQLiteDatabase.beginTransaction()}
     }
 }

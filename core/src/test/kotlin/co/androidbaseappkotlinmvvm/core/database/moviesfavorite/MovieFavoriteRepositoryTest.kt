@@ -31,7 +31,7 @@ import org.junit.Test
 
 class MovieFavoriteRepositoryTest {
 
-    @MockK
+    @MockK(relaxed = true)
     lateinit var movieFavoriteDao: MovieFavoriteDao
     lateinit var movieFavoriteRepository: MovieFavoriteRepository
 

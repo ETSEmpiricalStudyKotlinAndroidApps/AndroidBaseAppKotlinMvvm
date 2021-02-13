@@ -39,7 +39,7 @@ class MoviesPageDataSourceFactoryTest {
     @MockK(relaxed = true)
     lateinit var providerDataSource: Provider<MoviesPageDataSource>
     @SpyK
-    lateinit var sourceLiveData: MutableLiveData<MoviesPageDataSource>
+    var sourceLiveData = MutableLiveData<MoviesPageDataSource>()
     @InjectMockKs(overrideValues = true)
     lateinit var dataSourceFactory: MoviesPageDataSourceFactory
 
@@ -50,7 +50,7 @@ class MoviesPageDataSourceFactoryTest {
 
     @Test
     fun initializeFactory_WithoutCreate_ShouldNotHaveDataSource() {
-        verify(exactly = 0) { dataSourceFactory.sourceLiveData }
+        verify(exactly = 0) { dataSourceFactory.sourceLiveData.value }
         assertNull(dataSourceFactory.sourceLiveData.value)
     }
 
@@ -65,7 +65,7 @@ class MoviesPageDataSourceFactoryTest {
 
     @Test
     fun refreshDataSource_ShouldInvalidateData() {
-        val dataSource = mockk<MoviesPageDataSource>()
+        val dataSource = mockk<MoviesPageDataSource>(relaxed = true)
         every { sourceLiveData.value } returns dataSource
 
         dataSourceFactory.refresh()
@@ -76,7 +76,7 @@ class MoviesPageDataSourceFactoryTest {
 
     @Test
     fun retryDataSource_ShouldRetryData() {
-        val dataSource = mockk<MoviesPageDataSource>()
+        val dataSource = mockk<MoviesPageDataSource>(relaxed = true)
         every { sourceLiveData.value } returns dataSource
 
         dataSourceFactory.retry()
