@@ -45,6 +45,6 @@ class MovieDatabaseMigration1to2Test {
     fun executeMigrationDatabase() {
         migration.migrate(supportSQLiteDatabase)
 
-        verify(exactly = 0) { supportSQLiteDatabase.beginTransaction()}
+        verify(exactly = 0) { supportSQLiteDatabase.beginTransaction() }
     }
 }

@@ -45,7 +45,7 @@ class MovieFavoriteRepositoryTest {
     fun getAllMoviesFavoriteLiveData_ShouldInvokeCorrectDaoMethod() {
         movieFavoriteRepository.getAllMoviesFavoriteLiveData()
 
-        verify{ movieFavoriteDao.getAllMoviesFavoriteLiveData() }
+        verify { movieFavoriteDao.getAllMoviesFavoriteLiveData() }
     }
 
     @Test
@@ -63,7 +63,7 @@ class MovieFavoriteRepositoryTest {
         val movieIdCaptor = slot<Long>()
         movieFavoriteRepository.getMovieFavorite(movieIdToFind)
 
-        coVerify {  movieFavoriteDao.getMovieFavorite(capture(movieIdCaptor)) }
+        coVerify { movieFavoriteDao.getMovieFavorite(capture(movieIdCaptor)) }
         assertEquals(movieIdToFind, movieIdCaptor.captured)
     }
 

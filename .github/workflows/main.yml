@@ -53,7 +53,10 @@ jobs:
       run: ./gradlew testDevDebugUnitTest
 
     - name: Run Instrumented tests
-      run: ./gradlew connectedDevDebugAndroidTest
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: ./gradlew connectedDevDebugAndroidTest
 
     - name: Run Clean
       run: ./gradlew clean
