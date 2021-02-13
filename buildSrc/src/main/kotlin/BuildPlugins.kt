@@ -30,7 +30,6 @@ object BuildPlugins {
     const val NAVIGATION_SAFE_ARGS = "androidx.navigation.safeargs.kotlin"
     const val JACOCO = "com.vanniktech.android.junit.jacoco"
     const val GRAPH_GENERATOR = "com.vanniktech.dependency.graph.generator"
-    const val FABRIC = "io.fabric"
 
     const val DETEKT = "plugins.detekt"
     const val DOKKA = "plugins.dokka"
@@ -39,4 +38,5 @@ object BuildPlugins {
     const val SPOTLESS = "plugins.spotless"
     const val UPDATE_DEPENDENCIES = "plugins.update-dependencies"
     const val GOOGLE_SERVICES = "com.google.gms.google-services"
+    const val FIREBASE_CRASHLYTICS = "com.google.firebase.crashlytics"
 }

@@ -28,7 +28,6 @@ import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import org.junit.Assert
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -50,7 +49,6 @@ class MovieFavoriteViewHolderTest {
     }
 
     @Test
-    @Ignore("Failed to create a Robolectric sandbox: Android SDK 29 requires Java 9 (have Java 8)")
     fun createViewHolder_ShouldInitializeCorrectly() {
         mockkStatic(ListItemMoviesFavoriteBinding::class)
         every { (binding as ViewDataBinding).root } returns view
@@ -62,7 +60,6 @@ class MovieFavoriteViewHolderTest {
     }
 
     @Test
-    @Ignore("Failed to create a Robolectric sandbox: Android SDK 29 requires Java 9 (have Java 8)")
     fun bindViewHolder_ShouldBindingDataVariable() {
         mockkStatic(ListItemMoviesFavoriteBinding::class)
         every { (binding as ViewDataBinding).root } returns view

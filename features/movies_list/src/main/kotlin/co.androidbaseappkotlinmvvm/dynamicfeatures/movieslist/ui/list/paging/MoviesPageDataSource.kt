@@ -62,12 +62,14 @@ open class MoviesPageDataSource @Inject constructor(
         callback: LoadInitialCallback<Int, MovieItem>
     ) {
         networkState.postValue(NetworkState.Loading())
-        scope.launch(CoroutineExceptionHandler { _, _ ->
-            retry = {
-                loadInitial(params, callback)
+        scope.launch(
+            CoroutineExceptionHandler { _, _ ->
+                retry = {
+                    loadInitial(params, callback)
+                }
+                networkState.postValue(NetworkState.Error())
             }
-            networkState.postValue(NetworkState.Error())
-        }) {
+        ) {
             val response = repository.getMovies(
                 page = PAGE_INIT_ELEMENTS
             )
@@ -90,12 +92,12 @@ open class MoviesPageDataSource @Inject constructor(
         callback: LoadCallback<Int, MovieItem>
     ) {
         networkState.postValue(NetworkState.Loading(true))
-        scope.launch(CoroutineExceptionHandler { _, _ ->
-            retry = {
-                loadAfter(params, callback)
+        scope.launch(
+            CoroutineExceptionHandler { _, _ ->
+                retry = { loadAfter(params, callback) }
+                networkState.postValue(NetworkState.Error(true))
             }
-            networkState.postValue(NetworkState.Error(true))
-        }) {
+        ) {
             val response = repository.getMovies(
                 page = params.key
             )

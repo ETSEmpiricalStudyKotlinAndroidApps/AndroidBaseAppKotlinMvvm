@@ -77,9 +77,11 @@ class MoviesFavoriteFragment :
         viewBinding.includeList.moviesFavoriteList.apply {
             adapter = viewAdapter
 
-            ItemTouchHelper(MoviesFavoriteTouchHelper {
-                viewModel.removeFavoriteMovie(viewAdapter.currentList[it])
-            }).attachToRecyclerView(this)
+            ItemTouchHelper(
+                MoviesFavoriteTouchHelper {
+                    viewModel.removeFavoriteMovie(viewAdapter.currentList[it])
+                }
+            ).attachToRecyclerView(this)
         }
     }
 

@@ -96,7 +96,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
             if (actionView is ToggleThemeCheckBox) {
                 actionView.isChecked = themeUtils.isDarkTheme(requireContext())
                 actionView.setOnCheckedChangeListener { _, isChecked ->
-                    themeUtils.setNightMode(isChecked,
+                    themeUtils.setNightMode(
+                        isChecked,
                         DELAY_TO_APPLY_THEME
                     )
                 }
@@ -146,9 +147,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
             intent = requireActivity().intent
         )
 
-        navController.observe(viewLifecycleOwner, Observer {
-            viewModel.navigationControllerChanged(it)
-            setupActionBarWithNavController(requireCompatActivity(), it)
-        })
+        navController.observe(
+            viewLifecycleOwner,
+            Observer
+            {
+                viewModel.navigationControllerChanged(it)
+                setupActionBarWithNavController(requireCompatActivity(), it)
+            }
+        )
     }
 }

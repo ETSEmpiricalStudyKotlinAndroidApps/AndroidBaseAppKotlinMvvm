@@ -18,72 +18,70 @@ package co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.paging
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
-import com.nhaarman.mockitokotlin2.*
+import io.mockk.MockKAnnotations
+import io.mockk.every
+import io.mockk.impl.annotations.InjectMockKs
+import io.mockk.impl.annotations.MockK
+import io.mockk.impl.annotations.SpyK
+import io.mockk.mockk
+import io.mockk.verify
 import org.junit.Assert.assertNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.InjectMocks
-import org.mockito.MockitoAnnotations
-import org.mockito.Spy
-import org.mockito.junit.MockitoJUnitRunner
 import javax.inject.Provider
 
-@RunWith(MockitoJUnitRunner::class)
 class MoviesPageDataSourceFactoryTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    @Spy
+    @MockK(relaxed = true)
     lateinit var providerDataSource: Provider<MoviesPageDataSource>
-    @Spy
+    @SpyK
     lateinit var sourceLiveData: MutableLiveData<MoviesPageDataSource>
-    @InjectMocks
+    @InjectMockKs(overrideValues = true)
     lateinit var dataSourceFactory: MoviesPageDataSourceFactory
 
     @Before
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
+        MockKAnnotations.init(this)
     }
 
     @Test
     fun initializeFactory_WithoutCreate_ShouldNotHaveDataSource() {
-        verify(dataSourceFactory.sourceLiveData, never())
+        verify(exactly = 0) { dataSourceFactory.sourceLiveData }
         assertNull(dataSourceFactory.sourceLiveData.value)
     }
 
     @Test
     fun initializeFactory_WithCreate_ShouldHaveDataSource() {
-        doReturn(
-            MoviesPageDataSource(mock(), mock(), mock())
-        ).whenever(providerDataSource).get()
+        every { providerDataSource.get() } returns MoviesPageDataSource(mockk(), mockk(), mockk())
 
         val dataSource = dataSourceFactory.create() as MoviesPageDataSource
 
-        verify(dataSourceFactory.sourceLiveData).postValue(same(dataSource))
+        verify { dataSourceFactory.sourceLiveData.postValue((dataSource)) }
     }
 
     @Test
     fun refreshDataSource_ShouldInvalidateData() {
-        val dataSource = mock<MoviesPageDataSource>()
-        doReturn(dataSource).whenever(sourceLiveData).value
+        val dataSource = mockk<MoviesPageDataSource>()
+        every { sourceLiveData.value } returns dataSource
 
         dataSourceFactory.refresh()
 
-        verify(dataSource).invalidate()
-        verify(dataSource, never()).retry()
+        verify { dataSource.invalidate() }
+        verify(exactly = 0) { dataSource.retry() }
     }
 
     @Test
     fun retryDataSource_ShouldRetryData() {
-        val dataSource = mock<MoviesPageDataSource>()
-        doReturn(dataSource).whenever(sourceLiveData).value
+        val dataSource = mockk<MoviesPageDataSource>()
+        every { sourceLiveData.value } returns dataSource
 
         dataSourceFactory.retry()
 
-        verify(dataSource).retry()
-        verify(dataSource, never()).invalidate()
+        verify { dataSource.retry() }
+        verify(exactly = 0) { dataSource.invalidate() }
     }
 }

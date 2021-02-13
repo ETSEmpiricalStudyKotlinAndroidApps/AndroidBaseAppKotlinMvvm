@@ -17,19 +17,19 @@
 package co.androidbaseappkotlinmvvm.core.network.repositories
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.nhaarman.mockitokotlin2.argumentCaptor
-import com.nhaarman.mockitokotlin2.verify
 import co.androidbaseappkotlinmvvm.core.BuildConfig
 import co.androidbaseappkotlinmvvm.core.network.repositiories.MovieRepository
 import co.androidbaseappkotlinmvvm.core.network.services.MovieService
+import io.mockk.MockKAnnotations
+import io.mockk.coVerify
+import io.mockk.impl.annotations.MockK
+import io.mockk.slot
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.MockitoAnnotations
 
 private const val API_PUBLIC_KEY = BuildConfig.MOVIE_API_KEY
 
@@ -38,48 +38,47 @@ class MovieRepositoryTest {
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
-    @Mock
+    @MockK(relaxed = true)
     lateinit var movieService: MovieService
     private lateinit var movieRepository: MovieRepository
 
     @Before
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
+        MockKAnnotations.init(this)
         movieRepository = MovieRepository(movieService)
     }
 
     @Test
     fun getMovies() = runBlocking {
         val pageRequest = 1
-        val (apiKey, page) =
-            argumentCaptor<String, Int>()
+        val apiKey = slot<String>()
+        val page = slot<Int>()
 
         movieRepository.getMovies(
             page = pageRequest
         )
 
-        verify(movieService).getMovies(
-            apiKey = apiKey.capture(),
-            page = page.capture()
-        )
+        coVerify {
+            movieService.getMovies(apiKey = capture(apiKey), page = capture(page))
+        }
 
-        assertEquals(API_PUBLIC_KEY, apiKey.lastValue)
-        assertNotNull(page.lastValue)
+        assertEquals(API_PUBLIC_KEY, apiKey.captured)
+        assertNotNull(page.captured)
     }
 
     @Test
     fun getMovie() = runBlocking {
         val movieId = 3L
-        val (id, apiKey) = argumentCaptor<Long, String>()
+        val id = slot<Long>()
+        val apiKey = slot<String>()
 
         movieRepository.getMovie(movieId)
 
-        verify(movieService).getMovie(
-            id = id.capture(),
-            apiKey = apiKey.capture()
-        )
+        coVerify {
+            movieService.getMovie(id = capture(id), apiKey = capture(apiKey))
+        }
 
-        assertEquals(movieId, id.lastValue)
-        assertEquals(API_PUBLIC_KEY, apiKey.lastValue)
+        assertEquals(movieId, id.captured)
+        assertEquals(API_PUBLIC_KEY, apiKey.captured)
     }
 }

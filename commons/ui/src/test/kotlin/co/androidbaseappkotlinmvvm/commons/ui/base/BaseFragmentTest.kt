@@ -24,43 +24,43 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.test.core.app.ActivityScenario
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
 import co.androidbaseappkotlinmvvm.libraries.testutils.TestCompatActivity
 import co.androidbaseappkotlinmvvm.libraries.testutils.TestFragmentActivity
 import co.androidbaseappkotlinmvvm.libraries.testutils.robolectric.TestRobolectric
+import io.mockk.MockKAnnotations
+import io.mockk.impl.annotations.SpyK
+import io.mockk.mockk
+import io.mockk.verify
 import org.hamcrest.core.IsInstanceOf.instanceOf
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertThat
 import org.junit.Before
 import org.junit.Test
-import org.mockito.MockitoAnnotations
-import org.mockito.Spy
 
 class BaseFragmentTest : TestRobolectric() {
 
-    @Spy
-    lateinit var baseFragment: TestBaseFragment
+    @SpyK
+    var baseFragment = TestBaseFragment()
 
     @Before
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
+        MockKAnnotations.init(this)
     }
 
     @Test
     fun initDependencyInjection_OnAttach_ShouldInvoke() {
         baseFragment.onAttach(context)
 
-        verify(baseFragment).onInitDependencyInjection()
+        verify { baseFragment.onInitDependencyInjection() }
     }
 
     @Test
     fun initDataBiding_OnViewCreated_ShouldInvoke() {
-        val view = mock<View>()
-        val savedInstanceState = mock<Bundle>()
+        val view = mockk<View>()
+        val savedInstanceState = mockk<Bundle>()
         baseFragment.onViewCreated(view, savedInstanceState)
 
-        verify(baseFragment).onInitDataBinding()
+        verify { baseFragment.onInitDataBinding() }
     }
 
     @Test

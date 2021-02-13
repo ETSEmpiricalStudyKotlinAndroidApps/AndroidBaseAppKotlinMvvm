@@ -16,10 +16,9 @@
 
 import utils.checkGoogleServicesFile
 import dependencies.Dependencies
-import dependencies.TestAndroidDependencies
 import dependencies.AnnotationProcessorsDependencies
-import extensions.getLocalProperty
 import extensions.buildConfigBooleanField
+import extensions.getLocalProperty
 
 plugins {
     id(BuildPlugins.ANDROID_APPLICATION)
@@ -31,7 +30,7 @@ plugins {
     id(BuildPlugins.JACOCO)
     id(BuildPlugins.GRAPH_GENERATOR)
     id(BuildPlugins.GOOGLE_SERVICES)
-    id(BuildPlugins.FABRIC)
+    id(BuildPlugins.FIREBASE_CRASHLYTICS)
 }
 
 allOpen {
@@ -52,6 +51,7 @@ android {
 
         vectorDrawables.useSupportLibrary = BuildAndroidConfig.SUPPORT_LIBRARY_VECTOR_DRAWABLES
         testInstrumentationRunner = BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER
+        testInstrumentationRunnerArguments.putAll(BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER_ARGUMENTS)
     }
 
     signingConfigs {
@@ -96,8 +96,8 @@ android {
         BuildModules.Features.MOVIES_FAVORITES
     )
 
-    dataBinding {
-        isEnabled = true
+    buildFeatures {
+        dataBinding = true
     }
 
     androidExtensions {
@@ -155,7 +155,7 @@ dependencies {
     implementation(Dependencies.NAVIGATION_FRAGMENT)
     implementation(Dependencies.TIMBER)
     implementation(Dependencies.LOGGING)
-    implementation(Dependencies.CRASHLYTICS)
+    implementation(Dependencies.FIREBASE_CRASHLYTICS)
     implementation(Dependencies.PLAY_CORE)
     implementation(Dependencies.DAGGER)
     implementation(Dependencies.COIL)

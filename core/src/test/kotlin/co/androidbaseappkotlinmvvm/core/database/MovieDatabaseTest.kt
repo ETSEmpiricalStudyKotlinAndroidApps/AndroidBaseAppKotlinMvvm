@@ -16,32 +16,31 @@
 
 package co.androidbaseappkotlinmvvm.core.database
 
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.whenever
 import co.androidbaseappkotlinmvvm.core.database.moviefavorite.MovieFavoriteDao
 import co.androidbaseappkotlinmvvm.libraries.testutils.robolectric.TestRobolectric
+import io.mockk.MockKAnnotations
+import io.mockk.every
+import io.mockk.impl.annotations.MockK
 import org.hamcrest.CoreMatchers.instanceOf
 import org.junit.Assert.assertThat
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.MockitoAnnotations
 
 class MovieDatabaseTest : TestRobolectric() {
 
-    @Mock
+    @MockK(relaxed = true)
     lateinit var movieDatabase: MovieDatabase
-    @Mock
+    @MockK(relaxed = true)
     lateinit var movieFavoriteDao: MovieFavoriteDao
 
     @Before
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
+        MockKAnnotations.init(this)
     }
 
     @Test
     fun obtainMovieFavoriteDao() {
-        doReturn(movieFavoriteDao).whenever(movieDatabase).movieFavoriteDao()
+        every { movieDatabase.movieFavoriteDao() } returns movieFavoriteDao
 
         assertThat(
             movieDatabase.movieFavoriteDao(),

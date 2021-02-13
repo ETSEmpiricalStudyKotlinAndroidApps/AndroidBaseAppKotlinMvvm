@@ -17,13 +17,12 @@
 package co.androidbaseappkotlinmvvm.core.di
 
 import android.content.Context
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
 import co.androidbaseappkotlinmvvm.core.database.MovieDatabase
 import co.androidbaseappkotlinmvvm.core.database.moviefavorite.MovieFavoriteDao
 import co.androidbaseappkotlinmvvm.core.di.modules.DatabaseModule
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.verify
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -40,7 +39,7 @@ class DatabaseModuleTest {
 
     @Test
     fun verifyProvidedMarvelDatabase() {
-        val context: Context = mock()
+        val context: Context = mockk()
         val marvelDatabase = databaseModule.provideMovieDatabase(context)
 
         assertNotNull(marvelDatabase.movieFavoriteDao())
@@ -48,21 +47,21 @@ class DatabaseModuleTest {
 
     @Test
     fun verifyProvidedMovieFavoriteDao() {
-        val movieDatabase: MovieDatabase = mock()
-        val movieFavoriteDao: MovieFavoriteDao = mock()
+        val movieDatabase: MovieDatabase = mockk()
+        val movieFavoriteDao: MovieFavoriteDao = mockk()
 
-        doReturn(movieFavoriteDao).whenever(movieDatabase).movieFavoriteDao()
+        every { movieDatabase.movieFavoriteDao() } returns movieFavoriteDao
 
         assertEquals(
             movieFavoriteDao,
             databaseModule.provideMovieFavoriteDao(movieDatabase)
         )
-        verify(movieDatabase).movieFavoriteDao()
+        verify { movieDatabase.movieFavoriteDao() }
     }
 
     @Test
     fun verifyProvidedMovieFavoriteRepository() {
-        val movieFavoriteDao: MovieFavoriteDao = mock()
+        val movieFavoriteDao: MovieFavoriteDao = mockk()
         val repository = databaseModule.provideMovieFavoriteRepository(movieFavoriteDao)
 
         assertEquals(movieFavoriteDao, repository.movieFavoriteDao)

@@ -31,4 +31,8 @@ object BuildAndroidConfig {
     const val SUPPORT_LIBRARY_VECTOR_DRAWABLES = true
 
     const val TEST_INSTRUMENTATION_RUNNER = "androidx.test.runner.AndroidJUnitRunner"
+    //Add leak detection on instrumented tests
+    val TEST_INSTRUMENTATION_RUNNER_ARGUMENTS = mapOf(
+        "leakcanary.FailTestOnLeakRunListener" to "listener"
+    )
 }

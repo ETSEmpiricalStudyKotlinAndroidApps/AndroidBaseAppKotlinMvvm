@@ -76,7 +76,8 @@
             app:layout_anchor="@id/appbar"
             app:layout_anchorGravity="bottom|end"
             app:srcCompat="@drawable/ic_favorites"
-            style="@style/AppTheme.FloatingActionButton" />
+            style="@style/AppTheme.FloatingActionButton"
+            android:contentDescription="@string/movie_detail_fab_description"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

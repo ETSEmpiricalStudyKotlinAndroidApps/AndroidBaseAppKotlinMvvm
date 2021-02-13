@@ -22,11 +22,12 @@ import ProductFlavorDevelop
 import ProductFlavorProduction
 import ProductFlavorQA
 import dependencies.Dependencies
-import dependencies.TestDependencies
-import dependencies.TestAndroidDependencies
 import dependencies.AnnotationProcessorsDependencies
 import BuildType.Companion.DEBUG
 import BuildType.Companion.RELEASE
+import extensions.addTestsDependencies
+import extensions.implementation
+import extensions.kapt
 
 plugins {
     id("com.android.dynamic-feature")
@@ -136,32 +137,5 @@ dependencies {
     kapt(AnnotationProcessorsDependencies.ROOM)
 
     testImplementation(project(BuildModules.Libraries.TEST_UTILS))
-
-    testImplementation(TestDependencies.JUNIT)
-    testImplementation(TestDependencies.MOCKITO)
-    testImplementation(TestDependencies.MOCKK)
-    testImplementation(TestDependencies.ASSERTJ)
-    testImplementation(TestDependencies.ROOM)
-    testImplementation(TestDependencies.CORE)
-    testImplementation(TestDependencies.ARCH_CORE)
-    testImplementation(TestDependencies.RULES)
-    testImplementation(TestDependencies.RUNNER)
-    testImplementation(TestDependencies.COROUTINES_TEST)
-    testImplementation(TestDependencies.FRAGMENT_TEST)
-    testImplementation(TestDependencies.EXT)
-    testImplementation(TestDependencies.MOCK_WEB_SERVER)
-
-    androidTestImplementation(TestAndroidDependencies.PLAY_CORE)
-    androidTestImplementation(TestAndroidDependencies.ESPRESSO)
-    androidTestImplementation(TestAndroidDependencies.RUNNER)
-    androidTestImplementation(TestAndroidDependencies.RULES)
-    androidTestImplementation(TestAndroidDependencies.CORE)
-    androidTestImplementation(TestAndroidDependencies.JUNIT)
-    androidTestImplementation(TestAndroidDependencies.FRAGMENT_TEST)
-    androidTestImplementation(TestAndroidDependencies.OBJENESIS)
-
-    // - Exclude module for https://github.com/mockk/mockk/issues/281
-    androidTestImplementation(TestAndroidDependencies.MOCKK) {
-        exclude(module = "objenesis")
-    }
+    addTestsDependencies()
 }

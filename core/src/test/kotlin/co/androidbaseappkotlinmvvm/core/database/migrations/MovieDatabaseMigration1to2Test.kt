@@ -17,23 +17,23 @@
 package co.androidbaseappkotlinmvvm.core.database.migrations
 
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.nhaarman.mockitokotlin2.never
-import com.nhaarman.mockitokotlin2.verify
+import io.mockk.Called
+import io.mockk.MockKAnnotations
+import io.mockk.impl.annotations.MockK
+import io.mockk.verify
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.MockitoAnnotations
 
 class MovieDatabaseMigration1to2Test {
 
-    @Mock
+    @MockK(relaxed = true)
     lateinit var supportSQLiteDatabase: SupportSQLiteDatabase
     private val migration = MIGRATION_1_2
 
     @Before
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
+        MockKAnnotations.init(this)
     }
 
     @Test
@@ -46,6 +46,6 @@ class MovieDatabaseMigration1to2Test {
     fun executeMigrationDatabase() {
         migration.migrate(supportSQLiteDatabase)
 
-        verify(supportSQLiteDatabase, never()).beginTransaction()
+        verify { supportSQLiteDatabase.beginTransaction() wasNot Called }
     }
 }
