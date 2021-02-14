@@ -168,3 +168,9 @@ dependencies {
 
     addTestsDependencies()
 }
+
+task("generateTagVersion") {
+    doLast {
+        println(android.defaultConfig.versionName+"."+android.defaultConfig.versionCode)
+    }
+}
