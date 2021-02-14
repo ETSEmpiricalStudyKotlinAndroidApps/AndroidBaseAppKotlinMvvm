@@ -37,46 +37,6 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v2
 
-    - name: Create universal release APK
-      run: ./gradlew packageProdReleaseUniversalApk
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: Release artifact
-        path: app/build/outputs/universal_apk/prodRelease/app-prod-release-universal.apk
-
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false
-
-    - name: Save name of our Artifact
-      id: set-result-artifact
-      run: |
-        ARTIFACT_PATHNAME_APK=$(ls app/build/outputs/apk/universal_apk/prodRelease/*.apk | head -n 1)
-        ARTIFACT_NAME_APK=$(basename $ARTIFACT_PATHNAME_APK)
-        echo "ARTIFACT_NAME_APK is " ${ARTIFACT_NAME_APK}
-        echo "ARTIFACT_PATHNAME_APK=${ARTIFACT_PATHNAME_APK}" >> $GITHUB_ENV
-        echo "ARTIFACT_NAME_APK=${ARTIFACT_NAME_APK}" >> $GITHUB_ENV
-
-    - name: Upload our Artifact Assets
-      id: upload-release-asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{ env.ARTIFACT_PATHNAME_APK }}
-        asset_name: ${{ env.ARTIFACT_NAME_APK }}
-        asset_content_type: application/zip
-
     - name: Run Detekt
       run: ./gradlew detekt
 
@@ -100,3 +60,43 @@ jobs:
 
     - name: Run CodeCov
       uses: codecov/codecov-action@v1
+
+    - name: Create universal release APK
+      run: ./gradlew packageProdReleaseUniversalApk
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Release artifact
+        path: app/build/outputs/universal_apk/prodRelease/app-prod-release-universal.apk
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+    - name: Save name of our Artifact
+      id: set-result-artifact
+      run: |
+        ARTIFACT_PATHNAME_APK=$(ls app/build/outputs/apk/universal_apk/prodRelease/*.apk | head -n 1)
+        ARTIFACT_NAME_APK=$(basename $ARTIFACT_PATHNAME_APK)
+        echo "ARTIFACT_NAME_APK is " ${ARTIFACT_NAME_APK}
+        echo "ARTIFACT_PATHNAME_APK=${ARTIFACT_PATHNAME_APK}" >> $GITHUB_ENV
+        echo "ARTIFACT_NAME_APK=${ARTIFACT_NAME_APK}" >> $GITHUB_ENV
+
+      - name: Upload our Artifact Assets
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            upload_url: ${{ steps.create_release.outputs.upload_url }}
+            asset_path: ${{ env.ARTIFACT_PATHNAME_APK }}
+            asset_name: ${{ env.ARTIFACT_NAME_APK }}
+            asset_content_type: application/zip
