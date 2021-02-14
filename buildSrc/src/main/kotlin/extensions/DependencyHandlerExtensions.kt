@@ -96,7 +96,6 @@ fun DependencyHandler.addTestsDependencies() {
     testImplementation(TestDependencies.ARCH_CORE)
     testImplementation(TestDependencies.RULES)
     testImplementation(TestDependencies.RUNNER)
-    testImplementation(TestDependencies.COROUTINES_TEST)
     testImplementation(TestDependencies.FRAGMENT_TEST)
     testImplementation(TestDependencies.EXT)
     testImplementation(TestDependencies.MOCK_WEB_SERVER)

@@ -16,7 +16,9 @@
 
 import utils.checkGoogleServicesFile
 import dependencies.Dependencies
+import dependencies.DebugDependencies
 import dependencies.AnnotationProcessorsDependencies
+import extensions.addTestsDependencies
 import extensions.buildConfigBooleanField
 import extensions.getLocalProperty
 
@@ -160,5 +162,9 @@ dependencies {
     implementation(Dependencies.DAGGER)
     implementation(Dependencies.COIL)
 
+    debugImplementation(DebugDependencies.LEAKCANARY)
+
     kapt(AnnotationProcessorsDependencies.DAGGER)
+
+    addTestsDependencies()
 }

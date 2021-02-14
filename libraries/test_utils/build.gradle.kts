@@ -31,7 +31,9 @@ dependencies {
     implementation(TestDependencies.ARCH_CORE)
     implementation(TestDependencies.RULES)
     implementation(TestDependencies.RUNNER)
-    implementation(TestDependencies.COROUTINES_TEST)
+    implementation(TestDependencies.COROUTINES_TEST) {
+        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-debug")
+    }
     implementation(TestDependencies.FRAGMENT_TEST)
     implementation(TestDependencies.EXT)
     implementation(TestDependencies.MOCK_WEB_SERVER)

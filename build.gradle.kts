@@ -26,4 +26,12 @@ allprojects {
     plugins.apply(BuildPlugins.DOKKA)
     plugins.apply(BuildPlugins.KTLINT)
     plugins.apply(BuildPlugins.SPOTLESS)
+
+    allprojects {
+        configurations.all {
+            resolutionStrategy {
+                force("org.objenesis:objenesis:2.6")
+            }
+        }
+    }
 }

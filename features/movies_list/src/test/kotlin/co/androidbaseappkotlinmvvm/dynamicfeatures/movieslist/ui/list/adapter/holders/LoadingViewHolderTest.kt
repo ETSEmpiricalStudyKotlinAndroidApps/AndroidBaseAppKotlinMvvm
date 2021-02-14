@@ -19,8 +19,6 @@ package co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.adapter.h
 import android.view.LayoutInflater
 import android.view.View
 import androidx.databinding.ViewDataBinding
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.filters.SmallTest
 import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.databinding.ListItemLoadingBinding
 import co.androidbaseappkotlinmvvm.favorite.movieslist.ui.list.adapter.holders.LoadingViewHolder
 import io.mockk.MockKAnnotations
@@ -29,12 +27,8 @@ import io.mockk.impl.annotations.MockK
 import io.mockk.mockkStatic
 import org.junit.Assert
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
-@SmallTest
 class LoadingViewHolderTest {
 
     @MockK
@@ -51,7 +45,6 @@ class LoadingViewHolderTest {
     }
 
     @Test
-    @Ignore("Failed to create a Robolectric sandbox: Android SDK 29 requires Java 9 (have Java 8)")
     fun createViewHolder_ShouldInitializeCorrectly() {
         mockkStatic(ListItemLoadingBinding::class)
         every { (binding as ViewDataBinding).root } returns view

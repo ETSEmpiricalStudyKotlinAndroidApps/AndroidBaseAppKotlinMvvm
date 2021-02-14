@@ -19,8 +19,6 @@ package co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.adapter.h
 import android.view.LayoutInflater
 import android.view.View
 import androidx.databinding.ViewDataBinding
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.filters.SmallTest
 import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.databinding.ListItemMovieBinding
 import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.MoviesListViewModel
 import co.androidbaseappkotlinmvvm.dynamicfeatures.movieslist.ui.list.model.MovieItem
@@ -33,12 +31,8 @@ import io.mockk.mockkStatic
 import io.mockk.verify
 import org.junit.Assert
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
-@SmallTest
 class MovieViewHolderTest {
 
     @MockK
@@ -55,7 +49,6 @@ class MovieViewHolderTest {
     }
 
     @Test
-    @Ignore("Failed to create a Robolectric sandbox: Android SDK 29 requires Java 9 (have Java 8)")
     fun createViewHolder_ShouldInitializeCorrectly() {
         mockkStatic(ListItemMovieBinding::class)
         every { (binding as ViewDataBinding).root } returns view
@@ -67,7 +60,6 @@ class MovieViewHolderTest {
     }
 
     @Test
-    @Ignore("Failed to create a Robolectric sandbox: Android SDK 29 requires Java 9 (have Java 8)")
     fun bindViewHolder_ShouldBindingDataVariable() {
         mockkStatic(ListItemMovieBinding::class)
         every { (binding as ViewDataBinding).root } returns view
