@@ -1,6 +1,0 @@
-$dokka.format:html
-$dokka.linkExtension:html
-
-co.androidbaseappkotlinmvvm.dynamicfeatures.home.di
-co.androidbaseappkotlinmvvm.dynamicfeatures.home.menu
-co.androidbaseappkotlinmvvm.dynamicfeatures.home.ui

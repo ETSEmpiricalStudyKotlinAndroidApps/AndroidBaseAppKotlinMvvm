@@ -1,7 +1,0 @@
-$dokka.format:html
-$dokka.linkExtension:html
-
-co.androidbaseappkotlinmvvm.dynamicfeatures.moviesfavorites.ui.favorite
-co.androidbaseappkotlinmvvm.dynamicfeatures.moviesfavorites.ui.favorite.adapter.holders
-co.androidbaseappkotlinmvvm.dynamicfeatures.moviesfavorites.ui.favorite.di
-co.androidbaseappkotlinmvvm.favorite.moviesfavorites.ui.favorite.adapter
