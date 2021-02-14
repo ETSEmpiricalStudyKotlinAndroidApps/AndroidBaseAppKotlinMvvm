@@ -37,24 +37,38 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v2
 
-    - name: Create release bundle
-      run: ./gradlew bundleRelease
+    - name: Run Detekt
+      run: ./gradlew detekt
 
-    - name: Sign artifact
-      id: signArtifact
-      uses: r0adkll/sign-android-release@v1
+    - name: Run Kotlin Lint
+      run: ./gradlew ktlint
+
+    - name: Run Android Lint
+      run: ./gradlew lintDevDebug
+
+    - name: Run Spotless
+      run: ./gradlew spotlessKotlinCheck
+
+    - name: Run Unit Tests
+      run: ./gradlew testDevDebugUnitTest
+
+    - name: Run Instrumented tests
+      uses: reactivecircus/android-emulator-runner@v2
       with:
-        releaseDirectory: app/build/outputs/bundle/prodRelease/
-        alias: ${{ secrets.SIGNING_KEY_ALIAS }}
-        signingKeyBase64: ${{ secrets.SIGNING_STORE_FILE }}
-        keyStorePassword: ${{ secrets.SIGNING_STORE_PASSWORD }}
-        keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
+        api-level: 29
+        script: ./gradlew combinedTestReportDevDebug
 
-    - name: Upload our APK
+    - name: Run CodeCov
+      uses: codecov/codecov-action@v1
+
+    - name: Create universal release APK
+      run: ./gradlew packageProdReleaseUniversalApk
+
+    - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
         name: Release artifact
-        path: ${{steps.sign_app.outputs.signedReleaseFile}}
+        path: app/build/outputs/universal_apk/prodRelease/app-prod-release-universal.apk
 
     - name: Create Release
       id: create_release
@@ -86,27 +100,3 @@ jobs:
         asset_path: ${{ env.ARTIFACT_PATHNAME_APK }}
         asset_name: ${{ env.ARTIFACT_NAME_APK }}
         asset_content_type: application/zip
-
-    - name: Run Detekt
-      run: ./gradlew detekt
-
-    - name: Run Kotlin Lint
-      run: ./gradlew ktlint
-
-    - name: Run Android Lint
-      run: ./gradlew lintDevDebug
-
-    - name: Run Spotless
-      run: ./gradlew spotlessKotlinCheck
-
-    - name: Run Unit Tests
-      run: ./gradlew testDevDebugUnitTest
-
-    - name: Run Instrumented tests
-      uses: reactivecircus/android-emulator-runner@v2
-      with:
-        api-level: 29
-        script: ./gradlew combinedTestReportDevDebug
-
-    - name: Run CodeCov
-      uses: codecov/codecov-action@v1
