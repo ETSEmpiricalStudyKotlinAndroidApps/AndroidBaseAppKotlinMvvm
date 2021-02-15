@@ -50,6 +50,7 @@ android {
 
         versionCode = BuildAndroidConfig.VERSION_CODE
         versionName = BuildAndroidConfig.VERSION_NAME
+        base.archivesBaseName = "$applicationId-$versionName.$versionCode"
 
         vectorDrawables.useSupportLibrary = BuildAndroidConfig.SUPPORT_LIBRARY_VECTOR_DRAWABLES
         testInstrumentationRunner = BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER
@@ -167,10 +168,4 @@ dependencies {
     kapt(AnnotationProcessorsDependencies.DAGGER)
 
     addTestsDependencies()
-}
-
-task("generateTagVersion") {
-    doLast {
-        println(android.defaultConfig.versionName+"."+android.defaultConfig.versionCode)
-    }
 }

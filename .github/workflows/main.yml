@@ -68,11 +68,17 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: Release artifact
-        path: app/build/outputs/universal_apk/prodRelease/app-prod-release-universal.apk
+        path: app/build/outputs/universal_apk/prodRelease/*.apk
 
-    - name: Generate Tag
+    - name: Save name and tag from apk
+      id: set-result-artifact
       run: |
-        TAG_NAME=$(./gradlew -q generateTagVersion)
+        ARTIFACT_PATHNAME_APK=$(ls app/build/outputs/universal_apk/prodRelease/*.apk | head -n 1)
+        ARTIFACT_NAME_APK=$(basename $ARTIFACT_PATHNAME_APK)
+        echo "ARTIFACT_NAME_APK is " ${ARTIFACT_NAME_APK}
+        echo "ARTIFACT_PATHNAME_APK=${ARTIFACT_PATHNAME_APK}" >> $GITHUB_ENV
+        echo "ARTIFACT_NAME_APK=${ARTIFACT_NAME_APK}" >> $GITHUB_ENV
+        TAG_NAME=$(echo ${ARTIFACT_NAME_APK} | cut -d'-' -f2)
         echo "TAG_NAME=${TAG_NAME}" >> $GITHUB_ENV
 
     - name: Create Release
@@ -85,15 +91,6 @@ jobs:
         release_name: Release ${{ env.TAG_NAME }}
         draft: false
         prerelease: false
-
-    - name: Save name of our Artifact
-      id: set-result-artifact
-      run: |
-        ARTIFACT_PATHNAME_APK=$(ls app/build/outputs/universal_apk/prodRelease/app-prod-release-universal.apk | head -n 1)
-        ARTIFACT_NAME_APK=$(basename $ARTIFACT_PATHNAME_APK)
-        echo "ARTIFACT_NAME_APK is " ${ARTIFACT_NAME_APK}
-        echo "ARTIFACT_PATHNAME_APK=${ARTIFACT_PATHNAME_APK}" >> $GITHUB_ENV
-        echo "ARTIFACT_NAME_APK=${ARTIFACT_NAME_APK}" >> $GITHUB_ENV
 
     - name: Upload our Artifact Assets
       id: upload-release-asset
