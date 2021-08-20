@@ -44,7 +44,6 @@ repositories {
     mavenCentral()
     maven("https://oss.sonatype.org/content/repositories/snapshots")
     maven("https://plugins.gradle.org/m2/")
-    maven("https://ci.android.com/builds/submitted/5837096/androidx_snapshot/latest/repository")
 }
 
 kotlinDslPluginOptions {
@@ -61,7 +60,7 @@ object PluginsVersions {
     const val KTLINT = "0.39.0"
     const val SPOTLESS = "5.6.1"
     const val DETEKT = "1.14.1"
-    const val GRAPH_GENERATOR = "0.6.0-SNAPSHOT"
+    const val GRAPH_GENERATOR = "0.6.0"
     const val GOOGLE_SERVICES = "4.3.3"
     const val FIREBASE_CRASHLYTICS = "2.4.1"
 }
