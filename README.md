@@ -1,7 +1,7 @@
 # AndroidBaseAppKotlinMvvm
 Base reference for new Android projects (Kotlin&MVVM)
 
-![Android CI](https://github.com/tecruz/AndroidBaseAppKotlinMvvm/workflows/Android%20CI/badge.svg)
+[![Android CI](https://github.com/tecruz/AndroidBaseAppKotlinMvvm/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/tecruz/AndroidBaseAppKotlinMvvm/actions/workflows/main.yml)
 [![codecov](https://codecov.io/gh/tecruz/AndroidBaseAppKotlinMvvm/branch/master/graph/badge.svg)](https://codecov.io/gh/tecruz/AndroidBaseAppKotlinMvvm)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/171640011f3749d19a8de24877237522)](https://app.codacy.com/app/tecruz/AndroidBaseAppKotlinMvvm?utm_source=github.com&utm_medium=referral&utm_content=tecruz/AndroidBaseAppKotlinMvvm&utm_campaign=badger)
 
