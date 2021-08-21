@@ -8,3 +8,4 @@
 .externalNativeBuild
 /buildSrc/build/
 /docs
+/buildSrc/build/pluginUnderTestMetadata/
