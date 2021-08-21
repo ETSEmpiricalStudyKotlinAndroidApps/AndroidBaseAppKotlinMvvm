@@ -47,7 +47,7 @@ class MovieRepository(
      * Get all movies paged.
      *
      * @param page Limit the result set to the specified number of resources.
-     * @return Response for cmovies resource.
+     * @return Response for movies resource.
      */
     suspend fun getMovies(page: Int): ResultsResponse<MovieResponse> {
         return service.getMovies(apiKey = API_KEY, page = page)
