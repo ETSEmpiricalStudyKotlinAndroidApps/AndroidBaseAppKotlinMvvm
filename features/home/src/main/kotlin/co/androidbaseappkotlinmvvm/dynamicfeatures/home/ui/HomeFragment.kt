@@ -48,8 +48,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     lateinit var themeUtils: ThemeUtils
 
     private val navGraphIds = listOf(
-        R.navigation.navigation_movies_favorites_graph,
-        R.navigation.navigation_movies_list_graph
+        R.navigation.navigation_movies_list_graph,
+        R.navigation.navigation_movies_favorites_graph
     )
 
     /**
