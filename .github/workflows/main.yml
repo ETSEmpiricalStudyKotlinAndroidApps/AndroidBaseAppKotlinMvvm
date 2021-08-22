@@ -21,11 +21,11 @@ jobs:
         java-version: 1.8
 
     - name: Decode Keystore
-        id: decode_keystore
-        uses: timheuer/base64-to-file@v1
-        with:
-          fileName: ${{ secrets.SIGNING_STORE_FILE }}
-          encodedString: ${{ secrets.KEYSTORE }}
+      id: decode_keystore
+      uses: timheuer/base64-to-file@v1
+      with:
+        fileName: ${{ secrets.SIGNING_STORE_FILE }}
+        encodedString: ${{ secrets.KEYSTORE }}
 
     - name: Write properties
       env:
