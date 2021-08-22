@@ -14,10 +14,18 @@
  * limitations under the License.
  */
 
-plugins {
-    id("commons.android-dynamic-feature")
-}
+package co.androidbaseappkotlinmvvm.dynamicfeatures.splashscreen
 
-dependencies {
-    implementation(project(BuildModules.Features.SPLASH_SCREEN))
+import co.androidbaseappkotlinmvvm.dynamicfeatures.splashscreen.ui.SplashScreenViewState
+import org.junit.Assert.assertTrue
+import org.junit.Test
+
+class SplashScreenViewStateTest {
+    lateinit var state: SplashScreenViewState
+
+    @Test
+    fun setStateAsAnimationEnded_ShouldBeSettled() {
+        state = SplashScreenViewState.AnimationEnded
+        assertTrue(state.isAnimationEnded())
+    }
 }

@@ -20,6 +20,7 @@ include(
     ":features:home",
     ":features:movies_list",
     ":features:movies_favorites",
+    ":features:splashscreen",
     ":libraries:test_utils",
     ":commons:ui",
     ":commons:views"

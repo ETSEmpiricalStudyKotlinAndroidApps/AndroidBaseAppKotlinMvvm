@@ -25,6 +25,7 @@ object BuildModules {
         const val HOME = ":features:home"
         const val MOVIES_LIST = ":features:movies_list"
         const val MOVIES_FAVORITES = ":features:movies_favorites"
+        const val SPLASH_SCREEN = ":features:splashscreen"
     }
 
     object Commons {

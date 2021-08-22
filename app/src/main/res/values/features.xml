@@ -7,4 +7,5 @@
     <string name="feature_home">Home</string>
     <string name="feature_movies_list">Movies List</string>
     <string name="feature_movies_favorite">Movies Favorite</string>
+    <string name="feature_splashscreen">Splashscreen</string>
 </resources>
