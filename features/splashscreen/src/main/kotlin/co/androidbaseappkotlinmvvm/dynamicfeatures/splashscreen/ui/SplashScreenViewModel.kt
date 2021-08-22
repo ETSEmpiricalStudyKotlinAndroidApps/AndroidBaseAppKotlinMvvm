@@ -38,6 +38,9 @@ class SplashScreenViewModel : ViewModel() {
     //  Public methods
     // ============================================================================================
 
+    /**
+     * Initialize animation
+     */
     fun startAnimation() {
         Handler().postDelayed(Runnable { //This method will be executed once the timer is over
             _state.postValue(SplashScreenViewState.AnimationEnded)
