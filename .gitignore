@@ -9,3 +9,4 @@
 /buildSrc/build/
 /docs
 /buildSrc/build/pluginUnderTestMetadata/
+/app/*.jks
