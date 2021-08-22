@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1015761019215",
+    "firebase_url": "https://movieappkotlin.firebaseio.com",
+    "project_id": "movieappkotlin",
+    "storage_bucket": "movieappkotlin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015761019215:android:9fffada648d014f2c6653a",
+        "android_client_info": {
+          "package_name": "co.androidbaseappkotlinmvvm.dev.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015761019215-ffqgbcu97vmg0p38bltmd49dbqm2qgru.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB00IXe_wxpOA0ulwMcMixE_8mSAf94eFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015761019215-ffqgbcu97vmg0p38bltmd49dbqm2qgru.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
