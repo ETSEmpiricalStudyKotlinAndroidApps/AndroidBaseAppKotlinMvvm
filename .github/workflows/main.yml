@@ -32,7 +32,7 @@ jobs:
         MOVIE_API_KEY: ${{ secrets.MOVIE_API_KEY }}
         SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
         SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
-        SIGNING_STORE_FILE: ${{ secrets.SIGNING_STORE_FILE }}
+        SIGNING_STORE_FILE: ${{ steps.decode_keystore.outputs.filePath }}
         SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
       run: |
         echo "movie.api.key=$MOVIE_API_KEY" >> local.properties
