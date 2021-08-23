@@ -16,8 +16,10 @@
 
 package co.androidbaseappkotlinmvvm.dynamicfeatures.splashscreen.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import androidx.navigation.fragment.findNavController
 import co.androidbaseappkotlinmvvm.MovieApp
 import co.androidbaseappkotlinmvvm.commons.ui.base.BaseFragment
@@ -35,6 +37,28 @@ import co.androidbaseappkotlinmvvm.dynamicfeatures.splashscreen.di.SplashScreenM
 class SplashScreenFragment : BaseFragment<FragmentSplashScreenBinding, SplashScreenViewModel>(
     layoutId = R.layout.fragment_splash_screen
 ) {
+    /**
+     * Called to set fullscreen before this fragment is shown.
+     *
+     * @param context The application context
+     *
+     * @see BaseFragment.onAttach
+     */
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    /**
+     * Called to remove fullscreen after this fragment is shown.
+     *
+     * @see BaseFragment.onDetach
+     */
+    override fun onDetach() {
+        super.onDetach()
+        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
     /**
      * Called to have the fragment instantiate its user interface view.
      *
