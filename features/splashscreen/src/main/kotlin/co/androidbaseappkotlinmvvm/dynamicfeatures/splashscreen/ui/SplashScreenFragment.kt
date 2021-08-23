@@ -46,7 +46,7 @@ class SplashScreenFragment : BaseFragment<FragmentSplashScreenBinding, SplashScr
      */
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
     /**
@@ -56,7 +56,7 @@ class SplashScreenFragment : BaseFragment<FragmentSplashScreenBinding, SplashScr
      */
     override fun onDetach() {
         super.onDetach()
-        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
     /**
