@@ -96,8 +96,7 @@ android {
     dynamicFeatures = mutableSetOf(
         BuildModules.Features.HOME,
         BuildModules.Features.MOVIES_LIST,
-        BuildModules.Features.MOVIES_FAVORITES,
-        BuildModules.Features.SPLASH_SCREEN
+        BuildModules.Features.MOVIES_FAVORITES
     )
 
     buildFeatures {

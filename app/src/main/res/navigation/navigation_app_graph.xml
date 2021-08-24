@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:startDestination="@id/splashscreen_fragment">
-    <fragment
-        android:id="@+id/splashscreen_fragment"
-        android:name="co.androidbaseappkotlinmvvm.dynamicfeatures.splashscreen.ui.SplashScreenFragment"
-        android:label="SplashScreenFragment" >
-        <action
-                android:id="@+id/action_splashscreen_fragment_to_home_fragment"
-                app:destination="@+id/home_fragment"
-                app:enterAnim="@anim/fragment_open_enter"
-                app:exitAnim="@anim/fragment_close_exit"
-                app:popUpTo="@id/splashscreen_fragment"
-                app:popUpToInclusive="true"/>
-    </fragment>
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:startDestination="@id/home_fragment">
     <fragment
             android:id="@+id/home_fragment"
-            android:name="co.androidbaseappkotlinmvvm.dynamicfeatures.home.ui.HomeFragment">
+            android:name="co.androidbaseappkotlinmvvm.dynamicfeatures.home.ui.HomeFragment"
+            android:label="HomeFragment">
     </fragment>
 </navigation>

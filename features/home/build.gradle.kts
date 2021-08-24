@@ -19,5 +19,5 @@ plugins {
 }
 
 dependencies {
-    implementation(project(BuildModules.Features.SPLASH_SCREEN))
+
 }
